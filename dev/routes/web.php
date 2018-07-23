@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/login', function () {
+    return view('auth/sign-in');
+});
+Route::get('/register', function () {
+    return view('auth/sign-up');
+});

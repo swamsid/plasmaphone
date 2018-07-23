@@ -41,6 +41,7 @@
     <script src="{{asset('assets/js/demo.js')}}"></script>
 
     <!-- Plugin -->
+    <script src="{{ asset ('assets/plugins/jquery-validation/jquery.validate.js')}}"></script>
     <script src="{{asset('assets/js-cookie/js.cookie.js')}}"></script>
 
 <script type="text/javascript">
