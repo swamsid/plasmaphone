@@ -272,329 +272,258 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../pages/typography.html">
-                            <i class="material-icons">text_fields</i>
-                            <span>Typography</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../pages/helper-classes.html">
-                            <i class="material-icons">layers</i>
-                            <span>Helper Classes</span>
-                        </a>
-                    </li>
-                    <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">widgets</i>
-                            <span>Widgets</span>
+                            <i class="material-icons">desktop_windows</i>
+                            <span>Point of Sales</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Cards</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="../pages/widgets/cards/basic.html">Basic</a>
-                                    </li>
-                                    <li>
-                                        <a href="../pages/widgets/cards/colored.html">Colored</a>
-                                    </li>
-                                    <li>
-                                        <a href="../pages/widgets/cards/no-header.html">No Header</a>
-                                    </li>
-                                </ul>
+                                <a href="#">Penjualan Reguler</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Infobox</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="../pages/widgets/infobox/infobox-1.html">Infobox-1</a>
-                                    </li>
-                                    <li>
-                                        <a href="../pages/widgets/infobox/infobox-2.html">Infobox-2</a>
-                                    </li>
-                                    <li>
-                                        <a href="../pages/widgets/infobox/infobox-3.html">Infobox-3</a>
-                                    </li>
-                                    <li>
-                                        <a href="../pages/widgets/infobox/infobox-4.html">Infobox-4</a>
-                                    </li>
-                                    <li>
-                                        <a href="../pages/widgets/infobox/infobox-5.html">Infobox-5</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">swap_calls</i>
-                            <span>User Interface (UI)</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="../pages/ui/alerts.html">Alerts</a>
+                                <a href="#">Return Penjualan Reguler</a>    
                             </li>
                             <li>
-                                <a href="../pages/ui/animations.html">Animations</a>
+                                <a href="#">Penjualan Tempo</a>    
                             </li>
                             <li>
-                                <a href="../pages/ui/badges.html">Badges</a>
+                                <a href="#">Pemesanan Barang (Indent)</a>    
+                            </li>
+                            <li>
+                                <a href="#">Pengolahan Member</a>    
+                            </li>
+                            <li>
+                                <a href="#">Barang Lost (Angket)</a>    
+                            </li>
+                            <li>
+                                <a href="#">Pendataan Survey</a>    
                             </li>
 
+
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">credit_card</i>
+                            <span>Manajemen Pembelian</span>
+                        </a>
+                        <ul class="ml-menu">
                             <li>
-                                <a href="../pages/ui/breadcrumbs.html">Breadcrumbs</a>
+                                <a href="#">Rencana Pembelian</a>
                             </li>
                             <li>
-                                <a href="../pages/ui/buttons.html">Buttons</a>
+                                <a href="#">Konfirmasi Pembelian</a>
                             </li>
                             <li>
-                                <a href="../pages/ui/collapse.html">Collapse</a>
+                                <a href="#">Purchase Order</a>
                             </li>
                             <li>
-                                <a href="../pages/ui/colors.html">Colors</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/dialogs.html">Dialogs</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/icons.html">Icons</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/labels.html">Labels</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/list-group.html">List Group</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/media-object.html">Media Object</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/modals.html">Modals</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/notifications.html">Notifications</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/pagination.html">Pagination</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/preloaders.html">Preloaders</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/progressbars.html">Progress Bars</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/range-sliders.html">Range Sliders</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/sortable-nestable.html">Sortable & Nestable</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/tabs.html">Tabs</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/thumbnails.html">Thumbnails</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/tooltips-popovers.html">Tooltips & Popovers</a>
-                            </li>
-                            <li>
-                                <a href="../pages/ui/waves.html">Waves</a>
+                                <a href="#">Refund</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">assignment</i>
-                            <span>Forms</span>
+                            <i class="material-icons">storage</i>
+                            <span>Manajemen Persediaan</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="../pages/forms/basic-form-elements.html">Basic Form Elements</a>
+                                <a href="#">Penerimaan Barang</a>
                             </li>
                             <li>
-                                <a href="../pages/forms/advanced-form-elements.html">Advanced Form Elements</a>
+                                <a href="#">Return Suplier</a>
                             </li>
                             <li>
-                                <a href="../pages/forms/form-examples.html">Form Examples</a>
+                                <a href="#">Opname Barang</a>
                             </li>
                             <li>
-                                <a href="../pages/forms/form-validation.html">Form Validation</a>
+                                <a href="#">Data Stock Barang</a>
                             </li>
                             <li>
-                                <a href="../pages/forms/form-wizard.html">Form Wizard</a>
-                            </li>
-                            <li>
-                                <a href="../pages/forms/editors.html">Editors</a>
+                                <a href="#">History Barang</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">view_list</i>
-                            <span>Tables</span>
+                            <i class="material-icons">build</i>
+                            <span>Manajemen Perbaikan</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="../pages/tables/normal-tables.html">Normal Tables</a>
+                                <a href="#">Permintaan Perbaikan</a>
                             </li>
                             <li>
-                                <a href="../pages/tables/jquery-datatable.html">Jquery Datatables</a>
-                            </li>
-                            <li>
-                                <a href="../pages/tables/editable-table.html">Editable Tables</a>
+                                <a href="#">Layanan Perbaikan</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">perm_media</i>
-                            <span>Medias</span>
+                            <span>Manajemen Penjualan</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="../pages/medias/image-gallery.html">Image Gallery</a>
+                                <a href="#">Penjualan Internal</a>
                             </li>
                             <li>
-                                <a href="../pages/medias/carousel.html">Carousel</a>
+                                <a href="#">Penerimaan Barang Internal</a>
+                            </li>
+                            <li>
+                                <a href="#">Rencana Penjualan</a>
+                            </li>
+                            <li>
+                                <a href="#">Monitoring Penjualan</a>
+                            </li>
+                            <li>
+                                <a href="#">Analisa Penjualan</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">pie_chart</i>
-                            <span>Charts</span>
+                            <span>Manajemen Pelanggan</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="../pages/charts/morris.html">Morris</a>
-                            </li>
-                            <li>
-                                <a href="../pages/charts/flot.html">Flot</a>
-                            </li>
-                            <li>
-                                <a href="../pages/charts/chartjs.html">ChartJS</a>
-                            </li>
-                            <li>
-                                <a href="../pages/charts/sparkline.html">Sparkline</a>
-                            </li>
-                            <li>
-                                <a href="../pages/charts/jquery-knob.html">Jquery Knob</a>
+                                <a href="#">Data Pelanggan</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">content_copy</i>
-                            <span>Example Pages</span>
+                            <span>Manajemen Keuangan</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="../pages/examples/sign-in.html">Sign In</a>
+                                <a href="#">Laporan Hutang</a>
                             </li>
                             <li>
-                                <a href="../pages/examples/sign-up.html">Sign Up</a>
+                                <a href="#">Laporan Piutang</a>
                             </li>
                             <li>
-                                <a href="../pages/examples/forgot-password.html">Forgot Password</a>
+                                <a href="#">Laporan Neraca</a>
                             </li>
                             <li>
-                                <a href="../pages/examples/blank.html">Blank Page</a>
+                                <a href="#">Laporan Laba Rugi</a>
                             </li>
                             <li>
-                                <a href="../pages/examples/404.html">404 - Not Found</a>
+                                <a href="#">Laporan Arus Kas</a>
                             </li>
                             <li>
-                                <a href="../pages/examples/500.html">500 - Server Error</a>
+                                <a href="#">Pajak</a>
                             </li>
+                            <li>
+                                <a href="#">Analisa Keuangan</a>
+                            </li>
+
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">map</i>
-                            <span>Maps</span>
+                            <span>Manajemen Pegawai</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="../pages/maps/google.html">Google Map</a>
+                                <a href="#">Jabatan</a>
                             </li>
                             <li>
-                                <a href="../pages/maps/yandex.html">YandexMap</a>
+                                <a href="#">PPH 21</a>
                             </li>
                             <li>
-                                <a href="../pages/maps/jvectormap.html">jVectorMap</a>
+                                <a href="#">Data Karyawan</a>
+                            </li>
+                            <li>
+                                <a href="#">Presensi</a>
+                            </li>
+                            <li>
+                                <a href="#">Penggajian</a>
+                            </li>
+                            <li>
+                                <a href="#">Kinerja Pegawai</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">trending_down</i>
-                            <span>Multi Level Menu</span>
+                        <a href="#">
+                            <i class="material-icons">donut_large</i>
+                            <span>Pembayaran Tagihan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="material-icons">donut_large</i>
+                            <span>Pembayaran Penjualan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="menu-toggle">
+                            <i class="material-icons">gps_fixed</i>
+                            <span>Data Master</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="javascript:void(0);">
-                                    <span>Menu Item</span>
-                                </a>
+                                <a href="#">Master Transaksi</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);">
-                                    <span>Menu Item - 2</span>
-                                </a>
+                                <a href="#">Master Akun</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Level - 2</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="javascript:void(0);">
-                                            <span>Menu Item</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);" class="menu-toggle">
-                                            <span>Level - 3</span>
-                                        </a>
-                                        <ul class="ml-menu">
-                                            <li>
-                                                <a href="javascript:void(0);">
-                                                    <span>Level - 4</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <a href="#">Data Transaksi</a>
+                            </li>
+                            <li>
+                                <a href="#">Data Barang</a>
+                            </li>
+                            <li>
+                                <a href="#">Data Suplier</a>
                             </li>
                         </ul>
                     </li>
-                    <li class="active">
-                        <a href="changelogs.html">
-                            <i class="material-icons">update</i>
-                            <span>Changelogs</span>
+                    <li>
+                        <a href="#" class="menu-toggle">
+                            <i class="material-icons">gps_fixed</i>
+                            <span>Analisa Keuangan</span>
                         </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="#">Pertumbuhan Aset</a>
+                            </li>
+                            <li>
+                                <a href="#">Analisa Net Profit Terhadap OCF</a>
+                            </li>
+                            <li>
+                                <a href="#">Analisa Cashflow</a>
+                            </li>
+                            <li>
+                                <a href="#">Analisa Common Size dan Index</a>
+                            </li>
+                            <li>
+                                <a href="#">Analisa Rasio Keuangan</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="header">LABELS</li>
+                    <li class="header">Pengaturan Aplikasi</li>
                     <li>
                         <a href="javascript:void(0);">
                             <i class="material-icons col-red">donut_large</i>
-                            <span>Important</span>
+                            <span>Manajemen Pengguna</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0);">
                             <i class="material-icons col-amber">donut_large</i>
-                            <span>Warning</span>
+                            <span>Hak Akses Grub</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0);">
                             <i class="material-icons col-light-blue">donut_large</i>
-                            <span>Information</span>
+                            <span>Manajemen Menu</span>
                         </a>
                     </li>
                 </ul>
