@@ -272,6 +272,29 @@
                         </a>
                     </li>
                     <li>
+                        <a href="#" class="menu-toggle">
+                            <i class="material-icons">gps_fixed</i>
+                            <span>Data Master</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <li>
+                                <a href="#">Master Transaksi</a>
+                            </li>
+                            <li>
+                                <a href="#">Master Akun</a>
+                            </li>
+                            <li>
+                                <a href="#">Data Transaksi</a>
+                            </li>
+                            <li>
+                                <a href="#">Data Barang</a>
+                            </li>
+                            <li>
+                                <a href="#">Data Suplier</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">desktop_windows</i>
                             <span>Point of Sales</span>
@@ -460,29 +483,6 @@
                             <i class="material-icons">attach_money</i>
                             <span>Pembayaran Penjualan</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-toggle">
-                            <i class="material-icons">gps_fixed</i>
-                            <span>Data Master</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#">Master Transaksi</a>
-                            </li>
-                            <li>
-                                <a href="#">Master Akun</a>
-                            </li>
-                            <li>
-                                <a href="#">Data Transaksi</a>
-                            </li>
-                            <li>
-                                <a href="#">Data Barang</a>
-                            </li>
-                            <li>
-                                <a href="#">Data Suplier</a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#" class="menu-toggle">
