@@ -361,7 +361,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">perm_media</i>
+                            <i class="material-icons">local_shipping</i>
                             <span>Manajemen Penjualan</span>
                         </a>
                         <ul class="ml-menu">
@@ -384,7 +384,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">pie_chart</i>
+                            <i class="material-icons">people</i>
                             <span>Manajemen Pelanggan</span>
                         </a>
                         <ul class="ml-menu">
@@ -395,7 +395,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">content_copy</i>
+                            <i class="material-icons">attach_money</i>
                             <span>Manajemen Keuangan</span>
                         </a>
                         <ul class="ml-menu">
@@ -425,7 +425,7 @@
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">map</i>
+                            <i class="material-icons">people_outline</i>
                             <span>Manajemen Pegawai</span>
                         </a>
                         <ul class="ml-menu">
@@ -451,13 +451,13 @@
                     </li>
                     <li>
                         <a href="#">
-                            <i class="material-icons">donut_large</i>
+                            <i class="material-icons">attach_money</i>
                             <span>Pembayaran Tagihan</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i class="material-icons">donut_large</i>
+                            <i class="material-icons">attach_money</i>
                             <span>Pembayaran Penjualan</span>
                         </a>
                     </li>
@@ -486,7 +486,7 @@
                     </li>
                     <li>
                         <a href="#" class="menu-toggle">
-                            <i class="material-icons">gps_fixed</i>
+                            <i class="material-icons">attach_money</i>
                             <span>Analisa Keuangan</span>
                         </a>
                         <ul class="ml-menu">
