@@ -7,6 +7,7 @@
             <div class="block-header">
                 <h2>DASHBOARD</h2>
             </div>
+            
 
             <!-- Widgets -->
             <div class="row clearfix">
@@ -315,4 +316,8 @@
     </section>
 
 
+@endsection
+
+@section('extra_scripts')
+    <script src="{{asset('assets/js/pages/index.js')}}"></script>
 @endsection

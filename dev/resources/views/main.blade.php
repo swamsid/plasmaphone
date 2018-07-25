@@ -16,5 +16,4 @@
 @yield('extra_scripts')
 
 
-
 </html>

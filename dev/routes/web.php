@@ -20,3 +20,5 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('auth/sign-up');
 });
+
+Route::get('/master/barang/barang', 'MasterController@barang');

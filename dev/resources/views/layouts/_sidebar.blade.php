@@ -271,7 +271,7 @@
                             <span>Home</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="{{Request::is('master/*') ? 'active' : ''}}">
                         <a href="#" class="menu-toggle">
                             <i class="material-icons">gps_fixed</i>
                             <span>Data Master</span>
@@ -286,8 +286,8 @@
                             <li>
                                 <a href="#">Data Transaksi</a>
                             </li>
-                            <li>
-                                <a href="#">Data Barang</a>
+                            <li class="{{Request::is('master/barang/*') ? 'active' : ''}}">
+                                <a href="{{url('master/barang/barang')}}">Data Barang</a>
                             </li>
                             <li>
                                 <a href="#">Data Suplier</a>
@@ -532,10 +532,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; {{date('Y')}} <a href="#">Alamraya</a>.
-                </div>
-                <div class="version">
-                    Plasma Phone.
+                    &copy; {{date('Y')}} <a href="#">Alamraya</a>
                 </div>
             </div>
             <!-- #Footer -->
