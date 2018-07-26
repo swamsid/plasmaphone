@@ -19,9 +19,16 @@
     <!-- Animation Css -->
     <link href="{{asset('assets/plugins/animate-css/animate.css')}}" rel="stylesheet" />
 
+    <!-- JQuery DataTable Css -->
+    <link href="{{asset('assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{asset('assets/css/themes/all-themes.css')}}" rel="stylesheet" />
+
+    <link href="{{ asset ('assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet" />
+    
+    
 </head>

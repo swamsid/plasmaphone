@@ -22,3 +22,4 @@ Route::get('/register', function () {
 });
 
 Route::get('/master/barang/barang', 'MasterController@barang');
+Route::get('/master/suplier/suplier', 'MasterController@suplier');

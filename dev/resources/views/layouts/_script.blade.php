@@ -41,9 +41,45 @@
 
     <!-- Plugin -->
     <script src="{{ asset ('assets/plugins/jquery-validation/jquery.validate.js')}}"></script>
-    <script src="{{asset('assets/js-cookie/js.cookie.js')}}"></script>
+    <script src="{{ asset ('assets/js-cookie/js.cookie.js') }}"></script>
 
-<script type="text/javascript">
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{{asset('assets/plugins/jquery-datatable/jquery.dataTables.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/jszip.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/vfs_fonts.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-datatable/extensions/export/buttons.print.min.js')}}"></script>
+
+    <script type="text/javascript">
+
+        //Setting Datatable
+        $.extend( $.fn.dataTable.defaults, {
+              // "responsive":true,
+
+              "pageLength": 10,
+            "lengthMenu": [[10, 20, 50, - 1], [10, 20, 50, "All"]],
+            "language": {
+                "searchPlaceholder": "Cari data",
+                "emptyTable": "Tidak ada data",
+                "sInfo": "Menampilkan _START_ - _END_ Dari _TOTAL_ Data",
+                "sSearch": 'Cari',
+                "sLengthMenu": "Menampilkan &nbsp; _MENU_ &nbsp; Data",
+                "infoEmpty": "",
+                "paginate": {
+                        "previous": "Sebelumnya",
+                        "next": "Selanjutnya",
+                     }
+              }
+
+            } );
+
+        // DataTables
+        $('.dataTable').dataTable();
+
         // Get Cookie
         var sidebar = Cookies.get('sidebar_plasmaphone');
 
@@ -219,4 +255,72 @@
             Cookies.set('sidebar_plasmaphone', 'theme-black',{ expires : 365});
         });
 
+</script>
+
+<!-- Modal Change Color -->
+<script type="text/javascript">
+function random_item(color_array)
+{
+  
+    return color_array[Math.floor(Math.random()*color_array.length)];
+     
+}
+
+$color_array = [
+"red",
+"pink",
+"purple",
+"deep-purple",
+"indigo",
+"blue",
+"light-blue",
+"cyan",
+"teal",
+"green",
+"light-green",
+"lime",
+"yellow",
+"amber",
+"orange",
+"deep-orange",
+"brown",
+"grey",
+"blue-grey",
+"black",
+""
+];
+
+$color_array_st = [
+"red",
+"pink",
+"purple",
+"deep-purple",
+"indigo",
+"blue",
+"light-blue",
+"cyan",
+"teal",
+"green",
+"light-green",
+"lime",
+"yellow",
+"amber",
+"orange",
+"deep-orange",
+"brown",
+"grey",
+"blue-grey",
+"black"
+];
+
+$(document).ready(function(){
+    $('button[data-toggle="modal"], a[data-toggle="modal"]').attr('data-color', random_item($color_array));
+
+    $('.breadcrumb').removeAttr('class').addClass('breadcrumb breadcrumb-bg-' + random_item($color_array_st));
+});
+
+    $('button[data-toggle="modal"], a[data-toggle="modal"]').click(function(){
+        $(this).attr('data-color', random_item($color_array));
+        $('.modal-content').removeAttr('class').addClass('modal-content modal-col-' + random_item($color_array));
+    })
 </script>

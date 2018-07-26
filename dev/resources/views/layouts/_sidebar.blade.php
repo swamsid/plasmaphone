@@ -289,8 +289,8 @@
                             <li class="{{Request::is('master/barang/*') ? 'active' : ''}}">
                                 <a href="{{url('master/barang/barang')}}">Data Barang</a>
                             </li>
-                            <li>
-                                <a href="#">Data Suplier</a>
+                            <li class="{{Request::is('master/suplier/*') ? 'active' : ''}}">
+                                <a href="{{url('master/suplier/suplier')}}">Data Suplier</a>
                             </li>
                         </ul>
                     </li>

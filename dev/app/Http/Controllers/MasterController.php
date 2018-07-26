@@ -10,4 +10,8 @@ class MasterController extends Controller
     {
     	return view('master/barang/barang');
     }
+    public function suplier()
+    {
+    	return view('master/suplier/suplier');
+    }
 }

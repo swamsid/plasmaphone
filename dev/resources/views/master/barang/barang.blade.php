@@ -1,5 +1,16 @@
 @extends('main')
 
+@section('extra_styles')
+<style type="text/css">
+    .float-left{
+        float: left;
+    }
+    .float-right{
+        float:right;
+    }
+</style>
+@endsection
+
 @section('content')
 <section class="content">
         <div class="container-fluid">
@@ -12,7 +23,8 @@
                 <li class="active">Data Barang</li>
             </ol>
             
-            
+            @include('master.barang.tambah_barang')
+
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -26,7 +38,7 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Tambah Data</a></li>
+                                        <li><a href="#tambah_barang" data-toggle="modal">Tambah Data</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -44,41 +56,145 @@
 
                                     <!-- Tab panes -->
                                     <div class="tab-content">
-                                        <div role="tabpanel" class="tab-pane animated flipInX active" id="barang_aktif">
-                                            <b>Home Content</b>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                                Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent
-                                                aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere
-                                                gubergren sadipscing mel.
-                                            </p>
+                                        <div role="tabpanel" class="tab-pane animated fadeIn active" id="barang_aktif">
+                                            <div class="table-responsive">    
+                                                <table class="table table-hovered table-bordered dataTable">
+                                                    <thead>    
+                                                        <tr>
+                                                            <th>Nama</th>
+                                                            <th>Min Stock</th>
+                                                            <th>Harga</th>
+                                                            <th>Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>ASUS ROG</td>
+                                                            <td>1</td>
+                                                            <td>
+                                                                <div class="float-left">
+                                                                    Rp.
+                                                                </div>
+                                                                <div class="float-right">
+                                                                    {{number_format(34000000,2,',','.')}}
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="btn-group btn-group-xs">
+                                                                    <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
+                                                                    <button class="btn btn-danger"><i class="material-icons">delete</i></button>
+                                                                </div>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane animated flipInX" id="barang_tdk_aktif">
-                                            <b>Profile Content</b>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                                Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent
-                                                aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere
-                                                gubergren sadipscing mel.
-                                            </p>
+                                        <div role="tabpanel" class="tab-pane animated fadeInRight" id="barang_tdk_aktif">
+                                            <div class="table-responsive">    
+                                                <table class="table table-hovered table-bordered dataTable">
+                                                    <thead>    
+                                                        <tr>
+                                                            <th>Nama</th>
+                                                            <th>Min Stock</th>
+                                                            <th>Harga</th>
+                                                            <th>Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>ASUS ROG</td>
+                                                            <td>1</td>
+                                                            <td>
+                                                                <div class="float-left">
+                                                                    Rp.
+                                                                </div>
+                                                                <div class="float-right">
+                                                                    {{number_format(34000000,2,',','.')}}
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="btn-group btn-group-xs">
+                                                                    <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
+                                                                    <button class="btn btn-danger"><i class="material-icons">delete</i></button>
+                                                                </div>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane animated flipInX" id="semua_barang">
-                                            <b>Message Content</b>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                                Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent
-                                                aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere
-                                                gubergren sadipscing mel.
-                                            </p>
+                                        <div role="tabpanel" class="tab-pane animated fadeInUp" id="semua_barang">
+                                            <div class="table-responsive">    
+                                                <table class="table table-hovered table-bordered dataTable">
+                                                    <thead>    
+                                                        <tr>
+                                                            <th>Nama</th>
+                                                            <th>Min Stock</th>
+                                                            <th>Harga</th>
+                                                            <th>Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>ASUS ROG</td>
+                                                            <td>1</td>
+                                                            <td>
+                                                                <div class="float-left">
+                                                                    Rp.
+                                                                </div>
+                                                                <div class="float-right">
+                                                                    {{number_format(34000000,2,',','.')}}
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="btn-group btn-group-xs">
+                                                                    <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
+                                                                    <button class="btn btn-danger"><i class="material-icons">delete</i></button>
+                                                                </div>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                        <div role="tabpanel" class="tab-pane animated flipInX" id="pencarian_barang">
-                                            <b>Settings Content</b>
-                                            <p>
-                                                Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius.
-                                                Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent
-                                                aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere
-                                                gubergren sadipscing mel.
-                                            </p>
+                                        <div role="tabpanel" class="tab-pane animated fadeInDown" id="pencarian_barang">
+                                            <div class="table-responsive">    
+                                                <table class="table table-hovered table-bordered dataTable">
+                                                    <thead>    
+                                                        <tr>
+                                                            <th>Nama</th>
+                                                            <th>Min Stock</th>
+                                                            <th>Harga</th>
+                                                            <th>Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>ASUS ROG</td>
+                                                            <td>1</td>
+                                                            <td>
+                                                                <div class="float-left">
+                                                                    Rp.
+                                                                </div>
+                                                                <div class="float-right">
+                                                                    {{number_format(34000000,2,',','.')}}
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="btn-group btn-group-xs">
+                                                                    <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
+                                                                    <button class="btn btn-danger"><i class="material-icons">delete</i></button>
+                                                                </div>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
