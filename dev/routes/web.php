@@ -58,8 +58,8 @@ Route::group(['middleware' => 'auth'], function(){
 	]);
 
 	Route::get('/home', function () {
-	    return view('home');
-	})->name('welcome');
+	    return view('welcome');
+	})->name('home');
 
 	Route::get('/register', function () {
 	    return view('auth/sign-up');
