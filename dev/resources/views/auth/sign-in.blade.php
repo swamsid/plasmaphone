@@ -11,14 +11,15 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" method="POST">
+                <form id="sign_in" method="POST" action="{{ route('auth.authenticate') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" readonly>
                     <div class="msg">Sign in to start your session</div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Username" required autofocus>
+                            <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
@@ -26,7 +27,7 @@
                             <i class="material-icons">lock</i>
                         </span>
                         <div class="form-line">
-                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" required>
                         </div>
                     </div>
                     <div class="row">
@@ -50,6 +51,12 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        @if(Session::has('gagal'))
+            alert('{{ Session::get('gagal') }}')
+        @endif
+    </script>
 
     @include('layouts._script')
 </body>
