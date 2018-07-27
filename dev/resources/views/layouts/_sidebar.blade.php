@@ -267,8 +267,8 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="{{Request::is('/') ? 'active' : ''}}">
-                        <a href="{{url('/')}}">
+                    <li class="{{Request::is('home') ? 'active' : ''}}">
+                        <a href="{{url('/home')}}">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
