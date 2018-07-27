@@ -450,6 +450,12 @@
 
                         </ul>
                     </li>
+                    <li>
+                        <a href="javascript:void(0);">
+                            <i class="material-icons">access_time</i>
+                            <span>Log Activity</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- #Menu -->
