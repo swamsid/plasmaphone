@@ -14,4 +14,8 @@ class MasterController extends Controller
     {
     	return view('master/suplier/suplier');
     }
+    public function user()
+    {
+    	return view('master/user/user');
+    }
 }

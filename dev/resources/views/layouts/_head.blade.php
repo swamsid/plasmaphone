@@ -30,5 +30,12 @@
 
     <link href="{{ asset ('assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet" />
     
+    <style type="text/css">
+        
+        .modal-header .close{
+            margin-top: -28px;
+        }
+
+    </style>
     
 </head>
