@@ -24,7 +24,7 @@ class authController extends Controller
 
 		if($member && Hash::check('secret_'.$request->password, $member->m_password)){
 			Auth::login($member);
-			return redirect()->route('welcome');
+			return redirect()->route('home');
 		}else{
 			Session::flash('gagal', 'Kombinasi Inputan Tidak Ada Didatabase.');
 			return redirect()->route('login')->withInput();

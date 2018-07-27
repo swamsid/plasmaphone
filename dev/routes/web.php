@@ -26,7 +26,7 @@ Route::get('/makeUser', [
 
 route::get("/", function(){
 	if(Auth::check()){
-		return redirect()->route("welcome");
+		return redirect()->route("home");
 	}else{
 		return redirect()->route("login");
 	}
@@ -54,8 +54,8 @@ Route::group(['middleware' => 'auth'], function(){
 		'as'	=> 'auth.logout'
 	]);
 
-	Route::get('/dashboard', function () {
-	    return view('welcome');
+	Route::get('/home', function () {
+	    return view('home');
 	})->name('welcome');
 
 	Route::get('/register', function () {
