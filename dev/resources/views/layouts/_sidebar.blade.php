@@ -274,113 +274,99 @@
                         </a>
                     </li>
                     <li class="{{Request::is('master/*') ? 'active' : ''}}">
-                        <a href="#" class="menu-toggle">
+                        <a href="javascript:void(0);"    class="menu-toggle">
                             <i class="material-icons">gps_fixed</i>
                             <span>Data Master</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="#">Master Transaksi</a>
-                            </li>
-                            <li>
-                                <a href="#">Master Akun</a>
-                            </li>
-                            <li>
-                                <a href="#">Data Transaksi</a>
+                            <li class="{{Request::is('master/suplier/*') ? 'active' : ''}}">
+                                <a href="{{url('master/suplier/suplier')}}"><span>Master Suplier</span></a>
                             </li>
                             <li class="{{Request::is('master/barang/*') ? 'active' : ''}}">
-                                <a href="{{url('master/barang/barang')}}">Data Barang</a>
+                                <a href="{{url('master/barang/barang')}}"><span>Master Barang</span></a>
                             </li>
                             <li>
-                                <a href="#">Data Suplier</a>
+                                <a href="#"><span>Master User</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span>Master Jabatan</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span>Master Posisi</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span>Master Member</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span>Master Outlet</span></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="menu-toggle">
+                                    <span>Master Keuangan</span>
+                                </a>
+                                <ul class="ml-menu">
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <span>Akun Keuangan</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);">
+                                            <span>Transaksi Keuangan</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><span>Master Hak Akses</span></a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">desktop_windows</i>
-                            <span>Point of Sales</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#">Penjualan Reguler</a>
-                            </li>
-                            <li>
-                                <a href="#">Return Penjualan Reguler</a>    
-                            </li>
-                            <li>
-                                <a href="#">Penjualan Tempo</a>    
-                            </li>
-                            <li>
-                                <a href="#">Pemesanan Barang (Indent)</a>    
-                            </li>
-                            <li>
-                                <a href="#">Pengolahan Member</a>    
-                            </li>
-                            <li>
-                                <a href="#">Barang Lost (Angket)</a>    
-                            </li>
-                            <li>
-                                <a href="#">Pendataan Survey</a>    
-                            </li>
-
-
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">credit_card</i>
+                            <i class="material-icons">shopping_cart</i>
                             <span>Manajemen Pembelian</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#">Rencana Pembelian</a>
+                                <a href="#"><span>Rencana Pembelian</span></a>
                             </li>
                             <li>
-                                <a href="#">Konfirmasi Pembelian</a>
+                                <a href="#"><span>Konfirmasi Pembelian</span></a>
                             </li>
                             <li>
-                                <a href="#">Purchase Order</a>
+                                <a href="#"><span>Purchase Order</span></a>
                             </li>
                             <li>
-                                <a href="#">Refund</a>
+                                <a href="#"><span>Return Barang</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><span>Refund</span></a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">storage</i>
-                            <span>Manajemen Persediaan</span>
+                            <span>Manajemen Inventory</span>
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#">Penerimaan Barang</a>
+                                <a href="javascript:void(0);" class="menu-toggle"><span>Penerimaan Barang</span></a>
+                                <ul class="ml-menu">
+                                    <li>
+                                        <a href="#"><span>Dari Suplier</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span>Kiriman Pusat</span></a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="#">Return Suplier</a>
+                                <a href="#"><span>Opname Barang</span></a>
                             </li>
                             <li>
-                                <a href="#">Opname Barang</a>
-                            </li>
-                            <li>
-                                <a href="#">Data Stock Barang</a>
-                            </li>
-                            <li>
-                                <a href="#">History Barang</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">build</i>
-                            <span>Manajemen Perbaikan</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#">Permintaan Perbaikan</a>
-                            </li>
-                            <li>
-                                <a href="#">Layanan Perbaikan</a>
+                                <a href="#"><span>Minimum Stok</span></a>
                             </li>
                         </ul>
                     </li>
@@ -391,30 +377,30 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#">Penjualan Internal</a>
+                                <a href="#"><span>Rencana Penjualan</span></a>
                             </li>
                             <li>
-                                <a href="#">Penerimaan Barang Internal</a>
+                                <a href="javascript:void(0);" class="menu-toggle"><span>Aktivitas Penjualan</span></a>
+                                <ul class="ml-menu">
+                                    <li>
+                                        <a href="#"><span>Proses Penjualan</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span>Pemesanan Barang</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span>Pembelian Via Web</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span>Return Penjualan</span></a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="#">Rencana Penjualan</a>
+                                <a href="#"><span>Monitoring Penjualan</span></a>
                             </li>
                             <li>
-                                <a href="#">Monitoring Penjualan</a>
-                            </li>
-                            <li>
-                                <a href="#">Analisa Penjualan</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">people</i>
-                            <span>Manajemen Pelanggan</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#">Data Pelanggan</a>
+                                <a href="#"><span>Analisa Penjualan</span></a>
                             </li>
                         </ul>
                     </li>
@@ -425,108 +411,44 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="#">Laporan Hutang</a>
+                                <a href="#"><span>Dashboard</span></a>
                             </li>
                             <li>
-                                <a href="#">Laporan Piutang</a>
+                                <a href="#"><span>Transaksi Memorial</span></a>
                             </li>
                             <li>
-                                <a href="#">Laporan Neraca</a>
+                                <a href="#"><span>Akun Hutang</span></a>
                             </li>
                             <li>
-                                <a href="#">Laporan Laba Rugi</a>
+                                <a href="#"><span>Akun Piutang</span></a>
                             </li>
                             <li>
-                                <a href="#">Laporan Arus Kas</a>
+                                <a href="#"><span>Pengelolaan Pajak</span></a>
                             </li>
                             <li>
-                                <a href="#">Pajak</a>
+                                <a href="javascript:void(0);" class="menu-toggle"><span>Analisa Keuangan</span></a>
+                                <ul class="ml-menu">
+                                    <li>
+                                        <a href="#"><span>Neraca</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span>Laba Rugi</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><span>Arus Kas</span></a>
+                                    </li>
+                                </ul>
                             </li>
                             <li>
-                                <a href="#">Analisa Keuangan</a>
+                                <a href="javascript:void(0)" class="menu-toggle"><span>Analisa Keuangan</span></a>
+                                <ul class="ml-menu">
+                                    <li>
+                                        <a href="#">List</a>
+                                    </li>
+                                </ul>
                             </li>
 
                         </ul>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">people_outline</i>
-                            <span>Manajemen Pegawai</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#">Jabatan</a>
-                            </li>
-                            <li>
-                                <a href="#">PPH 21</a>
-                            </li>
-                            <li>
-                                <a href="#">Data Karyawan</a>
-                            </li>
-                            <li>
-                                <a href="#">Presensi</a>
-                            </li>
-                            <li>
-                                <a href="#">Penggajian</a>
-                            </li>
-                            <li>
-                                <a href="#">Kinerja Pegawai</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">attach_money</i>
-                            <span>Pembayaran Tagihan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="material-icons">attach_money</i>
-                            <span>Pembayaran Penjualan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="menu-toggle">
-                            <i class="material-icons">attach_money</i>
-                            <span>Analisa Keuangan</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="#">Pertumbuhan Aset</a>
-                            </li>
-                            <li>
-                                <a href="#">Analisa Net Profit Terhadap OCF</a>
-                            </li>
-                            <li>
-                                <a href="#">Analisa Cashflow</a>
-                            </li>
-                            <li>
-                                <a href="#">Analisa Common Size dan Index</a>
-                            </li>
-                            <li>
-                                <a href="#">Analisa Rasio Keuangan</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="header">Pengaturan Aplikasi</li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-red">donut_large</i>
-                            <span>Manajemen Pengguna</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-amber">donut_large</i>
-                            <span>Hak Akses Grub</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);">
-                            <i class="material-icons col-light-blue">donut_large</i>
-                            <span>Manajemen Menu</span>
-                        </a>
                     </li>
                 </ul>
             </div>

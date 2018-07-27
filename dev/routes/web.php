@@ -45,8 +45,6 @@ Route::group(['middleware' => 'guest'], function(){
 	]);
 });
 
-
-
 // route khusus Login
 
 Route::group(['middleware' => 'auth'], function(){
@@ -65,4 +63,5 @@ Route::group(['middleware' => 'auth'], function(){
 	});
 
 	Route::get('/master/barang/barang', 'MasterController@barang');
+	Route::get('/master/suplier/suplier', 'MasterController@suplier');
 });
