@@ -322,26 +322,26 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{Request::is('pembelian/*') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">shopping_cart</i>
                             <span>Manajemen Pembelian</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="#"><span>Rencana Pembelian</span></a>
+                            <li class="{{Request::is('pembelian/rencana_pembelian/*') ? 'active' : ''}}">
+                                <a href="{{url('pembelian/rencana_pembelian/rencana_pembelian')}}"><span>Rencana Pembelian</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Konfirmasi Pembelian</span></a>
+                            <li class="{{Request::is('pembelian/konfirmasi_pembelian/*') ? 'active' : ''}}">
+                                <a href="{{url('pembelian/konfirmasi_pembelian/konfirmasi_pembelian')}}"><span>Konfirmasi Pembelian</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Purchase Order</span></a>
+                            <li class="{{Request::is('pembelian/purchase_order/*') ? 'active' : ''}}">
+                                <a href="{{url('pembelian/purchase_order/purchase_order')}}"><span>Purchase Order</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Return Barang</span></a>
+                            <li class="{{Request::is('pembelian/return_barang/*') ? 'active' : ''}}">
+                                <a href="{{url('pembelian/return_barang/return_barang')}}"><span>Return Barang</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Refund</span></a>
+                            <li class="{{Request::is('pembelian/refund/*') ? 'active' : ''}}">
+                                <a href="{{url('pembelian/refund/refund')}}"><span>Refund</span></a>
                             </li>
                         </ul>
                     </li>

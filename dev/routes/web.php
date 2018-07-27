@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function(){
 	    return view('auth/sign-up');
 	});
 
+// Master
 	Route::get('/master/barang/barang', 'MasterController@barang');
 	Route::get('/master/suplier/suplier', 'MasterController@suplier');
 	Route::get('/master/user/user', 'MasterController@user');
@@ -76,6 +77,12 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/master/hak_akses/hak_akses', 'MasterController@hak_akses');
 	Route::get('/master/posisi/posisi', 'MasterController@posisi');
 
+// Rencana Pembelian
+	Route::get('/pembelian/refund/refund', 'PembelianController@refund');
+	Route::get('/pembelian/konfirmasi_pembelian/konfirmasi_pembelian', 'PembelianController@konfirmasi_pembelian');
+	Route::get('/pembelian/purchase_order/purchase_order', 'PembelianController@purchase_order');
+	Route::get('/pembelian/rencana_pembelian/rencana_pembelian', 'PembelianController@rencana_pembelian');
+	Route::get('/pembelian/return_barang/return_barang', 'PembelianController@return_barang');
 
 
 });
