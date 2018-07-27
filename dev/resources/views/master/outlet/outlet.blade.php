@@ -4,22 +4,22 @@
 <section class="content">
     <div class="container-fluid">
         <div class="block-header">
-            <h2>Master User</h2>
+            <h2>Master Outlet</h2>
         </div>
             <ol class="breadcrumb breadcrumb-bg-blue-grey">
                 <li><a href="{{url('/')}}"><i class="material-icons">home</i> Home</a></li>
                 <li>Data Master</li>
-                <li class="active">Master User</li>
+                <li class="active">Master Outlet</li>
             </ol>        
 
-        @include('master.user.tambah_user')
+        @include('master.outlet.tambah_outlet')
         
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Master User
+                            Master Outlet
                         </h2>
                         <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
@@ -27,7 +27,7 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a href="#tambah_user" data-toggle="modal">Tambah Data</a></li>
+                                        <li><a href="#tambah_posisi" data-toggle="modal">Tambah Data</a></li>
                                     </ul>
                                 </li>
                             </ul>

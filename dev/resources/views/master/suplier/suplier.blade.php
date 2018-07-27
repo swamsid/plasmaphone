@@ -3,7 +3,6 @@
 @section('content')
 <section class="content">
     <div class="container-fluid">
-        <!-- Suplier -->
         <div class="block-header">
             <h2>Master Suplier</h2>
         </div>

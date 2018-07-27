@@ -69,5 +69,14 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/master/suplier/suplier', 'MasterController@suplier');
 	Route::get('/master/user/user', 'MasterController@user');
 	Route::get('/master/jabatan/jabatan', 'MasterController@jabatan');
+	Route::get('/master/outlet/outlet', 'MasterController@outlet');
+	Route::get('/master/member/member', 'MasterController@member');
+	Route::get('/master/keuangan/akun_keuangan/akun_keuangan', 'MasterController@akun_keuangan');
+	Route::get('/master/keuangan/transaksi_keuangan/transaksi_keuangan', 'MasterController@transaksi_keuangan');
+	Route::get('/master/hak_akses/hak_akses', 'MasterController@hak_akses');
+	Route::get('/master/posisi/posisi', 'MasterController@posisi');
+
+
+
 });
 

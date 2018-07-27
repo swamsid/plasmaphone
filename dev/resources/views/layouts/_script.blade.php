@@ -257,7 +257,7 @@
 
 </script>
 
-<!-- Modal Change Color -->
+<!-- Script Modal, Breadcrumbs, table thead, dll Change Color -->
 <script type="text/javascript">
 function random_item(color_array)
 {
@@ -318,6 +318,8 @@ $(document).ready(function(){
 
     $('.breadcrumb').removeAttr('class').addClass('breadcrumb breadcrumb-bg-' + random_item($color_array_st));
     $('.table thead').addClass('bg-' + random_item($color_array_st));
+    $('.preloader .spinner-layer').addClass('pl-' + random_item($color_array_st));
+
 });
 
     $('button[data-toggle="modal"], a[data-toggle="modal"]').click(function(){

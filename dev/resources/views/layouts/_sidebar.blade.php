@@ -291,34 +291,34 @@
                             <li class="{{Request::is('master/jabatan/*') ? 'active' : ''}}">
                                 <a href="{{url('master/jabatan/jabatan')}}"><span>Master Jabatan</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Master Posisi</span></a>
+                            <li class="{{Request::is('master/posisi/*') ? 'active' : ''}}">
+                                <a href="{{url('master/posisi/posisi')}}"><span>Master Posisi</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Master Member</span></a>
+                            <li class="{{Request::is('master/member/*') ? 'active' : ''}}">
+                                <a href="{{url('master/member/member')}}"><span>Master Member</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Master Outlet</span></a>
+                            <li class="{{Request::is('master/outlet*') ? 'active' : ''}}">
+                                <a href="{{url('master/outlet/outlet')}}"><span>Master Outlet</span></a>
                             </li>
-                            <li>
+                            <li class="{{Request::is('master/keuangan/*') ? 'active' : ''}}">
                                 <a href="javascript:void(0);" class="menu-toggle">
                                     <span>Master Keuangan</span>
                                 </a>
                                 <ul class="ml-menu">
-                                    <li>
-                                        <a href="javascript:void(0);">
+                                    <li class="{{Request::is('master/keuangan/akun_keuangan/*') ? 'active' : ''}}">
+                                        <a href="{{url('master/keuangan/akun_keuangan/akun_keuangan')}}">
                                             <span>Akun Keuangan</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="javascript:void(0);">
+                                    <li class="{{Request::is('master/keuangan/transaksi_keuangan/*') ? 'active' : ''}}">
+                                        <a href="{{url('master/keuangan/transaksi_keuangan/transaksi_keuangan')}}">
                                             <span>Transaksi Keuangan</span>
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#"><span>Master Hak Akses</span></a>
+                            <li class="{{Request::is('master/hak_akses/*') ? 'active' : ''}}">
+                                <a href="{{url('master/hak_akses/hak_akses')}}"><span>Master Hak Akses</span></a>
                             </li>
                         </ul>
                     </li>
@@ -443,7 +443,7 @@
                                 <a href="javascript:void(0)" class="menu-toggle"><span>Analisa Keuangan</span></a>
                                 <ul class="ml-menu">
                                     <li>
-                                        <a href="#">List</a>
+                                        <a href="#"><span>List</span></a>
                                     </li>
                                 </ul>
                             </li>
