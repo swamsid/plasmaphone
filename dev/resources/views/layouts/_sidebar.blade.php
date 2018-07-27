@@ -426,7 +426,7 @@
                                 <a href="#"><span>Pengelolaan Pajak</span></a>
                             </li>
                             <li>
-                                <a href="javascript:void(0);" class="menu-toggle"><span>Analisa Keuangan</span></a>
+                                <a href="javascript:void(0);" class="menu-toggle"><span>Laporan Keuangan</span></a>
                                 <ul class="ml-menu">
                                     <li>
                                         <a href="#"><span>Neraca</span></a>
