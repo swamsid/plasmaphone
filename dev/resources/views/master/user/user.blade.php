@@ -5,22 +5,22 @@
     <div class="container-fluid">
         <!-- Suplier -->
         <div class="block-header">
-            <h2>Master Suplier</h2>
+            <h2>Master User</h2>
         </div>
             <ol class="breadcrumb breadcrumb-bg-blue-grey">
                 <li><a href="{{url('/')}}"><i class="material-icons">home</i> Home</a></li>
                 <li>Data Master</li>
-                <li class="active">Master Suplier</li>
+                <li class="active">Master User</li>
             </ol>        
 
-        @include('master.suplier.tambah_suplier')
+        @include('master.user.tambah_user')
         
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Suplier
+                            Master User
                         </h2>
                         <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
@@ -28,7 +28,7 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a href="#tambah_sup" data-toggle="modal">Tambah Data</a></li>
+                                        <li><a href="#tambah_user" data-toggle="modal">Tambah Data</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -39,20 +39,16 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Perusahaan</th>
-                                        <th>Nama Suplier</th>
-                                        <th>Alamat</th>
-                                        <th>No HP</th>
+                                        <th>Username</th>
+                                        <th>Nama User</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td>PT Alpha</td>
+                                        <td>alpha</td>
                                         <td>Alpha</td>
-                                        <td>Jl. Alpha</td>
-                                        <td>+6285123122312</td>
                                         <td>
                                             <div class="btn-group btn-group-xs">
                                                 <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
@@ -62,10 +58,8 @@
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td>PT Bravo</td>
+                                        <td>bravo</td>
                                         <td>Bravo</td>
-                                        <td>Jl. Bravo</td>
-                                        <td>+6285123122312</td>
                                         <td>
                                             <div class="btn-group btn-group-xs">
                                                 <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
@@ -75,10 +69,8 @@
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td>PT Charlie</td>
+                                        <td>charlie</td>
                                         <td>Charlie</td>
-                                        <td>Jl. Charlie</td>
-                                        <td>+6285123122312</td>
                                         <td>
                                             <div class="btn-group btn-group-xs">
                                                 <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>

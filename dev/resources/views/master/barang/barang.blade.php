@@ -20,7 +20,7 @@
             <ol class="breadcrumb breadcrumb-bg-blue-grey">
                 <li><a href="{{url('/')}}"><i class="material-icons">home</i> Home</a></li>
                 <li>Data Master</li>
-                <li class="active">Data Barang</li>
+                <li class="active">Master Barang</li>
             </ol>
             
             @include('master.barang.tambah_barang')
