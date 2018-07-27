@@ -18,4 +18,8 @@ class MasterController extends Controller
     {
     	return view('master/user/user');
     }
+    public function jabatan()
+    {
+    	return view('master/jabatan/jabatan');
+    }
 }

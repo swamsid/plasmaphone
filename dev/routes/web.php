@@ -68,5 +68,6 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/master/barang/barang', 'MasterController@barang');
 	Route::get('/master/suplier/suplier', 'MasterController@suplier');
 	Route::get('/master/user/user', 'MasterController@user');
+	Route::get('/master/jabatan/jabatan', 'MasterController@jabatan');
 });
 

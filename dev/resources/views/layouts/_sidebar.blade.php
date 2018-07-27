@@ -288,8 +288,8 @@
                             <li class="{{Request::is('master/user/*') ? 'active' : ''}}">
                                 <a href="{{url('master/user/user')}}"><span>Master User</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Master Jabatan</span></a>
+                            <li class="{{Request::is('master/jabatan/*') ? 'active' : ''}}">
+                                <a href="{{url('master/jabatan/jabatan')}}"><span>Master Jabatan</span></a>
                             </li>
                             <li>
                                 <a href="#"><span>Master Posisi</span></a>
