@@ -345,62 +345,62 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{Request::is('inventory/*') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">storage</i>
                             <span>Manajemen Inventory</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
+                            <li class="{{Request::is('inventory/penerimaan_barang/*') ? 'active' : ''}}">
                                 <a href="javascript:void(0);" class="menu-toggle"><span>Penerimaan Barang</span></a>
                                 <ul class="ml-menu">
-                                    <li>
-                                        <a href="#"><span>Dari Suplier</span></a>
+                                    <li class="{{Request::is('inventory/penerimaan_barang/suplier/*') ? 'active' : ''}}">
+                                        <a href="{{url('inventory/penerimaan_barang/suplier/suplier')}}"><span>Dari Suplier</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Kiriman Pusat</span></a>
+                                    <li class="{{Request::is('inventory/penerimaan_barang/pusat/*') ? 'active' : ''}}">
+                                        <a href="{{url('inventory/penerimaan_barang/pusat/pusat')}}"><span>Kiriman Pusat</span></a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#"><span>Opname Barang</span></a>
+                            <li class="{{Request::is('inventory/opname_barang/*') ? 'active' : ''}}">
+                                <a href="{{url('inventory/opname_barang/opname_barang')}}"><span>Opname Barang</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Minimum Stok</span></a>
+                            <li class="{{Request::is('inventory/minimum_stock/*') ? 'active' : ''}}">
+                                <a href="{{url('inventory/minimum_stock/minimum_stock')}}"><span>Minimum Stock</span></a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{Request::is('penjualan/*') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">local_shipping</i>
                             <span>Manajemen Penjualan</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="#"><span>Rencana Penjualan</span></a>
+                            <li class="{{Request::is('penjualan/rencana_penjualan/*') ? 'active' : ''}}">
+                                <a href="{{url('penjualan/rencana_penjualan/rencana_penjualan')}}"><span>Rencana Penjualan</span></a>
                             </li>
-                            <li>
+                            <li class="{{Request::is('penjualan/aktivitas_penjualan/*') ? 'active' : ''}}">
                                 <a href="javascript:void(0);" class="menu-toggle"><span>Aktivitas Penjualan</span></a>
                                 <ul class="ml-menu">
-                                    <li>
-                                        <a href="#"><span>Proses Penjualan</span></a>
+                                    <li class="{{Request::is('penjualan/aktivitas_penjualan/proses_penjualan/*') ? 'active' : ''}}">
+                                        <a href="{{url('penjualan/aktivitas_penjualan/proses_penjualan/proses_penjualan')}}"><span>Proses Penjualan</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Pemesanan Barang</span></a>
+                                    <li class="{{Request::is('penjualan/aktivitas_penjualan/pemesanan_barang/*') ? 'active' : ''}}">
+                                        <a href="{{url('penjualan/aktivitas_penjualan/pemesanan_barang/pemesanan_barang')}}"><span>Pemesanan Barang</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Pembelian Via Web</span></a>
+                                    <li class="{{Request::is('penjualan/aktivitas_penjualan/pembelian_via_web/*') ? 'active' : ''}}">
+                                        <a href="{{url('penjualan/aktivitas_penjualan/pembelian_via_web/pembelian_via_web')}}"><span>Pembelian Via Web</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Return Penjualan</span></a>
+                                    <li class="{{Request::is('penjualan/aktivitas_penjualan/return_penjualan/*') ? 'active' : ''}}">
+                                        <a href="{{url('penjualan/aktivitas_penjualan/return_penjualan/return_penjualan')}}"><span>Return Penjualan</span></a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#"><span>Monitoring Penjualan</span></a>
+                            <li class="{{Request::is('penjualan/monitoring_penjualan/*') ? 'active' : ''}}">
+                                <a href="{{url('penjualan/monitoring_penjualan/monitoring_penjualan')}}"><span>Monitoring Penjualan</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Analisa Penjualan</span></a>
+                            <li class="{{Request::is('penjualan/analisa_penjualan/*') ? 'active' : ''}}">
+                                <a href="{{url('penjualan/analisa_penjualan/analisa_penjualan')}}"><span>Analisa Penjualan</span></a>
                             </li>
                         </ul>
                     </li>
@@ -450,8 +450,8 @@
 
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:void(0);">
+                    <li class="{{Request::is('log_activity') ? 'active' : ''}}">
+                        <a href="{{url('/log_activity')}}">
                             <i class="material-icons">access_time</i>
                             <span>Log Activity</span>
                         </a>

@@ -65,6 +65,9 @@ Route::group(['middleware' => 'auth'], function(){
 	    return view('auth/sign-up');
 	});
 
+// Log Activity
+	Route::get('/log_activity', 'LogActivityController@log_activity');
+
 // Master
 	Route::get('/master/barang/barang', 'MasterController@barang');
 	Route::get('/master/suplier/suplier', 'MasterController@suplier');
@@ -83,6 +86,21 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/pembelian/purchase_order/purchase_order', 'PembelianController@purchase_order');
 	Route::get('/pembelian/rencana_pembelian/rencana_pembelian', 'PembelianController@rencana_pembelian');
 	Route::get('/pembelian/return_barang/return_barang', 'PembelianController@return_barang');
+
+// Inventory
+	Route::get('/inventory/penerimaan_barang/suplier/suplier', 'InventoryController@suplier');
+	Route::get('/inventory/penerimaan_barang/pusat/pusat', 'InventoryController@pusat');
+	Route::get('/inventory/opname_barang/opname_barang', 'InventoryController@opname_barang');
+	Route::get('/inventory/minimum_stock/minimum_stock', 'InventoryController@minimum_stock');
+
+// Penjualan
+	Route::get('/penjualan/rencana_penjualan/rencana_penjualan', 'PenjualanController@rencana_penjualan');
+	Route::get('/penjualan/monitoring_penjualan/monitoring_penjualan', 'PenjualanController@monitoring_penjualan');
+	Route::get('/penjualan/analisa_penjualan/analisa_penjualan', 'PenjualanController@analisa_penjualan');
+	Route::get('/penjualan/aktivitas_penjualan/proses_penjualan/proses_penjualan', 'PenjualanController@proses_penjualan');
+	Route::get('/penjualan/aktivitas_penjualan/pemesanan_barang/pemesanan_barang', 'PenjualanController@pemesanan_barang');
+	Route::get('/penjualan/aktivitas_penjualan/pembelian_via_web/pembelian_via_web', 'PenjualanController@pembelian_via_web');
+	Route::get('/penjualan/aktivitas_penjualan/return_penjualan/return_penjualan', 'PenjualanController@return_penjualan');
 
 
 });
