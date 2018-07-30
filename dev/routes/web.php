@@ -102,6 +102,19 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/penjualan/aktivitas_penjualan/pembelian_via_web/pembelian_via_web', 'PenjualanController@pembelian_via_web');
 	Route::get('/penjualan/aktivitas_penjualan/return_penjualan/return_penjualan', 'PenjualanController@return_penjualan');
 
+// Keuangan
+	Route::get('/keuangan/laporan_keuangan/neraca/neraca', 'KeuanganController@neraca');
+	Route::get('/keuangan/laporan_keuangan/laba_rugi/laba_rugi', 'KeuanganController@laba_rugi');
+	Route::get('/keuangan/laporan_keuangan/arus_kas/arus_kas', 'KeuanganController@arus_kas');
+	Route::get('/keuangan/analisa_keuangan/list/list', 'KeuanganController@list');
+	Route::get('/keuangan/dashboard/dashboard', 'KeuanganController@dashboard');
+	Route::get('/keuangan/transaksi_memorial/transaksi_memorial', 'KeuanganController@transaksi_memorial');
+	Route::get('/keuangan/akun_hutang/akun_hutang', 'KeuanganController@akun_hutang');
+	Route::get('/keuangan/akun_piutang/akun_piutang', 'KeuanganController@akun_piutang');
+	Route::get('/keuangan/pengelolaan_pajak/pengelolaan_pajak', 'KeuanganController@pengelolaan_pajak');
+
+
+
 
 });
 

@@ -404,46 +404,46 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{Request::is('keuangan/*') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">attach_money</i>
                             <span>Manajemen Keuangan</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="#"><span>Dashboard</span></a>
+                            <li class="{{Request::is('keuangan/dashboard/*') ? 'active' : ''}}">
+                                <a href="{{url('keuangan/dashboard/dashboard')}}"><span>Dashboard</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Transaksi Memorial</span></a>
+                            <li class="{{Request::is('keuangan/transaksi_memorial/*') ? 'active' : ''}}">
+                                <a href="{{url('keuangan/transaksi_memorial/transaksi_memorial')}}"><span>Transaksi Memorial</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Akun Hutang</span></a>
+                            <li class="{{Request::is('keuangan/akun_hutang/*') ? 'active' : ''}}">
+                                <a href="{{url('keuangan/akun_hutang/akun_hutang')}}"><span>Akun Hutang</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Akun Piutang</span></a>
+                            <li class="{{Request::is('keuangan/akun_piutang/*') ? 'active' : ''}}">
+                                <a href="{{url('keuangan/akun_piutang/akun_piutang')}}"><span>Akun Piutang</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Pengelolaan Pajak</span></a>
+                            <li class="{{Request::is('keuangan/pengelolaan_pajak/*') ? 'active' : ''}}">
+                                <a href="{{url('keuangan/pengelolaan_pajak/pengelolaan_pajak')}}"><span>Pengelolaan Pajak</span></a>
                             </li>
-                            <li>
+                            <li class="{{Request::is('keuangan/laporan_keuangan/*') ? 'active' : ''}}">
                                 <a href="javascript:void(0);" class="menu-toggle"><span>Laporan Keuangan</span></a>
                                 <ul class="ml-menu">
-                                    <li>
-                                        <a href="#"><span>Neraca</span></a>
+                                    <li class="{{Request::is('keuangan/laporan_keuangan/neraca/*') ? 'active' : ''}}">
+                                        <a href="{{url('keuangan/laporan_keuangan/neraca/neraca')}}"><span>Neraca</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Laba Rugi</span></a>
+                                    <li class="{{Request::is('keuangan/laporan_keuangan/laba_rugi/*') ? 'active' : ''}}">
+                                        <a href="{{url('keuangan/laporan_keuangan/laba_rugi/laba_rugi')}}"><span>Laba Rugi</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Arus Kas</span></a>
+                                    <li class="{{Request::is('keuangan/laporan_keuangan/arus_kas/*') ? 'active' : ''}}">
+                                        <a href="{{url('keuangan/laporan_keuangan/arus_kas/arus_kas')}}"><span>Arus Kas</span></a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
+                            <li class="{{Request::is('keuangan/analisa_keuangan/*') ? 'active' : ''}}">
                                 <a href="javascript:void(0)" class="menu-toggle"><span>Analisa Keuangan</span></a>
                                 <ul class="ml-menu">
-                                    <li>
-                                        <a href="#"><span>List</span></a>
+                                    <li class="{{Request::is('keuangan/analisa_keuangan/list/*') ? 'active' : ''}}">
+                                        <a href="{{url('keuangan/analisa_keuangan/list/list')}}"><span>List</span></a>
                                     </li>
                                 </ul>
                             </li>
