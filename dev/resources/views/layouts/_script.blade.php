@@ -60,9 +60,9 @@
         $.extend( $.fn.dataTable.defaults, {
               // "responsive":true,
 
-              "pageLength": 10,
-            "lengthMenu": [[10, 20, 50, - 1], [10, 20, 50, "All"]],
-            "language": {
+                "pageLength": 10,
+                "lengthMenu": [[10, 20, 50, - 1], [10, 20, 50, "All"]],
+                "language": {
                 "searchPlaceholder": "Cari data",
                 "emptyTable": "Tidak ada data",
                 "sInfo": "Menampilkan _START_ - _END_ Dari _TOTAL_ Data",
@@ -70,10 +70,11 @@
                 "sLengthMenu": "Menampilkan &nbsp; _MENU_ &nbsp; Data",
                 "infoEmpty": "",
                 "paginate": {
-                        "previous": "Sebelumnya",
-                        "next": "Selanjutnya",
-                     }
-              }
+                                "previous": "Sebelumnya",
+                                "next": "Selanjutnya",
+                            }
+                }
+                
 
             } );
 
@@ -319,6 +320,7 @@ $(document).ready(function(){
     $('.breadcrumb').removeAttr('class').addClass('breadcrumb breadcrumb-bg-' + random_item($color_array_st));
     $('.table thead').addClass('bg-' + random_item($color_array_st));
     $('.preloader .spinner-layer').addClass('pl-' + random_item($color_array_st));
+    
 
 });
 
