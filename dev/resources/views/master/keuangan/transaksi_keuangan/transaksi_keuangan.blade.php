@@ -12,6 +12,10 @@
                 <li class="active">Master Transaksi Keuangan</li>
             </ol>        
 
+        <button class="btn btn-primary waves-effect m-b-15 m-t-5" type="button" data-toggle="collapse" data-target="#tambah_transaksi_keuangan" aria-expanded="false" aria-controls="tambah_transaksi_keuangan">
+            <i class="material-icons">add</i> Tambah Data
+        </button>
+
         @include('master.keuangan.transaksi_keuangan.tambah_transaksi_keuangan')
         
         <div class="row clearfix">
@@ -27,58 +31,75 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a href="#tambah_transaksi_keuangan" data-toggle="modal">Tambah Data</a></li>
+                                        <li><a href="#">Some Action</a></li>
                                     </ul>
                                 </li>
                             </ul>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-striped table-hover dataTable">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Username</th>
-                                        <th>Nama User</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>alpha</td>
-                                        <td>Alpha</td>
-                                        <td>
-                                            <div class="btn-group btn-group-xs">
-                                                <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
-                                                <button class="btn btn-danger"><i class="material-icons">delete</i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>bravo</td>
-                                        <td>Bravo</td>
-                                        <td>
-                                            <div class="btn-group btn-group-xs">
-                                                <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
-                                                <button class="btn btn-danger"><i class="material-icons">delete</i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>charlie</td>
-                                        <td>Charlie</td>
-                                        <td>
-                                            <div class="btn-group btn-group-xs">
-                                                <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
-                                                <button class="btn btn-danger"><i class="material-icons">delete</i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div class="table-responsive">
+                                    <table class="table  table-hover table-bordered dataTable" cellspacing="0" >
+                                        <thead>
+                                          <tr>
+                                            <th class="wd-15p">Code</th>
+                                            <th class="wd-15p">Transaction Name</th>
+                                            <th class="wd-15p">Transaction Sub Name</th>
+                                            <th class="wd-15p">Transaction Cashtype</th>
+                                            <th class="wd-15p">Account 1</th>
+                                            <th class="wd-15p">Account 2</th>
+                                            <th class="wd-15p">Action</th>
+                                          </tr>
+                                        </thead>
+
+                                        <tbody>
+                                          <tr>
+                                            <td>1111</td>
+                                            <td>Penjualan Alpha</td>
+                                            <td></td>
+                                            <td>Operating Cash Flow</td>
+                                            <td>Akun BCA P</td>
+                                            <td>Laba Berjalan</td>
+                                           <td class="text-center">
+                                             <div class="btn-group btn-group-xs">    
+                                             <a href="#" class="btn btn-info" title="Edit"><i class="material-icons">mode_edit</i></a>
+                                             <a href="#" class="btn btn-danger" title="Hapus"><i class="material-icons">delete</i></a>
+                                            </div>                              
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>1112</td>
+                                            <td>Penjualan Bravo</td>
+                                            <td></td>
+                                            <td>Operating Cash Flow</td>
+                                            <td>Akun BCA</td>
+                                            <td>Laba Berjalan</td>
+                                           <td class="text-center">
+                                             <div class="btn-group btn-group-xs">    
+                                             <a href="#" class="btn btn-info" title="Edit"><i class="material-icons">mode_edit</i></a>
+                                             <a href="#" class="btn btn-danger" title="Hapus"><i class="material-icons">delete</i></a>
+                                            </div>                              
+                                            </td>
+                                          </tr>
+                                          <tr>
+                                            <td>1113</td>
+                                            <td>Penjualan Charlie</td>
+                                            <td></td>
+                                            <td>Operating Cash Flow</td>
+                                            <td>Akun Pusat</td>
+                                            <td>Laba Berjalan</td>
+                                           <td class="text-center">
+                                             <div class="btn-group btn-group-xs">    
+                                             <a href="#" class="btn btn-info" title="Edit"><i class="material-icons">mode_edit</i></a>
+                                             <a href="#" class="btn btn-danger" title="Hapus"><i class="material-icons">delete</i></a>
+                                            </div>                           
+                                            </td>
+                                          </tr>
+                                        </tbody>
+
+                                       
+                                    </table> 
+                                </div>
                         </div>
 
                     </div>
