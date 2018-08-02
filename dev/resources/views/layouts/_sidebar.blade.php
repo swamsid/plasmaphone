@@ -267,8 +267,8 @@
             <div class="menu">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="{{Request::is('/') ? 'active' : ''}}">
-                        <a href="{{url('/')}}">
+                    <li class="{{Request::is('home') ? 'active' : ''}}">
+                        <a href="{{url('/home')}}">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
@@ -322,136 +322,136 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{Request::is('pembelian/*') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">shopping_cart</i>
                             <span>Manajemen Pembelian</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="#"><span>Rencana Pembelian</span></a>
+                            <li class="{{Request::is('pembelian/rencana_pembelian/*') ? 'active' : ''}}">
+                                <a href="{{url('pembelian/rencana_pembelian/rencana_pembelian')}}"><span>Rencana Pembelian</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Konfirmasi Pembelian</span></a>
+                            <li class="{{Request::is('pembelian/konfirmasi_pembelian/*') ? 'active' : ''}}">
+                                <a href="{{url('pembelian/konfirmasi_pembelian/konfirmasi_pembelian')}}"><span>Konfirmasi Pembelian</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Purchase Order</span></a>
+                            <li class="{{Request::is('pembelian/purchase_order/*') ? 'active' : ''}}">
+                                <a href="{{url('pembelian/purchase_order/purchase_order')}}"><span>Purchase Order</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Return Barang</span></a>
+                            <li class="{{Request::is('pembelian/return_barang/*') ? 'active' : ''}}">
+                                <a href="{{url('pembelian/return_barang/return_barang')}}"><span>Return Barang</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Refund</span></a>
+                            <li class="{{Request::is('pembelian/refund/*') ? 'active' : ''}}">
+                                <a href="{{url('pembelian/refund/refund')}}"><span>Refund</span></a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{Request::is('inventory/*') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">storage</i>
                             <span>Manajemen Inventory</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
+                            <li class="{{Request::is('inventory/penerimaan_barang/*') ? 'active' : ''}}">
                                 <a href="javascript:void(0);" class="menu-toggle"><span>Penerimaan Barang</span></a>
                                 <ul class="ml-menu">
-                                    <li>
-                                        <a href="#"><span>Dari Suplier</span></a>
+                                    <li class="{{Request::is('inventory/penerimaan_barang/suplier/*') ? 'active' : ''}}">
+                                        <a href="{{url('inventory/penerimaan_barang/suplier/suplier')}}"><span>Dari Suplier</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Kiriman Pusat</span></a>
+                                    <li class="{{Request::is('inventory/penerimaan_barang/pusat/*') ? 'active' : ''}}">
+                                        <a href="{{url('inventory/penerimaan_barang/pusat/pusat')}}"><span>Kiriman Pusat</span></a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#"><span>Opname Barang</span></a>
+                            <li class="{{Request::is('inventory/opname_barang/*') ? 'active' : ''}}">
+                                <a href="{{url('inventory/opname_barang/opname_barang')}}"><span>Opname Barang</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Minimum Stok</span></a>
+                            <li class="{{Request::is('inventory/minimum_stock/*') ? 'active' : ''}}">
+                                <a href="{{url('inventory/minimum_stock/minimum_stock')}}"><span>Minimum Stock</span></a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{Request::is('penjualan/*') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">local_shipping</i>
                             <span>Manajemen Penjualan</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="#"><span>Rencana Penjualan</span></a>
+                            <li class="{{Request::is('penjualan/rencana_penjualan/*') ? 'active' : ''}}">
+                                <a href="{{url('penjualan/rencana_penjualan/rencana_penjualan')}}"><span>Rencana Penjualan</span></a>
                             </li>
-                            <li>
+                            <li class="{{Request::is('penjualan/aktivitas_penjualan/*') ? 'active' : ''}}">
                                 <a href="javascript:void(0);" class="menu-toggle"><span>Aktivitas Penjualan</span></a>
                                 <ul class="ml-menu">
-                                    <li>
-                                        <a href="#"><span>Proses Penjualan</span></a>
+                                    <li class="{{Request::is('penjualan/aktivitas_penjualan/proses_penjualan/*') ? 'active' : ''}}">
+                                        <a href="{{url('penjualan/aktivitas_penjualan/proses_penjualan/proses_penjualan')}}"><span>Proses Penjualan</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Pemesanan Barang</span></a>
+                                    <li class="{{Request::is('penjualan/aktivitas_penjualan/pemesanan_barang/*') ? 'active' : ''}}">
+                                        <a href="{{url('penjualan/aktivitas_penjualan/pemesanan_barang/pemesanan_barang')}}"><span>Pemesanan Barang</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Pembelian Via Web</span></a>
+                                    <li class="{{Request::is('penjualan/aktivitas_penjualan/pembelian_via_web/*') ? 'active' : ''}}">
+                                        <a href="{{url('penjualan/aktivitas_penjualan/pembelian_via_web/pembelian_via_web')}}"><span>Pembelian Via Web</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Return Penjualan</span></a>
+                                    <li class="{{Request::is('penjualan/aktivitas_penjualan/return_penjualan/*') ? 'active' : ''}}">
+                                        <a href="{{url('penjualan/aktivitas_penjualan/return_penjualan/return_penjualan')}}"><span>Return Penjualan</span></a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#"><span>Monitoring Penjualan</span></a>
+                            <li class="{{Request::is('penjualan/monitoring_penjualan/*') ? 'active' : ''}}">
+                                <a href="{{url('penjualan/monitoring_penjualan/monitoring_penjualan')}}"><span>Monitoring Penjualan</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Analisa Penjualan</span></a>
+                            <li class="{{Request::is('penjualan/analisa_penjualan/*') ? 'active' : ''}}">
+                                <a href="{{url('penjualan/analisa_penjualan/analisa_penjualan')}}"><span>Analisa Penjualan</span></a>
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{Request::is('keuangan/*') ? 'active' : ''}}">
                         <a href="javascript:void(0);" class="menu-toggle">
                             <i class="material-icons">attach_money</i>
                             <span>Manajemen Keuangan</span>
                         </a>
                         <ul class="ml-menu">
-                            <li>
-                                <a href="#"><span>Dashboard</span></a>
+                            <li class="{{Request::is('keuangan/dashboard/*') ? 'active' : ''}}">
+                                <a href="{{url('keuangan/dashboard/dashboard')}}"><span>Dashboard</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Transaksi Memorial</span></a>
+                            <li class="{{Request::is('keuangan/transaksi_memorial/*') ? 'active' : ''}}">
+                                <a href="{{url('keuangan/transaksi_memorial/transaksi_memorial')}}"><span>Transaksi Memorial</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Akun Hutang</span></a>
+                            <li class="{{Request::is('keuangan/akun_hutang/*') ? 'active' : ''}}">
+                                <a href="{{url('keuangan/akun_hutang/akun_hutang')}}"><span>Akun Hutang</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Akun Piutang</span></a>
+                            <li class="{{Request::is('keuangan/akun_piutang/*') ? 'active' : ''}}">
+                                <a href="{{url('keuangan/akun_piutang/akun_piutang')}}"><span>Akun Piutang</span></a>
                             </li>
-                            <li>
-                                <a href="#"><span>Pengelolaan Pajak</span></a>
+                            <li class="{{Request::is('keuangan/pengelolaan_pajak/*') ? 'active' : ''}}">
+                                <a href="{{url('keuangan/pengelolaan_pajak/pengelolaan_pajak')}}"><span>Pengelolaan Pajak</span></a>
                             </li>
-                            <li>
+                            <li class="{{Request::is('keuangan/laporan_keuangan/*') ? 'active' : ''}}">
                                 <a href="javascript:void(0);" class="menu-toggle"><span>Laporan Keuangan</span></a>
                                 <ul class="ml-menu">
-                                    <li>
-                                        <a href="#"><span>Neraca</span></a>
+                                    <li class="{{Request::is('keuangan/laporan_keuangan/neraca/*') ? 'active' : ''}}">
+                                        <a href="{{url('keuangan/laporan_keuangan/neraca/neraca')}}"><span>Neraca</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Laba Rugi</span></a>
+                                    <li class="{{Request::is('keuangan/laporan_keuangan/laba_rugi/*') ? 'active' : ''}}">
+                                        <a href="{{url('keuangan/laporan_keuangan/laba_rugi/laba_rugi')}}"><span>Laba Rugi</span></a>
                                     </li>
-                                    <li>
-                                        <a href="#"><span>Arus Kas</span></a>
+                                    <li class="{{Request::is('keuangan/laporan_keuangan/arus_kas/*') ? 'active' : ''}}">
+                                        <a href="{{url('keuangan/laporan_keuangan/arus_kas/arus_kas')}}"><span>Arus Kas</span></a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
+                            <li class="{{Request::is('keuangan/analisa_keuangan/*') ? 'active' : ''}}">
                                 <a href="javascript:void(0)" class="menu-toggle"><span>Analisa Keuangan</span></a>
                                 <ul class="ml-menu">
-                                    <li>
-                                        <a href="#"><span>List</span></a>
+                                    <li class="{{Request::is('keuangan/analisa_keuangan/list/*') ? 'active' : ''}}">
+                                        <a href="{{url('keuangan/analisa_keuangan/list/list')}}"><span>List</span></a>
                                     </li>
                                 </ul>
                             </li>
 
                         </ul>
                     </li>
-                    <li>
-                        <a href="javascript:void(0);">
+                    <li class="{{Request::is('log_activity') ? 'active' : ''}}">
+                        <a href="{{url('/log_activity')}}">
                             <i class="material-icons">access_time</i>
                             <span>Log Activity</span>
                         </a>
