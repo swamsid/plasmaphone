@@ -11,9 +11,14 @@
                 <li class="active">Log Activity</li>
             </ol>        
 
-        <button class="btn btn-primary waves-effect m-b-15 m-t-5" type="button" data-toggle="collapse" data-target="#tambah_log" aria-expanded="false" aria-controls="tambah_log">
+        <button class="btn btn-primary waves-effect m-b-5 m-t-5" type="button" data-toggle="collapse" data-target="#tambah_log" aria-expanded="false" aria-controls="tambah_log">
             <i class="material-icons">add</i> Tambah Data
         </button>
+
+        <a href="javascript:void(0);" class="btn btn-warning waves-effect m-b-5 m-t-5"><i class="material-icons">mode_edit</i> Edit Data</a>
+
+        <a href="javascript:void(0);" class="btn btn-danger waves-effect m-b-5 m-t-5"><i class="material-icons">delete</i> Hapus Data</a>
+
 
         @include('log_activity.tambah_log_activity')
         

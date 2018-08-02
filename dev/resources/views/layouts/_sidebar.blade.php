@@ -240,6 +240,10 @@
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
             <div class="user-info">
+                <div class="background-img-blur" style="background-image: url({{url("/assets/images/user.png")}});"></div>
+                <div class="background-img-blur-color">
+                    
+                </div>
                 <div class="image">
                     <img src="{{asset('assets/images/user.png')}}" width="48" height="48" alt="User" />
                 </div>
