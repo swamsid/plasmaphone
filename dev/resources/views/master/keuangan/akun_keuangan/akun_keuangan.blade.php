@@ -46,7 +46,7 @@
                                 <div id="collapseOne_1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_1">
                                     <div class="panel-body">
                                         <div class="table-responsive">
-                                            <table class="table table-hover table-bordered" width="100%" cellspacing="0">
+                                            <table class="table table-hover table-bordered no-random-color" width="100%" cellspacing="0">
                                                 <thead class="bg-gradient-info">
                                                     <tr>
                                                         <th width="15%">Kode Akun</th>

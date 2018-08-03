@@ -232,42 +232,55 @@
         });
         $('li[data-theme="cyan"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-cyan',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'cyan',{ expires : 365});
         });
         $('li[data-theme="teal"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-teal',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'teal',{ expires : 365});
         });
         $('li[data-theme="green"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-green',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'green',{ expires : 365});
         });
         $('li[data-theme="light-green"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-light-green',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'light-green',{ expires : 365});
         });
         $('li[data-theme="lime"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-lime',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'lime',{ expires : 365});
         });
         $('li[data-theme="yellow"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-yellow',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'yellow',{ expires : 365});
         });
         $('li[data-theme="amber"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-amber',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'amber',{ expires : 365});
         });
         $('li[data-theme="orange"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-orange',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'orange',{ expires : 365});
         });
         $('li[data-theme="deep-orange"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-deep-orange',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'deep-orange',{ expires : 365});
         });
         $('li[data-theme="brown"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-brown',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'brown',{ expires : 365});
         });
         $('li[data-theme="grey"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-grey',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'grey',{ expires : 365});
         });
         $('li[data-theme="blue-grey"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-blue-grey',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'blue-grey',{ expires : 365});
         });
         $('li[data-theme="black"]').on('click', function(){
             Cookies.set('sidebar_plasmaphone', 'theme-black',{ expires : 365});
+            Cookies.set('color_plasmaphone', 'black',{ expires : 365});
         });
 
 </script>
@@ -330,29 +343,23 @@ $color_array_st = [
 
 $color_plasmaphone = Cookies.get('color_plasmaphone');
 
-$('.right-sidebar .demo-choose-skin li').on('click', function(){
-    $('.breadcrumb').removeAttr('class').addClass('breadcrumb breadcrumb-bg-'+ $color_plasmaphone);
 
-    if($('.table').hasClass('no-random-color') == false){
-        $('.table thead').addClass('bg-'+ $color_plasmaphone);
-    }
-
-    // alert($color_plasmaphone);
-});
-
-$(document).ready(function(){
+if($color_plasmaphone){
     $('button[data-toggle="modal"], a[data-toggle="modal"]').attr('data-color', random_item($color_array));
 
     $('.breadcrumb').removeAttr('class').addClass('breadcrumb breadcrumb-bg-'+ $color_plasmaphone);
 
-    if($('.table').hasClass('no-random-color') == false){
-        $('.table thead').addClass('bg-'+ $color_plasmaphone);
-    }
     
-    // $('.preloader .spinner-layer').addClass('pl-' + random_item($color_array_st));
+    $('.table:not(.no-random-color) thead').addClass('bg-'+ $color_plasmaphone);
+        
     
+} else {
+    $('.breadcrumb').removeAttr('class').addClass('breadcrumb breadcrumb-bg-red');
 
-});
+    
+    $('.table:not(.no-random-color) thead').addClass('bg-red');
+    
+}
 
     $('button[data-toggle="modal"], a[data-toggle="modal"]').click(function(){
         $(this).attr('data-color', random_item($color_array));

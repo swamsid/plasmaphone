@@ -22,6 +22,12 @@ function skinChanger() {
         $this.addClass('active');
 
         $body.addClass('theme-' + $this.data('theme'));
+
+        $('.breadcrumb').removeAttr('class').addClass('breadcrumb breadcrumb-bg-'+ $this.data('theme'));
+
+        
+        $('.table:not(.no-random-color) thead').removeAttr('class').addClass('bg-'+ $this.data('theme'));
+        
     });
 }
 
