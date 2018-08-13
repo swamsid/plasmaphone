@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Plasma Phone</title>
+    <title>@yield('title') | Plasma Phone</title>
 
     <!-- Favicon-->
     <link rel="icon" href="{{asset('assets/favicon.ico')}}" type="image/x-icon">
@@ -29,11 +29,28 @@
     <link href="{{asset('assets/css/themes/all-themes.css')}}" rel="stylesheet" />
 
     <link href="{{ asset ('assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet" />
+
+    <link href="{{ asset ('assets/plugins/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet" />
     
     <style type="text/css">
         
         .modal-header .close{
             margin-top: -28px;
+        }
+
+        .head-button .card .body .text-center{
+            background: none;
+            padding: 15px 0px;
+            cursor: pointer;
+        }
+
+        .head-button .card .body .text-center:hover{
+            border-bottom: 2px solid #888;
+        }
+
+        .head-button .card .body .text-center a{
+            text-decoration: none;
+            color: #777;
         }
 
     </style>
