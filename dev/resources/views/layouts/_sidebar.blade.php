@@ -289,8 +289,8 @@
                             <li class="{{Request::is('master/barang/*') ? 'active' : ''}}">
                                 <a href="{{url('master/barang/barang')}}"><span>Master Barang</span></a>
                             </li>
-                            <li class="{{Request::is('master/user/*') ? 'active' : ''}}">
-                                <a href="{{url('master/user/user')}}"><span>Master User</span></a>
+                            <li class="{{ (Request::is('master/user/*') || Request::is('master/user')) ? 'active' : ''}}">
+                                <a href="{{url('master/user')}}"><span>Master User</span></a>
                             </li>
                             <li class="{{Request::is('master/jabatan/*') ? 'active' : ''}}">
                                 <a href="{{url('master/jabatan/jabatan')}}"><span>Master Jabatan</span></a>

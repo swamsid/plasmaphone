@@ -67,6 +67,16 @@ Route::group(['middleware' => 'auth'], function(){
 
 // Log Activity
 	Route::get('/log_activity', 'LogActivityController@log_activity');
+// Log Activity End
+
+
+// Master User
+
+	Route::get('/master/user', 'data_master\master_user\master_user_controller@index')->name('user.index');
+	Route::get('/master/user/create', 'data_master\master_user\master_user_controller@create')->name('user.create');
+
+// Master User End
+
 
 // Master
 	Route::get('/master/barang/barang', 'MasterController@barang');
