@@ -2,6 +2,18 @@
 
 @section('content')
 <section class="content">
+    @if(Session::has('flash_message_error'))
+      <div class="alert alert-error alert-block">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          <strong>{!! session('flash_message_error') !!}</strong>
+      </div>
+    @endif
+    @if(Session::has('flash_message_success'))
+      <div class="alert alert-success alert-block">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          <strong>{!! session('flash_message_success') !!}</strong>
+      </div>
+    @endif
     <div class="container-fluid">
         <div class="block-header">
             <h2>Master Suplier</h2>
@@ -11,8 +23,6 @@
                 <li>Data Master</li>
                 <li class="active">Master Suplier</li>
             </ol>        
-
-        @include('master.suplier.tambah_suplier')
         
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -27,7 +37,7 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a href="#tambah_sup" data-toggle="modal">Tambah Data</a></li>
+                                        <li><a href="{{ url('master/suplier/suplier/add') }}">Tambah Data</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -37,54 +47,34 @@
                             <table class="table table-bordered table-striped table-hover dataTable">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>Perusahaan</th>
                                         <th>Nama Suplier</th>
                                         <th>Alamat</th>
                                         <th>No HP</th>
+                                        <th>Fax</th>
+                                        <th>Keterangan</th>
+                                        <th>Limit</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($suppliers as $supplier)
                                     <tr>
-                                        <td>1</td>
-                                        <td>PT Alpha</td>
-                                        <td>Alpha</td>
-                                        <td>Jl. Alpha</td>
-                                        <td>+6285123122312</td>
+                                        <td>{{ $supplier->s_company }}</td>
+                                        <td>{{ $supplier->s_name }}</td>
+                                        <td>{{ $supplier->s_address }}</td>
+                                        <td>{{ $supplier->s_phone }}</td>
+                                        <td>{{ $supplier->s_fax }}</td>
+                                        <td>{{ $supplier->s_note }}</td>
+                                        <td>{{ $supplier->s_limit }}</td>
                                         <td>
                                             <div class="btn-group btn-group-xs">
-                                                <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
-                                                <button class="btn btn-danger"><i class="material-icons">delete</i></button>
+                                                <a href="{{ url('master/suplier/suplier/edit/'.$supplier->s_id) }}" class="btn btn-primary"><i class="material-icons">mode_edit</i></a>
+                                                <a href="{{ url('master/suplier/suplier/delete/'.$supplier->s_id) }}" onclick="return confirm('Apakah anda yakin akan menghapus data ini?');" class="btn btn-danger"><i class="material-icons">delete</i></a>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>PT Bravo</td>
-                                        <td>Bravo</td>
-                                        <td>Jl. Bravo</td>
-                                        <td>+6285123122312</td>
-                                        <td>
-                                            <div class="btn-group btn-group-xs">
-                                                <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
-                                                <button class="btn btn-danger"><i class="material-icons">delete</i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>PT Charlie</td>
-                                        <td>Charlie</td>
-                                        <td>Jl. Charlie</td>
-                                        <td>+6285123122312</td>
-                                        <td>
-                                            <div class="btn-group btn-group-xs">
-                                                <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
-                                                <button class="btn btn-danger"><i class="material-icons">delete</i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -99,6 +89,6 @@
 @endsection
 @section('extra_scripts')
 <script type="text/javascript">
-    
+
 </script>
 @endsection
