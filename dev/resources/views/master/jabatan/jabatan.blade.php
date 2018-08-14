@@ -2,6 +2,18 @@
 
 @section('content')
 <section class="content">
+    @if(Session::has('flash_message_error'))
+      <div class="alert alert-error alert-block">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          <strong>{!! session('flash_message_error') !!}</strong>
+      </div>
+    @endif
+    @if(Session::has('flash_message_success'))
+      <div class="alert alert-success alert-block">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          <strong>{!! session('flash_message_success') !!}</strong>
+      </div>
+    @endif
     <div class="container-fluid">
         <!-- Suplier -->
         <div class="block-header">
@@ -13,7 +25,7 @@
                 <li class="active">Master Jabatan</li>
             </ol>        
 
-        @include('master.jabatan.tambah_jabatan')
+        
         
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -28,7 +40,7 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a href="#tambah_jabatan" data-toggle="modal">Tambah Data</a></li>
+                                        <li><a href="{{ url('master/jabatan/jabatan/add') }}">Tambah Data</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -38,46 +50,32 @@
                             <table class="table table-bordered table-striped table-hover dataTable">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>Username</th>
-                                        <th>Nama User</th>
+                                        <th>Kode</th>
+                                        <th>Nama</th>
+                                        <th>Gaji Pokok</th>
+                                        <th>Tunjangan Jabatan</th>
+                                        <th>Tunjangan Kehadiran</th>
+                                        <th>Tunjangan Makan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($jabatans as $jabatan)
                                     <tr>
-                                        <td>1</td>
-                                        <td>alpha</td>
-                                        <td>Alpha</td>
+                                        <td>{{ $jabatan->kode }}</td>
+                                        <td>{{ $jabatan->nama }}</td>
+                                        <td>{{ $jabatan->gaji_pokok }}</td>
+                                        <td>{{ $jabatan->tunjangan_jabatan }}</td>
+                                        <td>{{ $jabatan->tunjangan_kehadiran }}</td>
+                                        <td>{{ $jabatan->tunjangan_makan }}</td>
                                         <td>
                                             <div class="btn-group btn-group-xs">
-                                                <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
-                                                <button class="btn btn-danger"><i class="material-icons">delete</i></button>
+                                                <a href="{{ url('master/jabatan/jabatan/edit/'.$jabatan->id) }}" class="btn btn-primary"><i class="material-icons">mode_edit</i></a>
+                                                <a href="{{ url('master/jabatan/jabatan/delete/'.$jabatan->id) }}" onclick="return confirm('Apakah anda yakin akan menghapus data ini?');" class="btn btn-danger"><i class="material-icons">delete</i></a>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>bravo</td>
-                                        <td>Bravo</td>
-                                        <td>
-                                            <div class="btn-group btn-group-xs">
-                                                <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
-                                                <button class="btn btn-danger"><i class="material-icons">delete</i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>charlie</td>
-                                        <td>Charlie</td>
-                                        <td>
-                                            <div class="btn-group btn-group-xs">
-                                                <button class="btn btn-primary"><i class="material-icons">mode_edit</i></button>
-                                                <button class="btn btn-danger"><i class="material-icons">delete</i></button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

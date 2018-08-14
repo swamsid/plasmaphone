@@ -70,9 +70,19 @@ Route::group(['middleware' => 'auth'], function(){
 
 // Master
 	Route::get('/master/barang/barang', 'MasterController@barang');
+	// Suplier
 	Route::get('/master/suplier/suplier', 'MasterController@suplier');
+	Route::match(['get', 'post'],'/master/suplier/suplier/add', 'MasterController@add_suplier');
+	Route::match(['get', 'post'], '/master/suplier/suplier/edit/{id}', 'MasterController@edit_supplier');
+	Route::match(['get', 'post'], '/master/suplier/suplier/delete/{id}', 'MasterController@delete_supplier');
 	Route::get('/master/user/user', 'MasterController@user');
+	// Jabatan
 	Route::get('/master/jabatan/jabatan', 'MasterController@jabatan');
+	Route::match(['get', 'post'], '/master/jabatan/jabatan/add', 'MasterController@add_jabatan');
+	Route::match(['get', 'post'], '/master/jabatan/jabatan/edit/{id}', 'MasterController@edit_jabatan');
+	Route::match(['get', 'post'], '/master/jabatan/jabatan/delete/{id}', 'MasterController@delete_jabatan');
+
+
 	Route::get('/master/outlet/outlet', 'MasterController@outlet');
 	Route::get('/master/member/member', 'MasterController@member');
 	Route::get('/master/keuangan/akun_keuangan/akun_keuangan', 'MasterController@akun_keuangan');
