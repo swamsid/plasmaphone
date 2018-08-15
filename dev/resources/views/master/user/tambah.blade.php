@@ -10,13 +10,13 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 head-button">
                 <div class="card" >
                     <div class="body" style="padding: 0px 0px;">
-                        <div class="col-md-2 text-center">
+                        <div class="col-md-2 text-center active">
                             <a href="{{ route('user.index') }}">
                                 <i class="fa fa-table fa-fw"></i> &nbsp;Data Tabel
                             </a>
                         </div>
 
-                        <div class="col-md-2 text-center active">
+                        <div class="col-md-2 text-center">
                             <a href="{{ route('user.create') }}">
                                 <i class="fa fa-plus fa-fw"></i> &nbsp;Tambahkan Data
                             </a>

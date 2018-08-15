@@ -1,5 +1,7 @@
 @extends('main')
 
+@section('title', 'Master Barang')
+
 @section('extra_styles')
 <style type="text/css">
     .float-left{
@@ -14,23 +16,41 @@
 @section('content')
 <section class="content">
         <div class="container-fluid">
-            <div class="block-header">
-                <h2>Data Barang</h2>
-            </div>
-            <ol class="breadcrumb breadcrumb-bg-blue-grey">
-                <li><a href="{{url('/')}}"><i class="material-icons">home</i> Home</a></li>
-                <li>Data Master</li>
-                <li class="active">Master Barang</li>
-            </ol>
             
-            @include('master.barang.tambah_barang')
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 head-button">
+                    <div class="card" >
+                        <div class="body" style="padding: 0px 0px;">
+                            <div class="col-md-2 text-center active">
+                                <a href="#">
+                                    <i class="fa fa-table fa-fw"></i> &nbsp;Data Tabel
+                                </a>
+                            </div>
+
+                            <div class="col-md-2 text-center">
+                                <a href="#">
+                                    <i class="fa fa-plus fa-fw"></i> &nbsp;Tambahkan Data
+                                </a>
+                            </div>
+
+                            <div class="col-md-2 text-center">
+                                <i class="fa fa-pencil-square-o fa-fw"></i> &nbsp;Edit Data
+                            </div>
+
+                            <div class="col-md-2 text-center">
+                                <i class="fa fa-eraser fa-fw"></i> &nbsp;Hapus Data
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Data Barang
+                                Master Data Barang
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
