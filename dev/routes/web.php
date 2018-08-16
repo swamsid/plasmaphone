@@ -72,8 +72,8 @@ Route::group(['middleware' => 'auth'], function(){
 
 // Master User
 
-	Route::get('/master/user', 'data_master\master_user\master_user_controller@index')->name('user.index');
-	Route::get('/master/user/create', 'data_master\master_user\master_user_controller@create')->name('user.create');
+	Route::get('/master/karyawan', 'data_master\master_karyawan\master_karyawan_controller@index')->name('karyawan.index');
+	Route::get('/master/karyawan/create', 'data_master\master_karyawan\master_karyawan_controller@create')->name('karyawan.create');
 
 // Master User End
 

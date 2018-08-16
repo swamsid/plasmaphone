@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Master User')
+@section('title', 'Master Karyawan')
 
 @section('content')
 <section class="content">
@@ -11,13 +11,13 @@
                 <div class="card" >
                     <div class="body" style="padding: 0px 0px;">
                         <div class="col-md-2 text-center active">
-                            <a href="{{ route('user.index') }}">
+                            <a href="{{ route('karyawan.index') }}">
                                 <i class="fa fa-table fa-fw"></i> &nbsp;Data Tabel
                             </a>
                         </div>
 
                         <div class="col-md-2 text-center">
-                            <a href="{{ route('user.create') }}">
+                            <a href="{{ route('karyawan.create') }}">
                                 <i class="fa fa-plus fa-fw"></i> &nbsp;Tambahkan Data
                             </a>
                         </div>
@@ -39,7 +39,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            Master User
+                            Master Data Karyawan
                         </h2>
                         <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
