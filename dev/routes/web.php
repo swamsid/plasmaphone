@@ -87,6 +87,10 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::match(['get', 'post'],'/master/suplier/suplier/add', 'MasterController@add_suplier');
 	Route::match(['get', 'post'], '/master/suplier/suplier/edit/{id}', 'MasterController@edit_supplier');
 	Route::match(['get', 'post'], '/master/suplier/suplier/delete/{id}', 'MasterController@delete_supplier');
+	Route::match(['get', 'post'], '/master/suplier/suplier/multiple-edit/{ids}', 'MasterController@multiple_edit_supplier');
+	Route::match(['get', 'post'], '/master/suplier/suplier/multiple-edit-supplier', 'MasterController@edit_multiple_supplier');
+	Route::match(['get', 'post'], '/master/suplier/suplier/multiple-delete/{ids}', 'MasterController@multiple_delete_supplier');
+
 	Route::get('/master/user/user', 'MasterController@user');
 
 
@@ -95,6 +99,9 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::match(['get', 'post'], '/master/jabatan/jabatan/add', 'MasterController@add_jabatan');
 	Route::match(['get', 'post'], '/master/jabatan/jabatan/edit/{id}', 'MasterController@edit_jabatan');
 	Route::match(['get', 'post'], '/master/jabatan/jabatan/delete/{id}', 'MasterController@delete_jabatan');
+	Route::match(['get', 'post'], '/master/jabatan/jabatan/multiple-delete/{ids}', 'MasterController@multiple_delete_jabatan');
+	Route::match(['get', 'post'], '/master/jabatan/jabatan/multiple-edit/{ids}', 'MasterController@multiple_edit_jabatan');
+	Route::match(['get', 'post'], '/master/jabatan/jabatan/multiple-edit-jabatan', 'MasterController@edit_multiple_jabatan');
 
 
 	Route::get('/master/outlet/outlet', 'MasterController@outlet');
@@ -102,7 +109,15 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/master/keuangan/akun_keuangan/akun_keuangan', 'MasterController@akun_keuangan');
 	Route::get('/master/keuangan/transaksi_keuangan/transaksi_keuangan', 'MasterController@transaksi_keuangan');
 	Route::get('/master/hak_akses/hak_akses', 'MasterController@hak_akses');
+
+	// Master Posisi
 	Route::get('/master/posisi/posisi', 'MasterController@posisi');
+	Route::match(['get', 'post'], '/master/posisi/posisi/add', 'MasterController@add_posisi');
+	Route::match(['get', 'post'], '/master/posisi/posisi/edit/{id}', 'MasterController@edit_posisi');
+	Route::match(['get', 'post'], '/master/posisi/posisi/delete/{id}', 'MasterController@delete_posisi');
+	Route::match(['get', 'post'], '/master/posisi/posisi/multiple-delete/{ids}', 'MasterController@multiple_delete_posisi');
+	Route::match(['get', 'post'], '/master/posisi/posisi/multiple-edit/{ids}', 'MasterController@multiple_edit_posisi');
+	Route::match(['get', 'post'], '/master/posisi/posisi/multiple-edit-posisi', 'MasterController@edit_multiple_posisi');
 
 // Rencana Pembelian
 	Route::get('/pembelian/refund/refund', 'PembelianController@refund');
