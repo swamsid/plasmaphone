@@ -28,9 +28,10 @@
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{asset('assets/css/themes/all-themes.css')}}" rel="stylesheet" />
 
-    <link href="{{ asset ('assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet" />
 
-    <link href="{{ asset ('assets/plugins/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" />
     
     <style type="text/css">
         
@@ -51,6 +52,15 @@
         .head-button .card .body .text-center a{
             text-decoration: none;
             color: #777;
+        }
+
+        .wd-45-px{
+          width: 45px;
+          margin-bottom: 0px;
+        }
+
+        .wd-45-px [type="checkbox"]{
+            background-color: #FFFFFF;
         }
 
     </style>
