@@ -20,7 +20,7 @@
 
 		<!-- breadcrumb -->
 		<ol class="breadcrumb">
-			<li>Home</li><li>Master</li><li>Supplier</li><li>Tambah</li>
+			<li>Home</li><li>Master</li><li>Supplier</li><li>Edit</li>
 		</ol>
 		<!-- end breadcrumb -->
 
@@ -54,25 +54,45 @@
 
 					{{-- FormTemplate .. --}}
 
-					<form id="supplier-form" class="form-horizontal" action="{{ url('master/suplier/suplier/add') }}" method="post">
+					<form id="form-edit" class="form-horizontal" method="post">
 						{{ csrf_field() }}
 						<fieldset>
 							<legend>
 								Form Tambah Supplier
 
-								<span class="pull-right" style="font-size: 0.8em; font-weight: 600">
+								<span class="pull-right" style="font-size: 0.6em; font-weight: 600">
 									<a href="{{ url('/master/suplier/suplier') }}">
 										<i class="fa fa-arrow-left"></i> &nbsp;Kembali Ke Halaman Data Table
 									</a>
 								</span>
 							</legend>
 
+							<div class="row" style="border-bottom: 1px dotted #aaa; margin-bottom: 20px;">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="col-xs-4 col-lg-4 control-label text-left">Pilih Data Yang Diedit</label>
+										<div class="col-xs-7 col-lg-7 inputGroupContainer">
+											<select class="form-control" name="s_id" id="id">
+												@foreach($data as $key => $suplier)
+													<option value="{{ $suplier->s_id }}">{{ $suplier->s_id }} - {{ $suplier->s_name }}</option>
+												@endforeach
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="col-md-6 text-left" style="padding: 10px 0px; display: none;" id="form-load-section-status">
+									<i class="fa fa-cog fa-spin fa-fw"></i> &nbsp;
+									<small>Sedang Mengambil Data Baru...</small>
+								</div>
+							</div>
+
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="col-xs-4 col-lg-4 control-label text-left">Nama Perusahaan</label>
 										<div class="col-xs-7 col-lg-7 inputGroupContainer">
-											<input type="text" class="form-control" name="nama_perusahaan" placeholder="Masukkan Nama Perusahaan" />
+											<input type="text" class="form-control" name="s_company" placeholder="Masukkan Nama Perusahaan" value="{{ $data[0]->s_company }}" />
 										</div>
 									</div>
 								</div>
@@ -83,7 +103,7 @@
 									<div class="form-group">
 										<label class="col-xs-4 col-lg-4 control-label text-left">Nama Supplier</label>
 										<div class="col-xs-7 col-lg-7 inputGroupContainer">
-											<input type="text" class="form-control" name="nama_suplier" placeholder="Masukkan Nama Supplier" />
+											<input type="text" class="form-control" name="s_name" placeholder="Masukkan Nama Supplier" value="{{ $data[0]->s_name }}" id="s_name"/>
 										</div>
 									</div>
 								</div>
@@ -92,7 +112,7 @@
 									<div class="form-group">
 										<label class="col-xs-3 col-lg-3 control-label text-left">Limit</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="number" min="1" class="form-control" name="limit" placeholder="Masukkan Limitation" />
+											<input type="number" min="1" class="form-control" name="s_limit" placeholder="Masukkan Limitation" value="{{ $data[0]->s_limit }}" id="s_limit"/>
 										</div>
 									</div>
 								</div>
@@ -105,7 +125,7 @@
 										<div class="col-xs-7 col-lg-7 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="fa fa-phone"></i></span>
-												<input type="text" class="form-control" name="telp_suplier" placeholder="Masukkan Nomor Telepon" />
+												<input type="text" class="form-control" name="s_phone" placeholder="Masukkan Nomor Telepon" value="{{ $data[0]->s_phone }}" id="s_phone"/>
 											</div>
 										</div>
 									</div>
@@ -117,7 +137,7 @@
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="fa fa-fax"></i></span>
-												<input type="text" class="form-control" name="fax_suplier" placeholder="Masukkan Nomor Fax Supplier" />
+												<input type="text" class="form-control" name="s_fax" placeholder="Masukkan Nomor Fax Supplier" value="{{ $data[0]->s_fax }}" id="s_fax"/>
 											</div>
 										</div>
 									</div>
@@ -129,7 +149,7 @@
 									<div class="form-group">
 										<label class="col-xs-4 col-lg-4 control-label text-left">Alamat Supplier</label>
 										<div class="col-xs-7 col-lg-7 inputGroupContainer">
-											<textarea class="form-control" rows="5" style="resize: none;" placeholder="Masukkan Alamat Supplier" name="alamat_suplier"></textarea>
+											<textarea class="form-control" rows="5" style="resize: none;" placeholder="Masukkan Alamat Supplier" name="s_address" id="s_address">{{ $data[0]->s_address }}</textarea>
 										</div>
 									</div>
 								</div>
@@ -138,7 +158,7 @@
 									<div class="form-group">
 										<label class="col-xs-3 col-lg-3 control-label text-left">Keterangan</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<textarea class="form-control" rows="5" style="resize: none;" placeholder="Tambahkan Keterangan Tentang Supplier" name="keterangan"></textarea>
+											<textarea class="form-control" rows="5" style="resize: none;" placeholder="Tambahkan Keterangan Tentang Supplier" name="s_note" id="s_note">{{ $data[0]->s_note }}</textarea>
 										</div>
 									</div>
 								</div>
@@ -149,9 +169,9 @@
 						<div class="form-actions">
 							<div class="row">
 								<div class="col-md-12">
-									<button class="btn btn-default" type="submit">
+									<button class="btn btn-default" id="submit">
 										<i class="fa fa-floppy-o"></i>
-										&nbsp;Validate
+										&nbsp;Simpan
 									</button>
 								</div>
 							</div>
@@ -187,30 +207,33 @@
 
 		<script type="text/javascript">
 			$(document).ready(function(){
-				// product form
 
-				$('#supplier-form').bootstrapValidator({
+				var state = '{{ $data[0]->s_id }}';
+
+				// validator
+
+				$('#form-edit').bootstrapValidator({
 					feedbackIcons : {
 						valid : 'glyphicon glyphicon-ok',
 						invalid : 'glyphicon glyphicon-remove',
 						validating : 'glyphicon glyphicon-refresh'
 					},
 					fields : {
-						nama_perusahaan : {
+						s_company : {
 							validators : {
 								notEmpty : {
 									message : 'Nama Perusahaan Tidak Boleh Kosong'
 								}
 							}
 						},
-						nama_suplier : {
+						s_name : {
 							validators : {
 								notEmpty : {
 									message : 'Nama Supplier Tidak Boleh Kosong'
 								}
 							}
 						},
-						limit : {
+						s_limit : {
 							validators : {
 								notEmpty : {
 									message : 'Form Limit Tidak Boleh Kosong'
@@ -220,7 +243,7 @@
 								}
 							}
 						},
-						telp_suplier : {
+						s_phone : {
 							validators : {
 								notEmpty : {
 									message : 'Nomor Telepon Tidak Boleh Kosong'
@@ -230,7 +253,7 @@
 								}
 							}
 						},
-						fax_suplier : {
+						s_fax : {
 							validators : {
 								notEmpty : {
 									message : 'Nomor Fax Tidak Boleh Kosong'
@@ -240,7 +263,7 @@
 								}
 							}
 						},
-						alamat_suplier : {
+						s_address : {
 							validators : {
 								notEmpty : {
 									message : 'Alamat Tidak Boleh Kosong'
@@ -250,7 +273,78 @@
 					}
 				});
 
-				// end product form
+				// end validator
+
+				$('#id').change(function(evt){
+					evt.preventDefault(); let context = $(this);
+					$('#form-load-section-status').fadeIn(200);
+
+					axios.get(baseUrl+'/master/suplier/suplier/get/'+context.val())
+						.then((response) => {
+							if(response.data == null){
+								context.children('option:selected').attr('disabled', 'disabled');
+								context.val(state);
+								$.toast({
+								    text: 'Ups . Data Yang Ingin Anda Edit Sudah Tidak Ada..',
+								    showHideTransition: 'fade',
+								    icon: 'error'
+								})
+								$('#form-load-section-status').fadeOut(200);
+							}else{
+								$('#form-edit').data('bootstrapValidator').resetForm();
+								state = response.data.s_id;
+								initiate(response.data);
+								$('#form-load-section-status').fadeOut(200);
+							}
+						})
+						.catch((err) => {
+							console.log(err);
+						})
+					
+				})
+
+				$('#form-edit').submit(function(evt){
+					evt.preventDefault();
+
+					if($(this).data('bootstrapValidator').validate().isValid()){
+						
+						let btn = $('#submit');
+						btn.attr('disabled', 'disabled');
+
+						axios.post(baseUrl+'/master/suplier/suplier/update', $('#form-edit').serialize())
+							.then((response) => {
+								if(response.data.status == 'berhasil'){
+									$("#id").children('option:selected').text($('#id').val()+' - '+$('#s_name').val());
+									$.toast({
+									    text: 'Data Ini berhasil Diupdate',
+									    showHideTransition: 'fade',
+									    icon: 'success'
+									})
+								}else if(response.data.status == 'tidak ada'){
+									$("#id").children('option:selected').attr('disabled', 'disabled');
+									$.toast({
+									    text: 'Ups . Data Yang Ingin Anda Edit Sudah Tidak Ada..',
+									    showHideTransition: 'fade',
+									    icon: 'error'
+									})
+								}
+							}).catch((err) => {
+								console.log(err);
+							}).then(function(){
+								btn.removeAttr('disabled');
+							})
+					}
+
+				})
+
+				function initiate(data){
+					$("#s_name").val(data.s_name);
+					$("#s_limit").val(data.s_limit);
+					$("#s_phone").val(data.s_phone);
+					$("#s_fax").val(data.s_fax);
+					$("#s_address").text(data.s_address);
+					$("#s_note").text(data.s_name);
+				}
 			})
 		</script>
 

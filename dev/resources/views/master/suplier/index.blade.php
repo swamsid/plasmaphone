@@ -59,7 +59,7 @@
 					</li>
 
 					<li>
-						<a href="#">
+						<a href="#" id="multiple_edit">
 							<i class="fa fa-pencil-square"></i> &nbsp;Edit Data
 						</a>
 					</li>
@@ -105,7 +105,7 @@
 				<div class="col-md-8" style="margin-top: 20px;">
 					<div class="alert alert-success alert-block">
 						<a class="close" data-dismiss="alert" href="#">×</a>
-						<h4 class="alert-heading">&nbsp;<i class="fa fa-thumbs-up"></i> &nbsp;Penambahan Data Berhasil</h4>
+						<h4 class="alert-heading">&nbsp;<i class="fa fa-thumbs-up"></i> &nbsp;Pemberitahuan Berhasil</h4>
 						{{ Session::get('flash_message_success') }} 
 					</div>
 				</div>
@@ -114,7 +114,7 @@
 				<div class="col-md-8" style="margin-top: 20px;">
 					<div class="alert alert-danger alert-block">
 						<a class="close" data-dismiss="alert" href="#">×</a>
-						<h4 class="alert-heading">&nbsp;<i class="fa fa-frown-o"></i> &nbsp;Penambahan Data Gagal</h4>
+						<h4 class="alert-heading">&nbsp;<i class="fa fa-frown-o"></i> &nbsp;Pemberitahuan Gagal</h4>
 						{{ Session::get('flash_message_error') }}
 					</div>
 				</div>
@@ -123,41 +123,44 @@
 			<!-- row -->
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px 20px; margin-top: {{ $mt }};">
-					<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
-						<thead>			                
-							<tr>
-								<th class="text-center" data-hide="phone" width="4%">*</th>
-								<th class="text-center" width="5%" style="vertical-align: middle;">
-									---
-								</th>
-								<th data-class="expand"><i class="fa fa-fw fa-building text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Perusahaan</th>
-								<th data-hide="phone"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Nama Suplier</th>
-								<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Alamat</th>
-								<th data-hide="phone,tablet" width="15%"><i class="fa fa-fw fa-phone txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;No.Telephone</th>
-								<th data-hide="phone,tablet" width="15%"><i class="fa fa-fw fa-fax txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Faximily</th>
-								<th class="text-center" data-hide="phone,tablet" width="15%"> Aksi</th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach($suppliers as $key => $supplier)
+					<form id="table-form" method="post" action="{{ url('/master/suplier/suplier/edit-multiple') }}">
+						{!! csrf_field() !!}
+						<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
+							<thead>			                
 								<tr>
-									<td class="text-center">{{ $key+1 }}</td>
-									<td class="text-center">
-										<input type="checkbox" class="check-me" name="data_check[]" data-id="{{$supplier->s_id}}" value="{{ $supplier->s_id }}"/>
-									</td>
-	                                <td>{{ $supplier->s_company }}</td>
-	                                <td>{{ $supplier->s_name }}</td>
-	                                <td>{{ $supplier->s_address }}</td>
-	                                <td>{{ $supplier->s_phone }}</td>
-	                                <td>{{ $supplier->s_fax }}</td>
-	                                <td class="text-center">
-	                                	<button class="btn btn-xs btn-success btn-circle" data-toggle="tooltip" data-placement="top" title="Edit Data"><i class="fa fa-pencil"></i></button>
-	                                	<button class="btn btn-xs btn-success btn-circle" data-toggle="tooltip" data-placement="top" title="Hapus Data"><i class="fa fa-eraser"></i></button>
-	                                </td>
+									<th class="text-center" data-hide="phone" width="4%">*</th>
+									<th class="text-center" width="5%" style="vertical-align: middle;">
+										---
+									</th>
+									<th data-class="expand"><i class="fa fa-fw fa-building text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Perusahaan</th>
+									<th data-hide="phone"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Nama Suplier</th>
+									<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Alamat</th>
+									<th data-hide="phone,tablet" width="15%"><i class="fa fa-fw fa-phone txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;No.Telephone</th>
+									<th data-hide="phone,tablet" width="15%"><i class="fa fa-fw fa-fax txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Faximily</th>
+									<th class="text-center" data-hide="phone,tablet" width="15%"> Aksi</th>
 								</tr>
-							@endforeach
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								@foreach($suppliers as $key => $supplier)
+									<tr>
+										<td class="text-center">{{ $key+1 }}</td>
+										<td class="text-center">
+											<input type="checkbox" class="check-me" name="data_check[]" data-id="{{$supplier->s_id}}" value="{{ $supplier->s_id }}"/>
+										</td>
+		                                <td>{{ $supplier->s_company }}</td>
+		                                <td>{{ $supplier->s_name }}</td>
+		                                <td>{{ $supplier->s_address }}</td>
+		                                <td>{{ $supplier->s_phone }}</td>
+		                                <td>{{ $supplier->s_fax }}</td>
+		                                <td class="text-center">
+		                                	<button class="btn btn-xs btn-success btn-circle edit" data-toggle="tooltip" data-placement="top" title="Edit Data" data-id="{{ $supplier->s_id }}"><i class="fa fa-pencil fa-fw"></i></button>
+		                                	<button class="btn btn-xs btn-success btn-circle hapus" data-toggle="tooltip" data-placement="top" title="Hapus Data" data-id="{{ $supplier->s_id }}"><i class="fa fa-eraser fa-fw"></i></button>
+		                                </td>
+									</tr>
+								@endforeach
+							</tbody>
+						</table>
+					</form>
 				</div>
 			</div>
 
@@ -244,21 +247,65 @@
 						alert('Tidak Ada Data Yang Anda Pilih')
 					}
 					else{
-						let ask = confirm(selected.length+' Akan Dihapus Apakah Anda Yakin . ?');
+						let ask = confirm(selected.length+' Data Akan Dihapus Apakah Anda Yakin . ?');
 						if(ask){
+							$('#overlay').fadeIn(300);
 							axios.post(baseUrl+'/master/suplier/suplier/multiple-delete', {
 								data 	: selected,
 								_token 	: '{{ csrf_token() }}'
 							})
 							.then((response) => {
-								console.log(response);
+								if(response.data.status == 'berhasil'){
+									location.reload();
+								}
 							}).catch((error) => {
 								console.log(error);
 							})
 						}
 					}
 
-				}) 
+				})
+
+				// Edit Click
+
+				$("#multiple_edit").click(function(evt){
+					evt.preventDefault();
+
+					if(selected.length == 0){
+						alert('Tidak Ada Data Yang Anda Pilih')
+					}else{
+						$("#table-form").submit();
+					}
+				})
+
+				// edit 1 click
+
+				$(".edit").click(function(evt){
+					evt.preventDefault(); context = $(this);
+
+					window.location = baseUrl+'/master/suplier/suplier/edit?id='+context.data('id');
+				})
+
+				// hapus 1 click
+				$(".hapus").click(function(evt){
+					evt.preventDefault(); context = $(this);
+
+					let ask = confirm('Apakah Anda Yakin . ?');
+					if(ask){
+						$('#overlay').fadeIn(300);
+						axios.post(baseUrl+'/master/suplier/suplier/multiple-delete', {
+							data 	: [context.data('id')],
+							_token 	: '{{ csrf_token() }}'
+						})
+						.then((response) => {
+							if(response.data.status == 'berhasil'){
+								location.reload();
+							}
+						}).catch((error) => {
+							console.log(error);
+						})
+					}
+				})
 			})
 		</script>
 

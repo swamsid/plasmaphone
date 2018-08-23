@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
 		<meta charset="utf-8">
-		<title> Ups . Sepertinya Halaman Sedang Bermasalah</title>
+		<title> Ups . Request Anda Tidak Mendapat Ijin</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -57,7 +57,7 @@
 	<body>
 	    
 	    <div class="col-md-12 text-center" style="margin-top: 30px;">
-			<h1 style="font-size: 85pt; font-weight: bold;">505</h1> <small style="font-size: 14pt;">Halaman Yang Ingin Anda Buka Sedang Bermasalah .. <i class="fa fa-frown-o"></i></small>
+			<h1 style="font-size: 85pt; font-weight: bold;">407</h1> <small style="font-size: 14pt;">Request Yang Anda Buat Tidak Bisa Kami Teruskan .. <i class="fa fa-frown-o"></i></small>
 	    </div>
 
 	    <div class="col-md-12 text-center" style="margin-top: 30px;">

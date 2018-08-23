@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
 		<meta charset="utf-8">
-		<title> Ups . Sepertinya Halaman Sedang Bermasalah</title>
+		<title> Ups . Sepertinya Anda Tersesat</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -57,11 +57,11 @@
 	<body>
 	    
 	    <div class="col-md-12 text-center" style="margin-top: 30px;">
-			<h1 style="font-size: 85pt; font-weight: bold;">505</h1> <small style="font-size: 14pt;">Halaman Yang Ingin Anda Buka Sedang Bermasalah .. <i class="fa fa-frown-o"></i></small>
+			<h1 style="font-size: 85pt; font-weight: bold;">Null</h1> <small style="font-size: 14pt;">Data Yang Anda Cari Sudah Tidak Ada .. <i class="fa fa-frown-o"></i></small>
 	    </div>
 
 	    <div class="col-md-12 text-center" style="margin-top: 30px;">
-			<a href="{{ Request::previous() }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> &nbsp;Kembali</a>
+			<a href="{{ URL::previous() }}" class="btn btn-primary"><i class="fa fa-arrow-left"></i> &nbsp;Kembali</a>
 			<a href="{{ url('/') }}" class="btn btn-danger"><i class="fa fa-arrow-left"></i> &nbsp;Kembali Ke Halaman Utama</a>
 	    </div>
 

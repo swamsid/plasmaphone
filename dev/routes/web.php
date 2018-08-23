@@ -61,10 +61,13 @@ Route::group(['middleware' => 'auth'], function(){
 
 			Route::get('/master/suplier/suplier', 'master\suplier\suplier_controller@suplier');
 			Route::match(['get', 'post'],'/master/suplier/suplier/add', 'master\suplier\suplier_controller@add_suplier');
-			Route::match(['get', 'post'], '/master/suplier/suplier/edit/{id}', 'MasterController@edit_supplier');
 			Route::match(['get', 'post'], '/master/suplier/suplier/delete/{id}', 'MasterController@delete_supplier');
-			Route::match(['get', 'post'], '/master/suplier/suplier/multiple-edit/{ids}', 'MasterController@multiple_edit_supplier');
-			Route::match(['get', 'post'], '/master/suplier/suplier/multiple-edit-supplier', 'MasterController@edit_multiple_supplier');
+			
+			Route::post('/master/suplier/suplier/edit-multiple', 'master\suplier\suplier_controller@edit_multiple');
+			Route::get('/master/suplier/suplier/edit', 'master\suplier\suplier_controller@edit');
+
+			Route::post('/master/suplier/suplier/update', 'master\suplier\suplier_controller@update');
+			Route::match(['get', 'post'], '/master/suplier/suplier/get/{id}', 'master\suplier\suplier_controller@get_supplier');
 			Route::match(['get', 'post'], '/master/suplier/suplier/multiple-delete', 'master\suplier\suplier_controller@multiple_delete');
 
 		// master Suppplier end
