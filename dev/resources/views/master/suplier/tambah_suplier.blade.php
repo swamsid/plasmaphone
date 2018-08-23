@@ -60,7 +60,7 @@
 							<legend>
 								Form Tambah Supplier
 
-								<span class="pull-right" style="font-size: 0.8em; font-weight: 600">
+								<span class="pull-right" style="font-size: 0.6em; font-weight: 600">
 									<a href="{{ url('/master/suplier/suplier') }}">
 										<i class="fa fa-arrow-left"></i> &nbsp;Kembali Ke Halaman Data Table
 									</a>
