@@ -1,122 +1,252 @@
-﻿<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us" id="extr-page">
+	<head>
+		<meta charset="utf-8">
+		<title> PlasmaPhone Login Admin</title>
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		
+		<!-- #CSS Links -->
+		<!-- Basic Styles -->
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('template_asset/css/bootstrap.min.css') }}">
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('template_asset/css/font-awesome.min.css') }}">
 
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>@yield('title') Selamat Datang Admin Plasmaphone</title>
+		<!-- SmartAdmin Styles : Caution! DO NOT change the order -->
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('template_asset/css/smartadmin-production-plugins.min.css') }}">
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('template_asset/css/smartadmin-production.min.css') }}">
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('template_asset/css/smartadmin-skins.min.css') }}">
 
-    <!-- Favicon-->
-    <link rel="icon" href="{{asset('assets/favicon.ico')}}" type="image/x-icon">
+		<!-- SmartAdmin RTL Support -->
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('template_asset/css/smartadmin-rtl.min.css') }}"> 
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+		<!-- We recommend you use "your_style.css" to override SmartAdmin
+		     specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+		<link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css') }}"> -->
 
-    <!-- Bootstrap Core Css -->
-    <link href="{{asset('assets/plugins/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
+		<!-- Demo purpose only: goes with demo.js, you can delete this css when designing your own WebApp -->
+		<link rel="stylesheet" type="text/css" media="screen" href="{{ asset('template_asset/css/demo.min.css') }}">
 
-    <!-- Waves Effect Css -->
-    <link href="{{asset('assets/plugins/node-waves/waves.css')}}" rel="stylesheet" />
+		<!-- #FAVICONS -->
+		<link rel="shortcut icon" href="{{ asset('template_asset/img/favicon/favicon.ico') }}" type="image/x-icon">
+		<link rel="icon" href="{{ asset('template_asset/img/favicon/favicon.ico') }}" type="image/x-icon">
 
-    <!-- Animation Css -->
-    <link href="{{asset('assets/plugins/animate-css/animate.css')}}" rel="stylesheet" />
+		<!-- #GOOGLE FONT -->
+		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,300,400,700">
 
-    <!-- JQuery DataTable Css -->
-    <link href="{{asset('assets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+		<!-- #APP SCREEN / ICONS -->
+		<!-- Specifying a Webpage Icon for Web Clip 
+			 Ref: https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html -->
+		<link rel="apple-touch-icon" href="{{ asset('template_asset/img/splash/sptouch-icon-iphone.png') }}">
+		<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('template_asset/img/splash/touch-icon-ipad.png') }}">
+		<link rel="apple-touch-icon" sizes="120x120" href="{{ asset('template_asset/img/splash/touch-icon-iphone-retina.png') }}">
+		<link rel="apple-touch-icon" sizes="152x152" href="{{ asset('template_asset/img/splash/touch-icon-ipad-retina.png') }}">
+		
+		<!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+		<!-- Startup image for web apps -->
+		<link rel="apple-touch-startup-image" href="{{ asset('template_asset/img/splash/ipad-landscape.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
+		<link rel="apple-touch-startup-image" href="{{ asset('template_asset/img/splash/ipad-portrait.png') }}" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
+		<link rel="apple-touch-startup-image" href="{{ asset('template_asset/img/splash/iphone.png') }}" media="screen and (max-device-width: 320px)">
 
-    <!-- Custom Css -->
-    <link href="{{asset('assets/css/style.css')}}" rel="stylesheet">
+	</head>
+	
+	<body class="animated fadeInDown">
 
-    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="{{asset('assets/css/themes/all-themes.css')}}" rel="stylesheet" />
+		<header id="header">
 
-    <link href="{{ asset ('assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet" />
+			<div id="logo-group">
+				<span id="logo"> <img src="{{ asset('template_asset/img/logo.png') }}" alt="SmartAdmin"> </span>
+			</div>
 
-    <link href="{{ asset ('assets/plugins/fontawesome/css/font-awesome.min.css') }}" rel="stylesheet" />
-    
-    <style type="text/css">
-        
-        .modal-header .close{
-            margin-top: -28px;
-        }
+			<span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Alamraya | PlasmaPhone</span> <a href="#" class="btn btn-danger">2018</a> </span>
 
-        .head-button .card .body .text-center{
-            background: none;
-            padding: 15px 0px;
-            cursor: pointer;
-        }
+		</header>
 
-        .head-button .card .body .text-center:hover{
-            border-bottom: 2px solid #888;
-        }
+		<div id="main" role="main">
 
-        .head-button .card .body .text-center a{
-            text-decoration: none;
-            color: #777;
-        }
+			<!-- MAIN CONTENT -->
+			<div id="content" class="container">
 
-    </style>
-    
-</head>
+				@if(Session::has('gagal'))
+					<div class="row" style="margin-bottom: 20px;">
+						<div class="alert alert-danger alert-block">
+							<a class="close" data-dismiss="alert" href="#">×</a>
+							<h4 class="alert-heading">Login Gagal</h4>
+							{{ Session::get('gagal') }}
+						</div>
+					</div>
+				@endif
 
+				<div class="row" style="margin-top: 100px;">
+					<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
+						<h1 class="txt-color-red login-header-big">Selamat Datang Admin PlasmaPhone</h1>
+						<div class="hero">
 
-<body class="login-page">
-    <div class="login-box">
-        <div class="logo">
-            <a href="javascript:void(0);">Plasma<b>Phone</b></a>
-            <small>Login</small>
-        </div>
-        <div class="card">
-            <div class="body">
-                <form id="sign_in" method="POST" action="{{ route('auth.authenticate') }}">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}" readonly>
-                    <div class="msg">Sign in to start your session</div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username" required autofocus>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Password" required>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-8 p-t-5">
-                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                            <label for="rememberme">Remember Me</label>
-                        </div>
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
-                        </div>
-                    </div>
-                    <div class="row m-t-15 m-b--20">
-                        <div class="col-xs-6">
-                            <a href="sign-up.html">Register Now!</a>
-                        </div>
-                        <div class="col-xs-6 align-right">
-                            <a href="forgot-password.html">Forgot Password?</a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+							<div class="pull-left login-desc-box-l">
+								<h4 class="paragraph-header">
+									"Greate Things In Business Are Never Done By One Person. They're Done By A Team Of People."
+								</h4>
+								<div class="login-app-icons">
+									<a href="#" class="btn btn-danger btn-sm">Steve Jobs ( founder Apple.inc )</a>
+								</div>
+							</div>
+							
+							<img src="{{ asset('template_asset/img/demo/iphoneview.png') }}" class="pull-right display-image" alt="" style="width:210px">
 
-    <script type="text/javascript">
-        @if(Session::has('gagal'))
-            alert('{{ Session::get('gagal') }}')
-        @endif
-    </script>
+						</div>
 
-    @include('layouts._script')
-</body>
+						{{-- <div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<h5 class="about-heading">About SmartAdmin - Are you up to date?</h5>
+								<p>
+									Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa.
+								</p>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+								<h5 class="about-heading">Not just your average template!</h5>
+								<p>
+									Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi voluptatem accusantium!
+								</p>
+							</div>
+						</div> --}}
 
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
+						<div class="well no-padding">
+							<form action="{{ route('auth.authenticate') }}" id="login-form" class="smart-form client-form" method="post">
+                    			<input type="hidden" name="_token" value="{{ csrf_token() }}" readonly>
+								<header>
+									Sign In
+								</header>
+
+								<fieldset>
+									
+									<section>
+										<label class="label">E-mail</label>
+										<label class="input"> <i class="icon-append fa fa-user"></i>
+											<input type="text" name="username" value="{{ old('username') }}" placeholder="Username" required autofocus>
+											<b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> Mohon Mengisi Username Dengan Benar</b></label>
+									</section>
+
+									<section>
+										<label class="label">Password</label>
+										<label class="input"> <i class="icon-append fa fa-lock"></i>
+											<input type="password" name="password" value="{{ old('password') }}" placeholder="Password" required>
+											<b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> Mohon Mengisi Password Dengan Benar</b> </label>
+										<div class="note">
+											<a href="forgotpassword.html">Forgot password?</a>
+										</div>
+									</section>
+
+									<section>
+										<label class="checkbox">
+											<input type="checkbox" name="remember" checked="">
+											<i></i>Stay signed in</label>
+									</section>
+								</fieldset>
+								<footer>
+									<button type="submit" class="btn btn-primary">
+										Sign in
+									</button>
+								</footer>
+							</form>
+
+						</div>
+						
+						{{-- <h5 class="text-center"> Alamraya  Plasma Phone</h5> --}}
+															
+							{{-- <ul class="list-inline text-center">
+								<li>
+									<a href="javascript:void(0);" class="btn btn-primary btn-circle"><i class="fa fa-facebook"></i></a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="btn btn-info btn-circle"><i class="fa fa-twitter"></i></a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="btn btn-warning btn-circle"><i class="fa fa-linkedin"></i></a>
+								</li>
+							</ul> --}}
+						
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<!--================================================== -->	
+
+		<!-- PACE LOADER - turn this on if you want ajax loading to show (caution: uses lots of memory on iDevices)-->
+		<script src="{{ asset('template_asset/js/plugin/pace/pace.min.js') }}"></script>
+
+	    <!-- Link to Google CDN's jQuery + jQueryUI; fall back to local -->
+	    <script src="{{ asset('template_asset/js/libs/jquery-2.1.1.min.js') }}"></script>
+
+	    <script src="{{ asset('template_asset/js/libs/jquery-ui-1.10.3.min.js') }}"></script>
+
+		<!-- IMPORTANT: APP CONFIG -->
+		<script src="{{ asset('template_asset/js/app.config.js') }}"></script>
+
+		<!-- JS TOUCH : include this plugin for mobile drag / drop touch events 		
+		<script src="js/plugin/jquery-touch/jquery.ui.touch-punch.min.js') }}"></script> -->
+
+		<!-- BOOTSTRAP JS -->		
+		<script src="{{ asset('template_asset/js/bootstrap/bootstrap.min.js') }}"></script>
+
+		<!-- JQUERY VALIDATE -->
+		<script src="{{ asset('template_asset/js/plugin/jquery-validate/jquery.validate.min.js') }}"></script>
+		
+		<!-- JQUERY MASKED INPUT -->
+		<script src="{{ asset('template_asset/js/plugin/masked-input/jquery.maskedinput.min.js') }}"></script>
+		
+		<!--[if IE 8]>
+			
+			<h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
+			
+		<![endif]-->
+
+		<!-- MAIN APP JS FILE -->
+		<script src="{{ asset('template_asset/js/app.min.js') }}"></script>
+
+		<script type="text/javascript">
+			runAllForms();
+
+			$(function() {
+				// Validation
+				$("#login-form").validate({
+					// Rules for form validation
+					rules : {
+						email : {
+							required : true,
+							email : true
+						},
+						password : {
+							required : true,
+							minlength : 3,
+							maxlength : 20
+						}
+					},
+
+					// Messages for form validation
+					messages : {
+						email : {
+							required : 'Please enter your email address',
+							email : 'Please enter a VALID email address'
+						},
+						password : {
+							required : 'Please enter your password'
+						}
+					},
+
+					// Do not change code below
+					errorPlacement : function(error, element) {
+						error.insertAfter(element.parent());
+					}
+				});
+			});
+		</script>
+
+	</body>
 </html>

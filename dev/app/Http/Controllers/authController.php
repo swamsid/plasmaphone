@@ -26,7 +26,7 @@ class authController extends Controller
 			Auth::login($member);
 			return redirect()->route('home');
 		}else{
-			Session::flash('gagal', 'Kombinasi Inputan Tidak Ada Didatabase.');
+			Session::flash('gagal', 'Kombinasi Username dan Password Tidak Bisa Kami Temukan Di Dalam Database. Silahkan Coba Lagi !');
 			return redirect()->route('login')->withInput();
 		}
     }
