@@ -87,9 +87,6 @@
 							110,150,300,130,400,240,220,310,220,300, 270, 210
 						</div>
 					</li>
-					<li class="sparks-info">
-						<h5> Site Orders <span class="txt-color-greenDark"><i class="fa fa-shopping-cart"></i>&nbsp;2447</span></h5>
-					</li>
 				</ul>
 			</div>
 
