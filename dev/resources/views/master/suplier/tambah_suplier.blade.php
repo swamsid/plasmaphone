@@ -151,7 +151,7 @@
 								<div class="col-md-12">
 									<button class="btn btn-default" type="submit">
 										<i class="fa fa-floppy-o"></i>
-										&nbsp;Validate
+										&nbsp;Simpan
 									</button>
 								</div>
 							</div>
