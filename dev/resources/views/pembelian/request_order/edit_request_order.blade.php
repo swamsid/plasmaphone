@@ -266,14 +266,14 @@
 									    text: 'Data Ini berhasil Diupdate',
 									    showHideTransition: 'fade',
 									    icon: 'success'
-									})
+									});
 								}else if(response.data.status == 'tidak ada'){
 									$("#id").children('option:selected').attr('disabled', 'disabled');
 									$.toast({
 									    text: 'Ups . Data Yang Ingin Anda Edit Sudah Tidak Ada..',
 									    showHideTransition: 'fade',
 									    icon: 'error'
-									})
+									});
 								}
 							}).catch((err) => {
 								console.log(err);

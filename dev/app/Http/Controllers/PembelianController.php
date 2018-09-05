@@ -70,19 +70,44 @@ class PembelianController extends Controller
         return view('pembelian.purchase_order.tambah_purchase_order')->with(compact('data_request'));
     }
 
-    public function get_purchase($id)
+    public function get_request_purchase($id)
     {
         $data = DB::table('d_request_order_dt')
-                        ->select('d_request_order_dt.*', 'd_supplier.s_name')
-                        ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id')
-                        ->where('d_request_order_dt.rdt_no', '=', $id)
-                        ->first();
+                ->select('d_request_order.*', 'd_request_order_dt.*', 'd_request_order.ro_cabang', 'd_supplier.s_name')
+                ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id')
+                ->where('d_request_order_dt.rdt_no', $id)
+                ->first();
         return json_encode($data);
+    }
+
+    public function get_purchase($id)
+    {
+        // return json_encode($id); die;
+        $data = DB::table('d_purchase_order_dt')
+                ->select('d_purchase_order.*', 'd_purchase_order_dt.*', 'd_request_order.ro_cabang', 'd_supplier.s_name')
+                ->join('d_purchase_order', 'd_purchase_order_dt.podt_purchase', '=', 'd_purchase_order.po_no')
+                ->join('d_request_order_dt', 'd_purchase_order.po_request_order_no', '=', 'd_request_order_dt.rdt_no')
+                ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                ->join('d_supplier', 'd_purchase_order_dt.podt_kode_suplier', '=', 'd_supplier.s_id')
+                ->where('d_purchase_order_dt.podt_no', $id)
+                ->first();
+        return json_encode($data);
+    }
+
+    function formatPrice($data)
+    {
+        $explode_rp =  implode("", explode("Rp", $data));
+        return implode("", explode(".", $explode_rp));
     }
 
     public function add_purchase(Request $request)
     {
         // print_r($request->all()); die;
+        $total_harga = $this->formatPrice($request->total_harga);
+        $total_bayar = $this->formatPrice($request->total_bayar);
+        $harga_satuan = $this->formatPrice($request->harga_satuan);
+        // echo $harga_satuan; die;
         $order = DB::table('d_purchase_order')->get();
         $count = count($order)+1;
         $po_no = "PO".date('Ymd').$count;
@@ -102,10 +127,10 @@ class PembelianController extends Controller
                                     'po_request_order_no'=>$request->request_dt_no,
                                     'po_status'=>$request->status,
                                     'po_type_pembayaran'=>$request->tipe_pembayaran,
-                                    'po_total_harga'=>$request->total_harga,
+                                    'po_total_harga'=>$total_harga,
                                     'po_diskon'=>$diskon,
                                     'po_ppn'=>$request->ppn,
-                                    'po_total_bayar'=>$request->total_bayar
+                                    'po_total_bayar'=>$total_bayar
                                 ]);
 
         $inser_purchase_order_dt = DB::table('d_purchase_order_dt')->insert([
@@ -114,7 +139,7 @@ class PembelianController extends Controller
                                         'podt_kode_barang'=>$request->kode_barang,
                                         'podt_kode_suplier'=>$request->id_supplier,
                                         'podt_kuantitas'=>$request->kuantitas,
-                                        'podt_harga_satuan'=>$request->harga_satuan
+                                        'podt_harga_satuan'=>$harga_satuan
                                     ]);
 
         $update_request_order_dt = DB::table('d_request_order_dt')
@@ -140,10 +165,11 @@ class PembelianController extends Controller
     public function edit_purchase_order(Request $request)
     {
         $data = DB::table('d_purchase_order_dt')
-                ->select('d_purchase_order.*', 'd_purchase_order_dt.*', 'd_request_order.ro_cabang')
+                ->select('d_purchase_order.*', 'd_purchase_order_dt.*', 'd_request_order.ro_cabang', 'd_supplier.s_name')
                 ->join('d_purchase_order', 'd_purchase_order_dt.podt_purchase', '=', 'd_purchase_order.po_no')
                 ->join('d_request_order_dt', 'd_purchase_order.po_request_order_no', '=', 'd_request_order_dt.rdt_no')
                 ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                ->join('d_supplier', 'd_purchase_order_dt.podt_kode_suplier', '=', 'd_supplier.s_id')
                 ->where('d_purchase_order_dt.podt_no', $request->id)->get();
 
         if(count($data) == 0){
@@ -156,6 +182,9 @@ class PembelianController extends Controller
     public function update_purchase_order(Request $request)
     {
         // print_r($request->all()); die;
+        $total_harga = $this->formatPrice($request->total_harga);
+        $total_bayar = $this->formatPrice($request->total_bayar);
+        $harga_satuan = $this->formatPrice($request->harga_satuan);
         $data = DB::table('d_purchase_order_dt')->where('podt_no', $request->podt_no);
 
         if(!$data->first()){
@@ -167,17 +196,23 @@ class PembelianController extends Controller
             return json_encode($response);
         }else{
             $data->update([
-                'podt_harga_satuan'=>$request->harga_satuan
+                'podt_harga_satuan'=>$harga_satuan
             ]);
             DB::table('d_purchase_order')
             ->where('po_no', $request->po_no)
             ->update([
                 'po_status'=>$request->status,
                 'po_type_pembayaran'=>$request->tipe_pembayaran,
-                'po_total_harga'=>$request->total_harga,
+                'po_total_harga'=>$total_harga,
                 'po_diskon'=>$request->diskon,
                 'po_ppn'=>$request->ppn,
-                'po_total_bayar'=>$request->total_bayar
+                'po_total_bayar'=>$total_bayar
+            ]);
+
+            DB::table('d_request_order_dt')
+            ->where('rdt_no', $request->request_order)
+            ->update([
+                'rdt_status'=>$request->status
             ]);
 
             Session::flash('flash_message_success', 'Semua Data Yang Telah Anda Ubah Berhasil Tersimpan.');
@@ -188,6 +223,51 @@ class PembelianController extends Controller
 
             return json_encode($response);
         }
+    }
+
+    public function multiple_edit_purchase_order(Request $request)
+    {
+        $data = DB::table('d_purchase_order_dt')
+                ->select('d_purchase_order.*', 'd_purchase_order_dt.*', 'd_request_order.ro_cabang', 'd_supplier.s_name')
+                ->join('d_purchase_order', 'd_purchase_order_dt.podt_purchase', '=', 'd_purchase_order.po_no')
+                ->join('d_request_order_dt', 'd_purchase_order.po_request_order_no', '=', 'd_request_order_dt.rdt_no')
+                ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                ->join('d_supplier', 'd_purchase_order_dt.podt_kode_suplier', '=', 'd_supplier.s_id')
+                ->whereIn('d_purchase_order_dt.podt_no', $request->data_check)->get();
+
+        if(count($data) == 0){
+            return view('errors.data_not_found');
+        }
+
+        return view('pembelian.purchase_order.edit_purchase_order', compact('data'));
+    }
+
+    public function multiple_delete_purchase_order(Request $request)
+    {
+        for ($i = 0; $i < count($request->podt_no); $i++) {
+            # code...
+            // print_r($key);echo ": ";print_r($value); echo "<pre>";
+            DB::table('d_purchase_order_dt')->where('podt_no', $request->podt_no[$i])->delete();
+            $check_podt_no = DB::table('d_purchase_order_dt')
+                        ->where('podt_no', $request->podt_no[$i])
+                        ->get();
+            if (count($check_podt_no) == 0) {
+                $check_po = DB::table('d_purchase_order')
+                        ->where('po_no', $request->podt_purchase[$i])
+                        ->get();
+                if (count($check_po) != 0) {
+                    DB::table('d_purchase_order')->where('po_no', $request->podt_purchase[$i])->delete();
+                }
+                
+            }
+            
+        }        
+        
+        Session::flash('flash_message_success', 'Semua Data Yang Anda Pilih Berhasil Dihapus.');
+
+        return  json_encode([
+                    'status'    => 'berhasil'
+                ]);
     }
 
     public function refund()

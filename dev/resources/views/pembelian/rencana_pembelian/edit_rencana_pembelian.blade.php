@@ -137,9 +137,9 @@
 												<label class="col-xs-3 col-lg-3 control-label text-left">Supplier</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
 													<select name="supplier" id="supplier" class="form-control">
-														<option value="">Pilih Supplier</option>
+														<option value="0">Pilih Supplier</option>
 														@foreach($data_supplier as $supplier)
-														<option value="{{ $supplier->s_id }}">{{ $supplier->s_name }}</option>
+														<option value="{{ $supplier->s_id }}" @if($data[0]->rdt_supplier != 0) selected @endif>{{ $supplier->s_name }}</option>
 														@endforeach
 													</select>
 												</div>
@@ -295,6 +295,8 @@
 								.then((response) => {
 									if(response.data.status == 'berhasil'){
 										$("#id").children('option:selected').text($('#no_req').val()+' - '+$('#ro_cabang').val());
+										$('#kuantitas_approv').val();
+										$('#supplier').val();
 										$.toast({
 										    text: 'Data Ini berhasil Diupdate',
 										    showHideTransition: 'fade',
@@ -326,6 +328,8 @@
 					$("#kode_barang").val(data.rdt_kode_barang);
 					$("#kuantitas").val(data.rdt_kuantitas);
 					$("#kuantitas_approv").val(data.rdt_kuantitas_approv);
+					$('#supplier').val("0").isSelect();
+					$('#form-load-section-status').fadeOut(200);
 				}
 			})
 		</script>

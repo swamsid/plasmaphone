@@ -74,14 +74,15 @@
 									<div class="form-group">
 										<label class="col-xs-3 col-lg-3 control-label text-left">Pilih Data Yang Diedit</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="hidden" name="po_no" id="po_no" value="{{ $data[0]->po_no }}">
+											<input type="hidden" name="po_no" id="po_no" value="{{ $data[0]->podt_purchase }}">
 											<select class="form-control" name="podt_no" id="podt_no">
 												@foreach($data as $key => $dt)
 													<option value="{{ $dt->podt_no }}">Cabang-{{ $dt->ro_cabang }} | {{ $dt->podt_kode_barang }}</option>
-													<input type="hidden" name="ro_cabang" id="ro_cabang" value="{{ $dt->ro_cabang }}">
-													<input type="hidden" name="ro_kode_barang" id="ro_kode_barang" value="{{ $dt->podt_kode_barang }}">
+													
 												@endforeach
 											</select>
+											<input type="hidden" name="ro_cabang" id="ro_cabang" value="{{ $data[0]->ro_cabang }}">
+											<input type="hidden" name="ro_kode_barang" id="ro_kode_barang" value="{{ $data[0]->podt_kode_barang }}">
 										</div>
 									</div>
 								</div>
@@ -129,7 +130,7 @@
 											<div class="form-group">
 												<label class="col-xs-3 col-lg-3 control-label text-left">Total Harga</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
-													<input type="text" class="form-control" name="total_harga" placeholder="Masukkan total harga" value="{{ $data[0]->po_total_harga }}" required />
+													<input type="text" class="form-control" name="total_harga" id="total_harga" placeholder="Masukkan total harga" rel="{{ $data[0]->po_total_harga }}" required />
 												</div>
 											</div>
 										</div>
@@ -156,7 +157,7 @@
 											<div class="form-group">
 												<label class="col-xs-3 col-lg-3 control-label text-left">Total Bayar</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
-													<input type="number" min="0" class="form-control" name="total_bayar" id="total_bayar" placeholder="Masukkan total bayar" value="{{ $data[0]->po_total_bayar }}" required />
+													<input type="text" class="form-control" name="total_bayar" id="total_bayar" placeholder="Masukkan total bayar" rel="{{ $data[0]->po_total_bayar }}" required />
 												</div>
 											</div>
 										</div>
@@ -184,7 +185,7 @@
 												<label class="col-xs-3 col-lg-3 control-label text-left">Supplier</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
 													<input type="hidden" name="id_supplier" id="id_supplier">
-													<input type="text" class="form-control" name="supplier" id="supplier" placeholder="Masukkan Nama Supplier" value="{{ $data[0]->podt_kode_suplier }}" required readonly />
+													<input type="text" class="form-control" name="supplier" id="supplier" placeholder="Masukkan Nama Supplier" value="{{ $data[0]->s_name }}" required readonly />
 												</div>
 											</div>
 										</div>
@@ -202,7 +203,7 @@
 											<div class="form-group">
 												<label class="col-xs-3 col-lg-3 control-label text-left">Harga Satuan</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
-													<input type="number" min="0" class="form-control" name="harga_satuan" id="harga_satuan" placeholder="Masukkan harga satuan" value="{{ $data[0]->podt_harga_satuan }}" required />
+													<input type="text" class="form-control" name="harga_satuan" id="harga_satuan" placeholder="Masukkan harga satuan" rel="{{ $data[0]->podt_harga_satuan }}" required />
 												</div>
 											</div>
 										</div>
@@ -253,8 +254,50 @@
 	<script src="{{ asset('template_asset/js/plugin/bootstrapvalidator/bootstrapValidator.min.js') }}"></script>
 
 		<script type="text/javascript">
+			
+
 			$(document).ready(function(){
 
+				var i_total_harga = document.getElementById('total_harga');
+				var i_total_bayar = document.getElementById('total_bayar');
+				var i_harga_satuan = document.getElementById('harga_satuan');
+				i_total_harga.addEventListener('keyup', function(e)
+				{
+					i_total_harga.value = formatRupiah(this.value, 'Rp');
+				});
+
+				i_total_harga.value = formatRupiah($('#total_harga').attr('rel'), 'Rp');
+
+				i_total_bayar.addEventListener('keyup', function(e)
+				{
+					i_total_bayar.value = formatRupiah(this.value, 'Rp');
+				});
+
+				i_total_bayar.value = formatRupiah($('#total_bayar').attr('rel'), 'Rp');
+
+				i_harga_satuan.addEventListener('keyup', function(e)
+				{
+					i_harga_satuan.value = formatRupiah(this.value, 'Rp');
+				});
+
+				i_harga_satuan.value = formatRupiah($('#harga_satuan').attr('rel'), 'Rp');
+
+				function formatRupiah(angka, prefix)
+				{
+					var number_string = angka.replace(/[^,\d]/g, '').toString(),
+						split	= number_string.split(','),
+						sisa 	= split[0].length % 3,
+						rupiah 	= split[0].substr(0, sisa),
+						ribuan 	= split[0].substr(sisa).match(/\d{3}/gi);
+						
+					if (ribuan) {
+						separator = sisa ? '.' : '';
+						rupiah += separator + ribuan.join('.');
+					}
+					
+					rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+					return prefix == undefined ? rupiah : (rupiah ? 'Rp' + rupiah : '');
+				}
 				
 				// product form
 
@@ -305,7 +348,8 @@
 
 				$('#form-edit').submit(function(evt){
 					evt.preventDefault();
-
+					let btn = $('#submit');
+						btn.attr('disabled', 'disabled');
 					axios.post(baseUrl+'/pembelian/purchase-order/update', $('#form-edit').serialize())
 						.then((response) => {
 							if(response.data.status == 'berhasil'){
@@ -335,11 +379,12 @@
 
 				// Select Order request
 
-				$('#request_dt_no').on('change', function(e){
-					var rdt_no = $('#request_dt_no').val();
-					axios.get(baseUrl+'/pembelian/purchase-order/get-purchase/'+rdt_no)
+				$('#podt_no').on('change', function(e){
+					var podt_no = $('#podt_no').val();
+					// console.log(podt_no);
+					axios.get(baseUrl+'/pembelian/purchase-order/get-purchase/'+podt_no)
 						.then((response) => {
-							// console.log(response.data);
+							console.log(response.data);
 							initiate(response.data);
 						})
 						.catch((err) => {
@@ -348,11 +393,20 @@
 				});
 
 				function initiate(data){
-					$('#request_order').val(data.rdt_request);
-					$('#kode_barang').val(data.rdt_kode_barang);
-					$('#id_supplier').val(data.rdt_supplier);
+					$('#po_no').val(data.podt_purchase);
+					$('#request_order').val(data.po_request_order_no);
+					$('#ro_cabang').val(data.ro_cabang);
+					$('#ro_kode_barang').val(data.podt_kode_barang);
+					$('#status').val(data.po_status);
+					$('#tipe_pembayaran').val(data.po_type_pembayaran);
+					$('#total_harga').val(data.po_total_harga);
+					$('#diskon').val(data.po_diskon);
+					$('#ppn').val(data.po_ppn);
+					$('#total_bayar').val(data.po_total_bayar);
+					$('#kode_barang').val(data.podt_kode_barang);
 					$('#supplier').val(data.s_name);
-					$('#kuantitas').val(data.rdt_kuantitas_approv);
+					$('#kuantitas').val(data.podt_kuantitas);
+					$('#harga_satuan').val(data.podt_harga_satuan);
 				}
 
 				// End select order

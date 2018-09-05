@@ -115,7 +115,7 @@
 											<div class="form-group">
 												<label class="col-xs-3 col-lg-3 control-label text-left">Request Order No.</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
-													<input type="text" class="form-control" name="request_order" id="request_order" placeholder="Masukkan Nomor Request Order" required readonly />
+													<input type="text" class="form-control" name="request_order" id="request_order" placeholder="Masukkan Nomor Request Order" readonly />
 												</div>
 											</div>
 										</div>
@@ -148,7 +148,7 @@
 											<div class="form-group">
 												<label class="col-xs-3 col-lg-3 control-label text-left">Total Harga</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
-													<input type="text" class="form-control" name="total_harga" placeholder="Masukkan total harga" required />
+													<input type="text" class="form-control" name="total_harga" id="total_harga" placeholder="Masukkan total harga" required />
 												</div>
 											</div>
 										</div>
@@ -175,7 +175,7 @@
 											<div class="form-group">
 												<label class="col-xs-3 col-lg-3 control-label text-left">Total Bayar</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
-													<input type="number" min="0" class="form-control" name="total_bayar" id="total_bayar" placeholder="Masukkan total bayar" required />
+													<input type="text" class="form-control" name="total_bayar" id="total_bayar" placeholder="Masukkan total bayar" required />
 												</div>
 											</div>
 										</div>
@@ -193,7 +193,7 @@
 											<div class="form-group">
 												<label class="col-xs-3 col-lg-3 control-label text-left">Kode Barang</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
-													<input type="text" class="form-control" name="kode_barang" id="kode_barang" placeholder="Masukkan Kode Barang" required readonly />
+													<input type="text" class="form-control" name="kode_barang" id="kode_barang" placeholder="Masukkan Kode Barang" readonly />
 												</div>
 											</div>
 										</div>
@@ -203,7 +203,7 @@
 												<label class="col-xs-3 col-lg-3 control-label text-left">Supplier</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
 													<input type="hidden" name="id_supplier" id="id_supplier">
-													<input type="text" class="form-control" name="supplier" id="supplier" placeholder="Masukkan Nama Supplier" required readonly />
+													<input type="text" class="form-control" name="supplier" id="supplier" placeholder="Masukkan Nama Supplier" readonly />
 												</div>
 											</div>
 										</div>
@@ -212,7 +212,7 @@
 											<div class="form-group">
 												<label class="col-xs-3 col-lg-3 control-label text-left">Kuantitas</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
-													<input type="text" class="form-control" name="kuantitas" id="kuantitas" placeholder="Masukkan kuantitas" required readonly />
+													<input type="text" class="form-control" name="kuantitas" id="kuantitas" placeholder="Masukkan kuantitas" readonly />
 												</div>
 											</div>
 										</div>
@@ -221,7 +221,7 @@
 											<div class="form-group">
 												<label class="col-xs-3 col-lg-3 control-label text-left">Harga Satuan</label>
 												<div class="col-xs-8 col-lg-8 inputGroupContainer">
-													<input type="number" min="0" class="form-control" name="harga_satuan" id="harga_satuan" placeholder="Masukkan harga satuan" required />
+													<input type="text" class="form-control" name="harga_satuan" id="harga_satuan" placeholder="Masukkan harga satuan" required />
 												</div>
 											</div>
 										</div>
@@ -272,9 +272,43 @@
 	<script src="{{ asset('template_asset/js/plugin/bootstrapvalidator/bootstrapValidator.min.js') }}"></script>
 
 		<script type="text/javascript">
+			var i_total_harga = document.getElementById('total_harga');
+			var i_total_bayar = document.getElementById('total_bayar');
+			var i_harga_satuan = document.getElementById('harga_satuan');
+			i_total_harga.addEventListener('keyup', function(e)
+			{
+				i_total_harga.value = formatRupiah(this.value, 'Rp');
+			});
+
+			i_total_bayar.addEventListener('keyup', function(e)
+			{
+				i_total_bayar.value = formatRupiah(this.value, 'Rp');
+			});
+
+			i_harga_satuan.addEventListener('keyup', function(e)
+			{
+				i_harga_satuan.value = formatRupiah(this.value, 'Rp');
+			});
+
+			function formatRupiah(angka, prefix)
+			{
+				var number_string = angka.replace(/[^,\d]/g, '').toString(),
+					split	= number_string.split(','),
+					sisa 	= split[0].length % 3,
+					rupiah 	= split[0].substr(0, sisa),
+					ribuan 	= split[0].substr(sisa).match(/\d{3}/gi);
+					
+				if (ribuan) {
+					separator = sisa ? '.' : '';
+					rupiah += separator + ribuan.join('.');
+				}
+				
+				rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+				return prefix == undefined ? rupiah : (rupiah ? 'Rp' + rupiah : '');
+			}
+
 			$(document).ready(function(){
 
-				
 				// product form
 
 				$('#purchase-form').bootstrapValidator({
@@ -312,7 +346,7 @@
 								}
 							}
 						},
-						order_request : {
+						request_dt_no : {
 							validators : {
 								notEmpty : {
 									message : 'Pilih request order'
@@ -328,7 +362,7 @@
 
 				$('#request_dt_no').on('change', function(e){
 					var rdt_no = $('#request_dt_no').val();
-					axios.get(baseUrl+'/pembelian/purchase-order/get-purchase/'+rdt_no)
+					axios.get(baseUrl+'/pembelian/purchase-order/get-request-purchase/'+rdt_no)
 						.then((response) => {
 							// console.log(response.data);
 							initiate(response.data);

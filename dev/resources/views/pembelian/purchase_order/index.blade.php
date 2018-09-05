@@ -103,7 +103,7 @@
 			<!-- row -->
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px 20px; margin-top: {{ $mt }};">
-					<form id="table-form" method="post" action="{{ url('/pembelian/rencana-pembelian/rencana-pembelian/edit-multiple') }}">
+					<form id="table-form" method="post" action="{{ url('/pembelian/purchase-order/edit-multiple') }}">
 						{!! csrf_field() !!}
 						<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
 							<thead>			                
@@ -323,7 +323,24 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 
-				let selected = [];
+				function formatRupiah(angka, prefix)
+				{
+					var number_string = angka.replace(/[^,\d]/g, '').toString(),
+						split	= number_string.split(','),
+						sisa 	= split[0].length % 3,
+						rupiah 	= split[0].substr(0, sisa),
+						ribuan 	= split[0].substr(sisa).match(/\d{3}/gi);
+						
+					if (ribuan) {
+						separator = sisa ? '.' : '';
+						rupiah += separator + ribuan.join('.');
+					}
+					
+					rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+					return prefix == undefined ? rupiah : (rupiah ? 'Rp' + rupiah : '');
+				}
+
+				let selected = []; po_dt_purchase = [];
 
 				/* BASIC ;*/
 					var responsiveHelper_dt_basic = undefined;
@@ -359,12 +376,36 @@
 
 				$('.check-me').change(function(evt){
 					evt.preventDefault(); context = $(this);
-					if(context.is(':checked'))
+					if(context.is(':checked')){
 						selected.push(context.val());
-					else
+						po_dt_purchase.push(context.data('id'));
+					}else{
 						selected.splice(_.findIndex(selected, function(o) { return o == context.val() }), 1);
+					}
 
 					console.log(selected);
+				})
+
+				// hapus 1 click
+				$(".hapus").click(function(evt){
+					evt.preventDefault(); context = $(this);
+
+					let ask = confirm('Apakah Anda Yakin . ?');
+					if(ask){
+						$('#overlay').fadeIn(300);
+						axios.post(baseUrl+'/pembelian/purchase-order/multiple-delete', {
+							podt_no 	: [context.data('id')],
+							podt_purchase : [context.attr('rel')],
+							_token 	: '{{ csrf_token() }}'
+						})
+						.then((response) => {
+							if(response.data.status == 'berhasil'){
+								location.reload();
+							}
+						}).catch((error) => {
+							console.log(error);
+						})
+					}
 				})
 
 
@@ -380,8 +421,9 @@
 						let ask = confirm(selected.length+' Data Akan Dihapus Apakah Anda Yakin . ?');
 						if(ask){
 							$('#overlay').fadeIn(300);
-							axios.post(baseUrl+'/master/suplier/suplier/multiple-delete', {
-								data 	: selected,
+							axios.post(baseUrl+'/pembelian/purchase-order/multiple-delete', {
+								podt_no 	: selected,
+								podt_purchase : po_dt_purchase,
 								_token 	: '{{ csrf_token() }}'
 							})
 							.then((response) => {
@@ -414,27 +456,6 @@
 					evt.preventDefault(); context = $(this);
 
 					window.location = baseUrl+'/pembelian/purchase-order/edit?id='+context.data('id');
-				})
-
-				// hapus 1 click
-				$(".hapus").click(function(evt){
-					evt.preventDefault(); context = $(this);
-
-					let ask = confirm('Apakah Anda Yakin . ?');
-					if(ask){
-						$('#overlay').fadeIn(300);
-						axios.post(baseUrl+'/master/suplier/suplier/multiple-delete', {
-							data 	: [context.data('id')],
-							_token 	: '{{ csrf_token() }}'
-						})
-						.then((response) => {
-							if(response.data.status == 'berhasil'){
-								location.reload();
-							}
-						}).catch((error) => {
-							console.log(error);
-						})
-					}
 				})
 
 				// view click
@@ -472,7 +493,7 @@
 					$('#ppn').val(data.po_ppn+"%");
 					$('#total_bayar').val(data.po_total_bayar);
 					$('#status').val(data.po_status);
-					$('#supplier').val(data.podt_kode_suplier);
+					$('#supplier').val(data.s_name);
 					$('#myModal').modal('show');
 				}
 			})
