@@ -122,6 +122,14 @@
 								</tr>
 							</thead>
 							<tbody>
+								<?php 
+									function rupiah($angka){
+	
+										$hasil_rupiah = "Rp" . number_format($angka,2,',','.');
+										return $hasil_rupiah;
+									 
+									}
+								?>
 								@foreach($data as $key => $data)
 									<tr>
 										<td class="text-center">{{ $key+1 }}</td>
@@ -133,7 +141,7 @@
 		                                <td>{{ $data->podt_kode_barang }}</td>
 		                                <td>{{ $data->s_name }}</td>
 		                                <td>{{ $data->podt_kuantitas }}</td>
-		                                <td>{{ $data->podt_harga_satuan }}</td>
+		                                <td>{{ rupiah($data->podt_harga_satuan) }}</td>
 		                                <td class="text-center">
 		                                	<button type="button" class="btn btn-xs btn-success btn-circle view" data-toggle="tooltip" data-placement="top" title="View Data" data-id="{{ $data->podt_no }}"><i class="fa fa-eye fa-fw"></i></button>
 		                                	<button class="btn btn-xs btn-success btn-circle edit" data-toggle="tooltip" data-placement="top" title="Edit Data" data-id="{{ $data->podt_no }}"><i class="fa fa-pencil fa-fw"></i></button>
@@ -323,6 +331,11 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 
+				var i_harga_satuan = document.getElementById('harga_satuan');
+				var i_total_harga = document.getElementById('total_harga');
+				var i_total_bayar = document.getElementById('total_bayar');
+
+
 				function formatRupiah(angka, prefix)
 				{
 					var number_string = angka.replace(/[^,\d]/g, '').toString(),
@@ -487,11 +500,14 @@
 					$('#kode_barang').val(data.podt_kode_barang);
 					$('#kuantitas').val(data.podt_kuantitas);
 					$('#harga_satuan').val(data.podt_harga_satuan);
+					i_harga_satuan.value = formatRupiah($('#harga_satuan').val(), 'Rp');
 					$('#tipe_pembayaran').val(data.po_type_pembayaran);
 					$('#total_harga').val(data.po_total_harga);
+					i_total_harga.value = formatRupiah($('#total_harga').val(), 'Rp');
 					$('#diskon').val(data.po_diskon+"%");
 					$('#ppn').val(data.po_ppn+"%");
 					$('#total_bayar').val(data.po_total_bayar);
+					i_total_bayar.value = formatRupiah($('#total_bayar').val(), 'Rp');
 					$('#status').val(data.po_status);
 					$('#supplier').val(data.s_name);
 					$('#myModal').modal('show');
