@@ -149,7 +149,7 @@
 										</td>
 		                                <td>{{ $r_order->rdt_request }}</td>
 		                                <td>{{ $r_order->rdt_no }}</td>
-		                                <td>{{ $r_order->ro_cabang }}</td>
+		                                <td>{{ $r_order->c_nama }}</td>
 		                                <td>{{ $r_order->rdt_kode_barang }}</td>
 		                                <td>{{ $r_order->rdt_kuantitas }}</td>
 		                                <td>{{ $r_order->rdt_kuantitas_approv }}</td>
@@ -495,7 +495,7 @@
 
 				function initiate(data){
 					$('#ro_no').val(data.ro_no);
-					$('#ro_cabang').val(data.ro_cabang);
+					$('#ro_cabang').val(data.c_nama);
 					$('#rdt_no').val(data.rdt_no);
 					$('#kode_barang').val(data.rdt_kode_barang);
 					$('#kuantitas').val(data.rdt_kuantitas);

@@ -95,7 +95,12 @@
 									<div class="form-group">
 										<label class="col-xs-3 col-lg-3 control-label text-left">Cabang</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="text" class="form-control" name="ro_cabang" placeholder="Masukkan Cabang" required />
+											<select name="ro_cabang" id="ro_cabang" class="form-control">
+												<option value="">---Pilih Cabang---</option>
+												@foreach($data_outlet as $key => $outlet)
+												<option value="{{ $outlet->c_id }}">{{ $outlet->c_nama }}</option>
+												@endforeach
+											</select>
 										</div>
 										<a href="javascript:void(0);" class="btn btn-xs btn-success btn-circle add_button" title="Add field"><i class="fa fa-plus fa-fw"></i></a>
 									</div>

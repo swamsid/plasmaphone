@@ -1,5 +1,5 @@
 {
     "require": {
-        "barryvdh/laravel-dompdf": "^0.8.2"
+        "elibyy/tcpdf-laravel": "5.6.*"
     }
 }

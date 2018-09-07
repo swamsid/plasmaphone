@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\pembelian\order as order;
 use DB;
 use Session;
-// use PDF;
+use PDF;
 
 class PembelianController extends Controller
 {
@@ -34,15 +34,19 @@ class PembelianController extends Controller
 
     public function generatePDF($id)
     {
-        $data_order = DB::table('d_request_order_dt')
-                        ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*')
-                        ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
-                        ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
-                ->where('d_request_order_dt.rdt_supplier', $id)->get();
+        // $data_order = DB::table('d_request_order_dt')
+        //                 ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*')
+        //                 ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+        //                 ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
+        //         ->where('d_request_order_dt.rdt_supplier', $id)->get();
 
-        // $pdf = PDF::loadView('generate_pdf', $data_order);
-        // return $pdf->download('konfirmasi_pembelian.pdf');
-        return view('pembelian.konfirmasi_pembelian.generate_pdf', compact('data_order'));
+        // return view('pembelian.konfirmasi_pembelian.generate_pdf', compact('data_order'));
+        // $html_content = '<h1>Generate a PDF using TCPDF in Laravel</h1>
+        //                 <h4>by</br>Syahrul</h4>';
+        // PDF::SetTitle('Sample PDF');
+        // PDF::AddPage();
+        // PDF::writeHTML($html_content, true, false, true, false, '');
+        // PDF::Output('SamplePDF.pdf');
     }
 
     public function return_barang()
@@ -62,9 +66,10 @@ class PembelianController extends Controller
     public function purchase_order_add()
     {
         $data_request = DB::table('d_request_order_dt')
-                        ->select('d_request_order.*', 'd_request_order_dt.*')
+                        ->select('d_request_order.*', 'd_request_order_dt.*', 'd_cabang.*')
                         ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
                         ->join('d_purchase_order', 'd_request_order_dt.rdt_no', '=', 'd_purchase_order.po_request_order_no', 'left')
+                        ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                         ->where('d_request_order_dt.rdt_status', '=', 'Rencana Pembelian')
                         ->get();
         return view('pembelian.purchase_order.tambah_purchase_order')->with(compact('data_request'));
@@ -277,8 +282,9 @@ class PembelianController extends Controller
     public function request_order()
     {
         $r_orders_dt = DB::table('d_request_order_dt')
-                        ->select('d_request_order_dt.*', 'd_request_order.ro_cabang')
+                        ->select('d_request_order_dt.*', 'd_request_order.ro_cabang', 'd_cabang.*')
                         ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                        ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                         ->get();
         return view('pembelian/request_order/view_request_order')->with(compact('r_orders_dt'));
     }
@@ -324,15 +330,17 @@ class PembelianController extends Controller
 
             return redirect('/pembelian/request-order')->with('flash_message_success','Data berhasil ditambahkan!');
         }
-        return view('pembelian/request_order/tambah_request_order');
+        $data_outlet = DB::table('d_cabang')->get();
+        return view('pembelian/request_order/tambah_request_order', compact('data_outlet'));
     }
 
     public function edit_order(Request $request)
     {
         // $data = order::where('rdt_no', $request->id)->get();
         $data = DB::table('d_request_order_dt')
-                ->select('d_request_order.*', 'd_request_order_dt.*')
+                ->select('d_request_order.*', 'd_request_order_dt.*', 'd_cabang.*')
                 ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                 ->where('d_request_order_dt.rdt_no', $request->id)->get();
 
         if(count($data) == 0){
@@ -345,8 +353,9 @@ class PembelianController extends Controller
     public function edit_multiple(Request $request)
     {
         $data = DB::table('d_request_order_dt')
-                ->select('d_request_order.ro_no', 'd_request_order.ro_cabang', 'd_request_order_dt.rdt_request', 'd_request_order_dt.rdt_no', 'd_request_order_dt.rdt_kode_barang', 'd_request_order_dt.rdt_kuantitas', 'd_request_order_dt.rdt_kuantitas_approv')
+                ->select('d_request_order.ro_no', 'd_request_order.ro_cabang', 'd_request_order_dt.rdt_request', 'd_request_order_dt.rdt_no', 'd_request_order_dt.rdt_kode_barang', 'd_request_order_dt.rdt_kuantitas', 'd_request_order_dt.rdt_kuantitas_approv', 'd_cabang.*')
                 ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                 ->whereIn('d_request_order_dt.rdt_no', $request->data_check)->get();
         return view('pembelian.request_order.edit_request_order', compact('data'));
     }
@@ -355,9 +364,10 @@ class PembelianController extends Controller
     {
         // $data = order::find($id);
         $data = DB::table('d_request_order_dt')
-                        ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*')
+                        ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*', 'd_cabang.*')
                         ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
                         ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
+                        ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                 ->where('d_request_order_dt.rdt_no', $id)->first();
 
         return json_encode($data);
@@ -567,9 +577,10 @@ class PembelianController extends Controller
     public function rencana_pembelian()
     {
         $r_orders = DB::table('d_request_order_dt')
-                        ->select('d_request_order_dt.*', 'd_request_order.ro_cabang', 'd_supplier.s_name')
+                        ->select('d_request_order_dt.*', 'd_request_order.ro_cabang', 'd_supplier.s_name','d_cabang.*')
                         ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
                         ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
+                        ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                         ->get();
     	return view('pembelian/rencana_pembelian/index')->with(compact('r_orders'));
     }
@@ -578,8 +589,9 @@ class PembelianController extends Controller
     {
         // print_r($request->all()); die;
         $data = DB::table('d_request_order_dt')
-                ->select('d_request_order.*', 'd_request_order_dt.*')
+                ->select('d_request_order.*', 'd_request_order_dt.*', 'd_cabang.*')
                 ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                 ->whereIn('d_request_order_dt.rdt_no', $request->data_check)->get();
         $data_supplier = DB::table('d_supplier')->get();
 
@@ -593,8 +605,9 @@ class PembelianController extends Controller
     public function rencana_pembelian_edit(Request $request)
     {
         $data = DB::table('d_request_order_dt')
-                ->select('d_request_order.*', 'd_request_order_dt.*')
+                ->select('d_request_order.*', 'd_request_order_dt.*', 'd_cabang.*')
                 ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                 ->where('d_request_order_dt.rdt_no', $request->id)->get();
         $data_supplier = DB::table('d_supplier')->get();
 

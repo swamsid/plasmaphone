@@ -74,7 +74,7 @@
 										<div class="col-xs-7 col-lg-7 inputGroupContainer">
 											<select class="form-control" name="rdt_request_no" id="id">
 												@foreach($data as $key => $order)
-													<option value="{{ $order->rdt_no }}">{{ $order->rdt_request }} - {{ $order->ro_cabang }}</option>
+													<option value="{{ $order->rdt_no }}">{{ $order->rdt_request }} - {{ $order->c_nama }}</option>
 												@endforeach
 											</select>
 										</div>
@@ -93,7 +93,7 @@
 									<div class="form-group">
 										<label class="col-xs-3 col-lg-3 control-label text-left">Cabang</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="text" class="form-control" name="ro_cabang" id="ro_cabang" placeholder="Masukkan Cabang" value="{{ $data[0]->ro_cabang }}" required />
+											<input type="text" class="form-control" name="ro_cabang" id="ro_cabang" placeholder="Masukkan Cabang" value="{{ $data[0]->c_nama }}" required readonly />
 										</div>
 										<!-- <a href="javascript:void(0);" class="btn btn-xs btn-success btn-circle add_button" title="Add field"><i class="fa fa-plus fa-fw"></i></a> -->
 									</div>

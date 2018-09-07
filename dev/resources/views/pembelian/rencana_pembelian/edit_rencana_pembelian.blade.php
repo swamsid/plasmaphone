@@ -74,7 +74,7 @@
 										<div class="col-xs-7 col-lg-7 inputGroupContainer">
 											<select class="form-control" name="rdt_request_no" id="id">
 												@foreach($data as $key => $order)
-													<option value="{{ $order->rdt_no }}">{{ $order->rdt_request }} - {{ $order->ro_cabang }}</option>
+													<option value="{{ $order->rdt_no }}">{{ $order->rdt_no }} - {{ $order->c_nama }}</option>
 												@endforeach
 											</select>
 										</div>
@@ -93,7 +93,7 @@
 									<div class="form-group">
 										<label class="col-xs-3 col-lg-3 control-label text-left">Cabang</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="text" class="form-control" name="ro_cabang" id="ro_cabang" placeholder="Masukkan Cabang" value="{{ $data[0]->ro_cabang }}" required readonly style="cursor: not-allowed;" />
+											<input type="text" class="form-control" name="ro_cabang" id="ro_cabang" placeholder="Masukkan Cabang" value="{{ $data[0]->c_nama }}" required readonly style="cursor: not-allowed;" />
 										</div>
 										<!-- <a href="javascript:void(0);" class="btn btn-xs btn-success btn-circle add_button" title="Add field"><i class="fa fa-plus fa-fw"></i></a> -->
 									</div>
@@ -259,6 +259,7 @@
 					axios.get(baseUrl+'/pembelian/request-order/get/'+context.val())
 						.then((response) => {
 							if(response.data == null){
+								$('#form-load-section-status').fadeOut(200);
 								context.children('option:selected').attr('disabled', 'disabled');
 								context.val(state);
 								$.toast({
@@ -266,12 +267,13 @@
 								    showHideTransition: 'fade',
 								    icon: 'error'
 								})
-								$('#form-load-section-status').fadeOut(200);
+								
 							}else{
+								$('#form-load-section-status').fadeOut(200);
 								$('#form-edit').data('bootstrapValidator').resetForm();
 								state = response.data.rdt_no;
 								initiate(response.data);
-								$('#form-load-section-status').fadeOut(200);
+								
 							}
 						})
 						.catch((err) => {
@@ -324,11 +326,11 @@
 
 				function initiate(data){
 					$("#ro_no").val(data.ro_no);
-					$("#cabang").val(data.ro_cabang);
+					$("#ro_cabang").val(data.c_nama);
 					$("#kode_barang").val(data.rdt_kode_barang);
 					$("#kuantitas").val(data.rdt_kuantitas);
 					$("#kuantitas_approv").val(data.rdt_kuantitas_approv);
-					$('#supplier').val("0").isSelect();
+					$('#supplier').val(data.rdt_supplier);
 					$('#form-load-section-status').fadeOut(200);
 				}
 			})
