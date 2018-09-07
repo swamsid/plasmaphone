@@ -50,7 +50,7 @@
 					</li>
 
 					<li>
-						<a href="flot.html">Master Outlet</a>
+						<a href="{{ url('/master/outlet') }}">Master Outlet</a>
 					</li>
 
 					<li>

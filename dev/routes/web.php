@@ -72,6 +72,20 @@ Route::group(['middleware' => 'auth'], function(){
 
 		// master Suppplier end
 
+		// Master Outlet
+		Route::get('/master/outlet','master\outlet\outlet_controller@index');
+		Route::get('/master/outlet/add','master\outlet\outlet_controller@outlet_add');
+		Route::get('/master/outlet/get-kecamatan','master\outlet\outlet_controller@get_kecamatan');
+		Route::get('/master/outlet/get-kota','master\outlet\outlet_controller@get_kota');
+		Route::get('/master/outlet/get-provinsi','master\outlet\outlet_controller@get_provinsi');
+		Route::post('/master/outlet/add-outlet','master\outlet\outlet_controller@add_outlet');
+		Route::get('/master/outlet/get-outlet/{id}','master\outlet\outlet_controller@get_outlet');
+		Route::get('/master/outlet/edit','master\outlet\outlet_controller@outlet_edit');
+		Route::post('/master/outlet/update-outlet','master\outlet\outlet_controller@update_outlet');
+		Route::post('/master/outlet/edit-multiple', 'master\outlet\outlet_controller@multiple_edit_outlet');
+		Route::match(['get', 'post'], '/master/outlet/multiple-delete', 'master\outlet\outlet_controller@multiple_delete_outlet');
+		// End Master Outlet
+
 		// Pembelian
 		Route::get('/pembelian/request-order','PembelianController@request_order');
 		Route::match(['get', 'post'],'/pembelian/request-order/add','PembelianController@request_order_add');
