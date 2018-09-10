@@ -50,7 +50,7 @@
 					</li>
 
 					<li>
-						<a href="flot.html">Master Outlet</a>
+						<a href="{{ url('/master/outlet') }}">Master Outlet</a>
 					</li>
 
 					<li>
@@ -75,15 +75,18 @@
 				<a href="#"><i class="fa fa-lg fa-fw fa-credit-card"></i> <span class="menu-item-parent">Pembelian</span></a>
 				<ul>
 					<li>
-						<a href="flot.html">Rencana Pembelian</a>
+						<a href="{{ url('/pembelian/request-order') }}">Request Order</a>
+					</li>
+					<li>
+						<a href="{{ url('/pembelian/rencana-pembelian') }}">Rencana Pembelian</a>
 					</li>
 
 					<li>
-						<a href="flot.html">Konfirmasi Pembelian</a>
+						<a href="{{ url('/pembelian/konfirmasi-pembelian') }}">Konfirmasi Pembelian</a>
 					</li>
 
 					<li>
-						<a href="flot.html">Purchase Order</a>
+						<a href="{{ url('/pembelian/purchase-order') }}">Purchase Order</a>
 					</li>
 
 					<li>

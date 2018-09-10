@@ -8,7 +8,7 @@
 
 		<script src="{{ asset('template_asset/js/libs/jquery-2.1.1.min.js') }}"></script>
 
-		<script src="{{ asset('template_asset/js/libs/jquery-ui-1.10.3.min.js') }}"></script>
+		<script src="{{ asset('template_asset/js/libs/jquery-ui-1.10.3.min.js') }}"></script>		
 
 		<!-- IMPORTANT: APP CONFIG -->
 		<script src="{{ asset('template_asset/js/app.config.js') }}"></script>
