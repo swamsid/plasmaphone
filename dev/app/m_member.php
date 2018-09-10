@@ -11,4 +11,8 @@ class m_member extends Authenticatable
     protected $primaryKey = "m_id";
 
     public $remember_token = false;
+
+    public function karyawan(){
+    	return $this->belongsTo('App\Model\master\karyawan', 'id_karyawan', 'id_karyawan');
+    }
 }

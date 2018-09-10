@@ -53,23 +53,24 @@
 	<!-- projects dropdown -->
 	<div class="project-context hidden-xs">
 
-		<span class="label">Projects:</span>
-		<span class="project-selector dropdown-toggle" data-toggle="dropdown">Recent projects <i class="fa fa-angle-down"></i></span>
+		<span class="label">
+			{{ (!is_null(auth()->user()->id_karyawan)) ? auth()->user()->karyawan->jabatan->nama.' '.auth()->user()->karyawan->posisi->nama_posisi : auth()->user()->m_username }}
+		</span>
+		<span class="project-selector dropdown-toggle" data-toggle="dropdown">
+			{{ (!is_null(auth()->user()->id_karyawan)) ? auth()->user()->karyawan->m_username.' '.auth()->user()->karyawan->nama_lengkap : auth()->user()->m_username }}
+			<i class="fa fa-angle-down"></i></span>
 
 		<!-- Suggestion: populate this list with fetch and push technique -->
 		<ul class="dropdown-menu">
 			<li>
-				<a href="javascript:void(0);">Online e-merchant management system - attaching integration with the iOS</a>
+				<a href="#">Lihat Informasi Profil Anda</a>
 			</li>
-			<li>
-				<a href="javascript:void(0);">Notes on pipeline upgradee</a>
-			</li>
-			<li>
-				<a href="javascript:void(0);">Assesment Report for merchant account</a>
-			</li>
+			{{-- <li>
+				<a href="#">Notes on pipeline upgradee</a>
+			</li> --}}
 			<li class="divider"></li>
 			<li>
-				<a href="javascript:void(0);"><i class="fa fa-power-off"></i> Clear</a>
+				<a href="{{ route('auth.logout') }}" class="padding-10 padding-top-5 padding-bottom-5" data-action="userLogout"><i class="fa fa-power-off"></i> &nbsp;Log Out</a>
 			</li>
 		</ul>
 		<!-- end dropdown-menu-->

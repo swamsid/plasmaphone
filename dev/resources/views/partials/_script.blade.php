@@ -53,6 +53,7 @@
 
 		<script src="{{ asset('template_asset/plugins/axios/dist/axios.min.js') }}"></script>
 		<script src="{{ asset('template_asset/plugins/toast/dist/jquery.toast.min.js') }}"></script>
+		<script src="{{ asset('template_asset/plugins/vue/vue.js') }}"></script>
 
 		<!--[if IE 8]>
 
