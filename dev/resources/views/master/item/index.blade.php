@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Master Karyawan')
+@section('title', 'Master Barang')
 
 
 @section('extra_style')
@@ -20,7 +20,7 @@
 
 		<!-- breadcrumb -->
 		<ol class="breadcrumb">
-			<li>Home</li><li>Master</li><li>Karyawan</li>
+			<li>Home</li><li>Master</li><li>Barang</li>
 		</ol>
 		<!-- end breadcrumb -->
 
@@ -53,7 +53,7 @@
 							<i class="fa fa-table"></i> &nbsp;Data Table</li>
 						</a>
 					<li>
-						<a href="{{ url('/master/karyawan/add') }}">
+						<a href="{{ url('/master/barang/add') }}">
 							<i class="fa fa-plus"></i> &nbsp;Tambahkan Data
 						</a>
 					</li>

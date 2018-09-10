@@ -247,6 +247,7 @@
 						let ask = confirm(selected.length+' Data Akan Dihapus Apakah Anda Yakin . ?');
 						if(ask){
 							$('#overlay').fadeIn(300);
+							$('#load-status-text').text('Sedang Menghapus Data')
 							axios.post(baseUrl+'/master/suplier/suplier/multiple-delete', {
 								data 	: selected,
 								_token 	: '{{ csrf_token() }}'
@@ -256,7 +257,7 @@
 									location.reload();
 								}
 							}).catch((error) => {
-								console.log(error);
+								$('#load-status-text').text('Internal Server Error')
 							})
 						}
 					}
@@ -290,6 +291,7 @@
 					let ask = confirm('Apakah Anda Yakin . ?');
 					if(ask){
 						$('#overlay').fadeIn(300);
+						$('#load-status-text').text('Sedang Menghapus Data')
 						axios.post(baseUrl+'/master/suplier/suplier/multiple-delete', {
 							data 	: [context.data('id')],
 							_token 	: '{{ csrf_token() }}'
@@ -299,7 +301,7 @@
 								location.reload();
 							}
 						}).catch((error) => {
-							console.log(error);
+							$('#load-status-text').text('Internal Server Error')
 						})
 					}
 				})

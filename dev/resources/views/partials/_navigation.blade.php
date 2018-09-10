@@ -7,7 +7,7 @@
 			<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
 				<img src="{{ asset('template_asset/img/avatars/sunny.png') }}" alt="me" class="online" /> 
 				<span>
-					{{ Auth::user()->m_username }}
+					{{ (!is_null(auth()->user()->id_karyawan)) ? auth()->user()->karyawan->m_username.' '.auth()->user()->karyawan->nama_lengkap : auth()->user()->m_username }}
 				</span>
 				<i class="fa fa-angle-down"></i>
 			</a> 
@@ -29,8 +29,8 @@
 						<a href="{{ url('master/suplier/suplier') }}">Master Supplier</a>
 					</li>
 
-					<li>
-						<a href="flot.html">Master Barang</a>
+					<li class="{{ (Request::is('master/barang/*') || Request::is('master/barang')) ? 'active' : '' }}">
+						<a href="{{ route('barang.index') }}">Master Barang</a>
 					</li>
 
 					<li class="{{ (Request::is('master/karyawan/*') || Request::is('master/karyawan')) ? 'active' : '' }}">
