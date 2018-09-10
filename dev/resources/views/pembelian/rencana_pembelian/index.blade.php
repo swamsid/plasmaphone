@@ -139,8 +139,8 @@
 		                                <td>{{ $r_order->rdt_no }}</td>
 		                                <td>{{ $r_order->c_nama }}</td>
 		                                <td>{{ $r_order->rdt_kode_barang }}</td>
-		                                <td>{{ $r_order->rdt_kuantitas }}</td>
-		                                <td>{{ $r_order->rdt_kuantitas_approv }}</td>
+		                                <td><center>{{ $r_order->rdt_kuantitas }}</center></td>
+		                                <td><center>{{ $r_order->rdt_kuantitas_approv }}</center></td>
 		                                <td>
 		                                	@if($r_order->rdt_kuantitas_approv == "0")
 		                                		{{ $r_order->rdt_status }}

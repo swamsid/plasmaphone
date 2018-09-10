@@ -151,8 +151,8 @@
 		                                <td>{{ $r_order->rdt_no }}</td>
 		                                <td>{{ $r_order->c_nama }}</td>
 		                                <td>{{ $r_order->rdt_kode_barang }}</td>
-		                                <td>{{ $r_order->rdt_kuantitas }}</td>
-		                                <td>{{ $r_order->rdt_kuantitas_approv }}</td>
+		                                <td><center>{{ $r_order->rdt_kuantitas }}</center></td>
+		                                <td><center>{{ $r_order->rdt_kuantitas_approv }}</center></td>
 		                                <!-- <td>
 		                                	<select name="status[]" rel="{{ $r_order->rdt_no }}" rel1="{{ $r_order->rdt_request }}" rel2="{{ $r_order->rdt_kode_barang }}" rel3="{{ $r_order->rdt_kuantitas }}" rel4="{{ $r_order->rdt_kuantitas_approv }}" class="input-sm status">
 		                                		<option value="" @if($r_order->rdt_status == "") selected @endif>Pilih</option>

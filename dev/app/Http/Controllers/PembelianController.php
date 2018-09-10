@@ -13,19 +13,29 @@ class PembelianController extends Controller
     public function konfirmasi_pembelian()
     {
         $data = "Null";
-        $data_supplier = DB::table('d_supplier')->get();
+        $data_supplier = DB::table('d_supplier')
+                        ->join('d_request_order_dt', 'd_supplier.s_id', '=', 'd_request_order_dt.rdt_supplier')
+                        ->where('d_request_order_dt.rdt_status', '=', 'Rencana Pembelian')
+                        ->groupBy('d_supplier.s_name')
+                        ->get();
+        // print_r($data_supplier);
     	return view('pembelian/konfirmasi_pembelian/index', compact('data', 'data_supplier'));
     }
 
     public function get_data_order($id)
     {
         $data_order = DB::table('d_request_order_dt')
-                        ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*')
+                        ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*', 'd_cabang.*')
                         ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
                         ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
+                        ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                 ->where('d_request_order_dt.rdt_supplier', $id)->get();
         $data = $id;
-        $data_supplier = DB::table('d_supplier')->get();
+        $data_supplier = DB::table('d_supplier')
+                        ->join('d_request_order_dt', 'd_supplier.s_id', '=', 'd_request_order_dt.rdt_supplier')
+                        ->where('d_request_order_dt.rdt_status', '=', 'Rencana Pembelian')
+                        ->groupBy('d_supplier.s_name')
+                        ->get();
 
         // print_r($data_order); die;
 
@@ -34,11 +44,13 @@ class PembelianController extends Controller
 
     public function generatePDF($id)
     {
-        // $data_order = DB::table('d_request_order_dt')
-        //                 ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*')
-        //                 ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
-        //                 ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
-        //         ->where('d_request_order_dt.rdt_supplier', $id)->get();
+        $data_order = DB::table('d_request_order_dt')
+                        ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*', 'd_cabang.*')
+                        ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                        ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
+                        ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
+                ->where('d_request_order_dt.rdt_supplier', $id)->get();
+        return view('pembelian/konfirmasi_pembelian/print', compact('data_order'));
 
         // return view('pembelian.konfirmasi_pembelian.generate_pdf', compact('data_order'));
         // $html_content = '<h1>Generate a PDF using TCPDF in Laravel</h1>

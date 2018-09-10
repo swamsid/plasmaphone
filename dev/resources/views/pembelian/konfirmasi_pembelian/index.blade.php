@@ -155,10 +155,10 @@
 										</td> -->
 		                                <td>{{ $order->rdt_request }}</td>
 		                                <td>{{ $order->rdt_no }}</td>
-		                                <td>{{ $order->ro_cabang }}</td>
+		                                <td>{{ $order->c_nama }}</td>
 		                                <td>{{ $order->rdt_kode_barang }}</td>
-		                                <td>{{ $order->rdt_kuantitas }}</td>
-		                                <td>{{ $order->rdt_kuantitas_approv }}</td>
+		                                <td><center>{{ $order->rdt_kuantitas }}</center></td>
+		                                <td><center>{{ $order->rdt_kuantitas_approv }}</center></td>
 		                                <td>{{ $order->rdt_status }}</td>
 		                                <td>{{ $order->s_name }}</td>
 		                                

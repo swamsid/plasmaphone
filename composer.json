@@ -1,5 +1,5 @@
 {
     "require": {
-        "elibyy/tcpdf-laravel": "5.6.*"
+        "codedge/laravel-fpdf": "^1.2"
     }
 }
