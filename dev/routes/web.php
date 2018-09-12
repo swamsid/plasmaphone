@@ -190,6 +190,9 @@ Route::group(['middleware' => 'auth'], function(){
 		Route::post('/pembelian/purchase-order/update', 'PembelianController@update_purchase_order');
 		Route::post('/pembelian/purchase-order/edit-multiple', 'PembelianController@multiple_edit_purchase_order');
 		Route::match(['get', 'post'], '/pembelian/purchase-order/multiple-delete', 'PembelianController@multiple_delete_purchase_order');
+		Route::get('/pembelian/purchase-order/cetak', 'PembelianController@cetak_purchase');
+		Route::get('/pembelian/purchase-order/get-purchase-data/{id}','PembelianController@get_purchase_data');
+		Route::get('/pembelian/purchase-order/print/{id}','PembelianController@print_purchase');
 		// Pembelian end
 
 	// main route end

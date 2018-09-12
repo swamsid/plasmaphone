@@ -355,7 +355,7 @@
 				created: function(){
 					axios.get(baseUrl+'/master/karyawan/get/form-resource')
 							.then(response => {
-								// console.log(response.data);
+								console.log(response.data);
 								this.posisi 	= response.data.posisi;
 								this.jabatan 	= response.data.jabatan;
 								this.provinsi 	= response.data.provinsi;

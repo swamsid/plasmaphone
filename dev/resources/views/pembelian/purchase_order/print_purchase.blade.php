@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Purchase Order')
+@section('title', 'Cetak Purchase Order')
 
 
 @section('extra_style')
@@ -20,7 +20,7 @@
 
 		<!-- breadcrumb -->
 		<ol class="breadcrumb">
-			<li>Home</li><li>Pembelian</li><li>Purchase Order</li>
+			<li>Home</li><li>Pembelian</li><li>Cetak Purchase Order</li>
 		</ol>
 		<!-- end breadcrumb -->
 
@@ -78,6 +78,24 @@
 					<li class="right"><i class="fa fa-bars"></i></li>
 				</ul>
 			</div>
+
+			
+		</div>
+
+		<div class="col-xs-4">
+			<select class="form-control" name="supplier" id="supplier">
+				<option value="">---Pilih Supplier---</option>
+				@foreach($data_supplier as $supplier)
+					<option value="{{ $supplier->s_id }}">{{ $supplier->s_name }}</option>
+				@endforeach
+			</select>
+		</div>
+
+		<div class="col-xs-4">
+			<div>
+				<input type="hidden" name="id_supplier" id="id_supplier" value="{{ $data }}" />
+				<a href="{{ url('/pembelian/purchase-order/print/'.$data) }}" target="_blank" class="btn btn-primary" disabled id="btn_cetak"><i class="fa fa-print"></i>&nbsp;Print</a>
+			</div>
 		</div>
 
 		<!-- widget grid -->
@@ -108,52 +126,56 @@
 			<!-- row -->
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px 20px; margin-top: {{ $mt }};">
-					<form id="table-form" method="post" action="{{ url('/pembelian/purchase-order/edit-multiple') }}">
+					<!-- <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+						<select class="form-control">
+							<option value="">Pilih</option>
+						</select>
+					</div> -->
+					
+					<form id="table-form" method="post" action="{{ url('/pembelian/rencana-pembelian/rencana-pembelian/edit-multiple') }}">
 						{!! csrf_field() !!}
 						<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
 							<thead>			                
 								<tr>
-									<th class="text-center" data-hide="phone" width="4%">*</th>
+									<!-- <th class="text-center" data-hide="phone" width="4%">*</th>
 									<th class="text-center" width="5%" style="vertical-align: middle;">
 										---
-									</th>
-									<th data-class="expand"><i class="fa fa-fw fa-building text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Purchase Order</th>
-									<th data-hide="phone"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Nomor Purchase Detail</th>
-									<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Kode Barang</th>
-									<th data-hide="phone"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Supplier</th>
+									</th> -->
+									<th data-class="expand"><i class="fa fa-fw fa-building text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Request Order</th>
+									<th data-hide="phone"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Request Nomor</th>
+									<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Cabang</th>
+									<th data-hide="phone"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Kode Barang</th>
 									<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Kuantitas</th>
-									<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Harga Satuan</th>
-									<th class="text-center" data-hide="phone,tablet" width="15%"> Aksi</th>
+									<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Kuantitas Approval</th>
+									<th class="text-center" data-hide="phone,tablet" width="15%"> Status</th>
+									<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Supplier</th>
+									<!-- <th class="text-center" data-hide="phone,tablet" width="15%"> Aksi</th> -->
 								</tr>
 							</thead>
 							<tbody>
-								<?php 
-									function rupiah($angka){
-	
-										$hasil_rupiah = "Rp" . number_format($angka,2,',','.');
-										return $hasil_rupiah;
-									 
-									}
-								?>
-								@foreach($data as $key => $data)
+									@if($data != "Null")
+									@foreach($data_order as $order)
 									<tr>
-										<td class="text-center">{{ $key+1 }}</td>
+										<!-- <td class="text-center"></td>
 										<td class="text-center">
-											<input type="checkbox" class="check-me" name="data_check[]" data-id="{{$data->podt_purchase}}" value="{{ $data->podt_no }}"/>
-										</td>
-										<td>{{ $data->podt_purchase }}</td>
-										<td>{{ $data->podt_no }}</td>
-		                                <td>{{ $data->podt_kode_barang }}</td>
-		                                <td>{{ $data->s_name }}</td>
-		                                <td><center>{{ $data->podt_kuantitas }}</center></td>
-		                                <td>{{ rupiah($data->podt_harga_satuan) }}</td>
-		                                <td class="text-center">
-		                                	<button type="button" class="btn btn-xs btn-success btn-circle view" data-toggle="tooltip" data-placement="top" title="View Data" data-id="{{ $data->podt_no }}"><i class="fa fa-eye fa-fw"></i></button>
-		                                	<button class="btn btn-xs btn-success btn-circle edit" data-toggle="tooltip" data-placement="top" title="Edit Data" data-id="{{ $data->podt_no }}"><i class="fa fa-pencil fa-fw"></i></button>
-		                                	<button class="btn btn-xs btn-success btn-circle hapus" data-toggle="tooltip" data-placement="top" title="Hapus Data" data-id="{{ $data->podt_no }}" rel="{{ $data->podt_purchase }}"><i class="fa fa-eraser fa-fw"></i></button>
-		                                </td>
+											<input type="checkbox" class="check-me" name="data_check[]" data-id="" value=""/>
+										</td> -->
+		                                <td>{{ $order->rdt_request }}</td>
+		                                <td>{{ $order->rdt_no }}</td>
+		                                <td>{{ $order->c_nama }}</td>
+		                                <td>{{ $order->rdt_kode_barang }}</td>
+		                                <td><center>{{ $order->rdt_kuantitas }}</center></td>
+		                                <td><center>{{ $order->rdt_kuantitas_approv }}</center></td>
+		                                <td>{{ $order->rdt_status }}</td>
+		                                <td>{{ $order->s_name }}</td>
+		                                
+		                                <!-- <td class="text-center">
+		                                	<button type="button" class="btn btn-xs btn-success btn-circle view" data-toggle="tooltip" data-placement="top" title="View Data" data-id=""><i class="fa fa-eye fa-fw"></i></button>
+		                                	<button class="btn btn-xs btn-success btn-circle edit" data-toggle="tooltip" data-placement="top" title="Edit Data" data-id=""><i class="fa fa-pencil fa-fw"></i></button>
+		                                </td> -->
 									</tr>
-								@endforeach
+									@endforeach
+									@endif
 							</tbody>
 						</table>
 					</form>
@@ -176,15 +198,37 @@
 						</div>
 						<div class="modal-body no-padding">
 
-							<form id="view-form" class="smart-form">
+							<form id="login-form" class="smart-form">
 
 										<fieldset>
+											<section>
+												<div class="row">
+													<label class="label col col-2">Order Nomor</label>
+													<div class="col col-10">
+														<label class="input"> <i class="icon-append fa fa-user"></i>
+															<input type="text" disabled name="ro_no" id="ro_no" />
+														</label>
+													</div>
+												</div>
+											</section>
+
 											<section>
 												<div class="row">
 													<label class="label col col-2">Cabang</label>
 													<div class="col col-10">
 														<label class="input"> <i class="icon-append fa fa-user"></i>
-															<input type="text" disabled name="cabang" id="cabang" />
+															<input type="text" disabled name="ro_cabang" id="ro_cabang" />
+														</label>
+													</div>
+												</div>
+											</section>
+
+											<section>
+												<div class="row">
+													<label class="label col col-2">Detail Order Nomor</label>
+													<div class="col col-10">
+														<label class="input"> <i class="icon-append fa fa-user"></i>
+															<input type="text" disabled name="rdt_no" id="rdt_no" />
 														</label>
 													</div>
 												</div>
@@ -214,65 +258,10 @@
 
 											<section>
 												<div class="row">
-													<label class="label col col-2">Harga Satuan</label>
+													<label class="label col col-2">Kuantitas Approval</label>
 													<div class="col col-10">
 														<label class="input"> <i class="icon-append fa fa-user"></i>
-															<input type="text" disabled name="harga_satuan" id="harga_satuan" />
-														</label>
-													</div>
-												</div>
-											</section>
-
-											<section>
-												<div class="row">
-													<label class="label col col-2">Tipe Pembayaran</label>
-													<div class="col col-10">
-														<label class="input"> <i class="icon-append fa fa-user"></i>
-															<input type="text" disabled name="tipe_pembayaran" id="tipe_pembayaran" />
-														</label>
-													</div>
-												</div>
-											</section>
-
-											<section>
-												<div class="row">
-													<label class="label col col-2">Total Harga</label>
-													<div class="col col-10">
-														<label class="input"> <i class="icon-append fa fa-user"></i>
-															<input type="text" disabled name="total_harga" id="total_harga" />
-														</label>
-													</div>
-												</div>
-											</section>
-
-											<section>
-												<div class="row">
-													<label class="label col col-2">Diskon</label>
-													<div class="col col-10">
-														<label class="input"> <i class="icon-append fa fa-user"></i>
-															<input type="text" disabled name="diskon" id="diskon" />
-														</label>
-													</div>
-												</div>
-											</section>
-
-											<section>
-												<div class="row">
-													<label class="label col col-2">PPN</label>
-													<div class="col col-10">
-														<label class="input"> <i class="icon-append fa fa-user"></i>
-															<input type="text" disabled name="ppn" id="ppn" />
-														</label>
-													</div>
-												</div>
-											</section>
-
-											<section>
-												<div class="row">
-													<label class="label col col-2">Total Bayar</label>
-													<div class="col col-10">
-														<label class="input"> <i class="icon-append fa fa-user"></i>
-															<input type="text" disabled name="total_bayar" id="total_bayar" />
+															<input type="text" disabled name="kuantitas_approv" id="kuantitas_approv" />
 														</label>
 													</div>
 												</div>
@@ -299,6 +288,7 @@
 													</div>
 												</div>
 											</section>
+
 										</fieldset>
 										
 										<footer>
@@ -316,6 +306,13 @@
 				</div><!-- /.modal-dialog -->
 			</div><!-- /.modal -->
 
+			<!-- row -->
+
+			<div class="row">
+
+			</div>
+
+			<!-- end row -->
 
 		</section>
 		<!-- end widget grid -->
@@ -336,29 +333,11 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 
-				var i_harga_satuan = document.getElementById('harga_satuan');
-				var i_total_harga = document.getElementById('total_harga');
-				var i_total_bayar = document.getElementById('total_bayar');
-
-
-				function formatRupiah(angka, prefix)
-				{
-					var number_string = angka.replace(/[^,\d]/g, '').toString(),
-						split	= number_string.split(','),
-						sisa 	= split[0].length % 3,
-						rupiah 	= split[0].substr(0, sisa),
-						ribuan 	= split[0].substr(sisa).match(/\d{3}/gi);
-						
-					if (ribuan) {
-						separator = sisa ? '.' : '';
-						rupiah += separator + ribuan.join('.');
-					}
-					
-					rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-					return prefix == undefined ? rupiah : (rupiah ? 'Rp' + rupiah : '');
+				if ($('#id_supplier').val() != "Null") {
+					$('#btn_cetak').removeAttr('disabled');
 				}
 
-				let selected = []; po_dt_purchase = [];
+				let selected = [];
 
 				/* BASIC ;*/
 					var responsiveHelper_dt_basic = undefined;
@@ -394,36 +373,12 @@
 
 				$('.check-me').change(function(evt){
 					evt.preventDefault(); context = $(this);
-					if(context.is(':checked')){
+					if(context.is(':checked'))
 						selected.push(context.val());
-						po_dt_purchase.push(context.data('id'));
-					}else{
+					else
 						selected.splice(_.findIndex(selected, function(o) { return o == context.val() }), 1);
-					}
 
 					console.log(selected);
-				})
-
-				// hapus 1 click
-				$(".hapus").click(function(evt){
-					evt.preventDefault(); context = $(this);
-
-					let ask = confirm('Apakah Anda Yakin . ?');
-					if(ask){
-						$('#overlay').fadeIn(300);
-						axios.post(baseUrl+'/pembelian/purchase-order/multiple-delete', {
-							podt_no 	: [context.data('id')],
-							podt_purchase : [context.attr('rel')],
-							_token 	: '{{ csrf_token() }}'
-						})
-						.then((response) => {
-							if(response.data.status == 'berhasil'){
-								location.reload();
-							}
-						}).catch((error) => {
-							console.log(error);
-						})
-					}
 				})
 
 
@@ -439,9 +394,8 @@
 						let ask = confirm(selected.length+' Data Akan Dihapus Apakah Anda Yakin . ?');
 						if(ask){
 							$('#overlay').fadeIn(300);
-							axios.post(baseUrl+'/pembelian/purchase-order/multiple-delete', {
-								podt_no 	: selected,
-								podt_purchase : po_dt_purchase,
+							axios.post(baseUrl+'/master/suplier/suplier/multiple-delete', {
+								data 	: selected,
 								_token 	: '{{ csrf_token() }}'
 							})
 							.then((response) => {
@@ -473,24 +427,101 @@
 				$(".edit").click(function(evt){
 					evt.preventDefault(); context = $(this);
 
-					window.location = baseUrl+'/pembelian/purchase-order/edit?id='+context.data('id');
+					window.location = baseUrl+'/pembelian/rencana-pembelian/rencana-pembelian/edit?id='+context.data('id');
+				})
+
+				// hapus 1 click
+				$(".hapus").click(function(evt){
+					evt.preventDefault(); context = $(this);
+
+					let ask = confirm('Apakah Anda Yakin . ?');
+					if(ask){
+						$('#overlay').fadeIn(300);
+						axios.post(baseUrl+'/master/suplier/suplier/multiple-delete', {
+							data 	: [context.data('id')],
+							_token 	: '{{ csrf_token() }}'
+						})
+						.then((response) => {
+							if(response.data.status == 'berhasil'){
+								location.reload();
+							}
+						}).catch((error) => {
+							console.log(error);
+						})
+					}
+				})
+
+				$('.status').on('change', function(e){
+					var value = $(this).val();
+					var no = $(this).attr('rel');
+					var rdt_req = $(this).attr('rel1');
+					// window.location = baseUrl+'/pembelian/rencana-pembelian/request-order-status?status='+value+'&&rdt_no='+no;
+					$('#overlay').fadeIn(300);
+					axios.post(baseUrl+'/pembelian/rencana-pembelian/request-order-status', {
+						status 	: value,
+						rdt_no 	: no,
+						rdt_request : rdt_req,
+						_token 	: '{{ csrf_token() }}'
+					})
+					.then((response) => {
+						if(response.data.status == 'rencana pembelian'){
+							$.toast({
+							    text: 'Status untuk Request Detail "'+no+'" berhasil diubah ke "Rencana Pembelian".',
+							    showHideTransition: 'fade',
+							    icon: 'success'
+							});
+							location.reload();
+						} else if (response.data.status == 'ditunda') {
+							$.toast({
+							    text: 'Status untuk Request Detail "'+no+'" berhasil diubah ke "Ditunda".',
+							    showHideTransition: 'fade',
+							    icon: 'success'
+							});
+							location.reload();
+						} else if (response.data.status == 'dibatalkan') {
+							$.toast({
+							    text: 'Status untuk Request Detail "'+no+'" berhasil diubah ke "Dibatalkan".',
+							    showHideTransition: 'fade',
+							    icon: 'success'
+							});
+							location.reload();
+						} else if (response.data.status == 'pending') {
+							$.toast({
+							    text: 'Status untuk Request Detail "'+no+'" berhasil diubah ke "Pending".',
+							    showHideTransition: 'fade',
+							    icon: 'success'
+							});
+							location.reload();
+						}
+					}).catch((error) => {
+						console.log(error);
+					})
+				});
+
+				// Change Supplier
+				$('#supplier').change(function(evt){
+					evt.preventDefault(); let context = $(this);
+					$('#form-load-section-status').fadeIn(200);
+					// alert(context.val());
+					window.location = baseUrl+'/pembelian/purchase-order/get-purchase-data/'+context.val();
+					
 				})
 
 				// view click
 				$(".view").click(function(evt){
 					evt.preventDefault(); context = $(this);
-					// alert(context.data('id'));
-					axios.get(baseUrl+'/pembelian/purchase-order/get/'+context.data('id'))
+					axios.get(baseUrl+'/pembelian/request-order/get/'+context.data('id'))
 						.then((response) => {
 							if(response.data == null){
+								context.children('option:selected').attr('disabled', 'disabled');
+								context.val(state);
 								$.toast({
-								    text: 'Ups . Data Yang Ingin Anda Lihat Sudah Tidak Ada..',
+								    text: 'Ups . Data Yang Ingin Anda Edit Sudah Tidak Ada..',
 								    showHideTransition: 'fade',
 								    icon: 'error'
 								})
 								$('#form-load-section-status').fadeOut(200);
 							}else{
-								// console.log(response.data);
 								initiate(response.data);
 							}
 						})
@@ -501,20 +532,20 @@
 				});
 
 				function initiate(data){
-					$('#cabang').val(data.ro_cabang);
-					$('#kode_barang').val(data.podt_kode_barang);
-					$('#kuantitas').val(data.podt_kuantitas);
-					$('#harga_satuan').val(data.podt_harga_satuan);
-					i_harga_satuan.value = formatRupiah($('#harga_satuan').val(), 'Rp');
-					$('#tipe_pembayaran').val(data.po_type_pembayaran);
-					$('#total_harga').val(data.po_total_harga);
-					i_total_harga.value = formatRupiah($('#total_harga').val(), 'Rp');
-					$('#diskon').val(data.po_diskon+"%");
-					$('#ppn').val(data.po_ppn+"%");
-					$('#total_bayar').val(data.po_total_bayar);
-					i_total_bayar.value = formatRupiah($('#total_bayar').val(), 'Rp');
-					$('#status').val(data.po_status);
-					$('#supplier').val(data.s_name);
+					$('#ro_no').val(data.ro_no);
+					$('#ro_cabang').val(data.ro_cabang);
+					$('#rdt_no').val(data.rdt_no);
+					$('#kode_barang').val(data.rdt_kode_barang);
+					$('#kuantitas').val(data.rdt_kuantitas);
+					$('#kuantitas_approv').val(data.rdt_kuantitas_approv);
+					$('#status').val(data.rdt_status);
+					var supp;
+					if (data.rdt_supplier == "0") {
+						supp = "Belum Ada";
+					}else{
+						supp = data.s_name;
+					}
+					$('#supplier').val(supp);
 					$('#myModal').modal('show');
 				}
 			})

@@ -287,6 +287,53 @@ class PembelianController extends Controller
                 ]);
     }
 
+    public function cetak_purchase()
+    {
+        $data = "Null";
+        $data_supplier = DB::table('d_supplier')
+                        ->join('d_request_order_dt', 'd_supplier.s_id', '=', 'd_request_order_dt.rdt_supplier')
+                        ->where('d_request_order_dt.rdt_status', '=', 'Menunggu')
+                        ->groupBy('d_supplier.s_name')
+                        ->get();
+        // print_r($data_supplier);
+        return view('pembelian/purchase_order/print_purchase', compact('data', 'data_supplier'));
+    }
+
+    public function get_purchase_data($id)
+    {
+        $data_order = DB::table('d_request_order_dt')
+                        ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*', 'd_cabang.*')
+                        ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                        ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
+                        ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
+                        ->where('d_request_order_dt.rdt_supplier', $id)
+                        ->where('d_request_order_dt.rdt_status', 'Menunggu')
+                        ->get();
+        $data = $id;
+        $data_supplier = DB::table('d_supplier')
+                        ->join('d_request_order_dt', 'd_supplier.s_id', '=', 'd_request_order_dt.rdt_supplier')
+                        ->where('d_request_order_dt.rdt_status', '=', 'Menunggu')
+                        ->groupBy('d_supplier.s_name')
+                        ->get();
+
+        // print_r($data_order); die;
+
+        return view('pembelian/purchase_order/print_purchase', compact('data', 'data_supplier', 'data_order'));
+    }
+
+    public function print_purchase($id)
+    {
+                $data_order = DB::table('d_request_order_dt')
+                        ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*', 'd_cabang.*')
+                        ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                        ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
+                        ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
+                        ->where('d_request_order_dt.rdt_supplier', $id)
+                        ->where('d_request_order_dt.rdt_status', 'Menunggu')
+                        ->get();
+        return view('pembelian/purchase_order/print_out', compact('data_order'));
+    }
+
     public function refund()
     {
     	return view('pembelian/refund/refund');
