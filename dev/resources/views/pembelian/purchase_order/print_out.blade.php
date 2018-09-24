@@ -55,30 +55,47 @@
 </head>
 <body>
 	<h2>Purchase Order</h2>
+
 	<table>
 		<thead>
 			<tr>
-				<th>Request Order</th>
-				<th>Request Nomor</th>
-				<th>Cabang</th>
+				<th>No. Purchase Order</th>
+				<th>Cabang/Outlet</th>
 				<th>Kode Barang</th>
 				<th>Kuantitas</th>
-				<th>Kuantitas Approval</th>
+				<th>Diskon (%)</th>
+				<th>PPn (%)</th>
+				<th>Harga Satuan</th>
+				<th>Total Harga</th>
+				<th>Total Bayar</th>
+				<th>Tipe Pembayaran</th>
 				<th>Status</th>
 				<th>Supplier</th>
 			</tr>
 		</thead>
 		<tbody>
-			@foreach($data_order as $order)
+			<?php 
+				function rupiah($angka){
+
+					$hasil_rupiah = "Rp" . number_format($angka,2,',','.');
+					return $hasil_rupiah;
+				 
+				}
+			?>
+			@foreach($data_purchase as $purchase)
 			<tr>
-				<td>{{ $order->rdt_request }}</td>
-                <td>{{ $order->rdt_no }}</td>
-                <td>{{ $order->c_nama }}</td>
-                <td>{{ $order->rdt_kode_barang }}</td>
-                <td class="center">{{ $order->rdt_kuantitas }}</td>
-                <td class="center">{{ $order->rdt_kuantitas_approv }}</td>
-                <td>{{ $order->rdt_status }}</td>
-                <td>{{ $order->s_company }}</td>
+                <td>{{ $purchase->po_no }}</td>
+                <td>{{ $purchase->c_nama }}</td>
+                <td>{{ $purchase->podt_kode_barang }}</td>
+                <td class="center">{{ $purchase->podt_kuantitas }}</td>
+                <td class="center">{{ $purchase->po_diskon }}</td>
+                <td class="center">{{ $purchase->po_ppn }}</td>
+                <td>{{ rupiah($purchase->podt_harga_satuan) }}</td>
+                <td>{{ rupiah($purchase->po_total_harga) }}</td>
+                <td>{{ rupiah($purchase->po_total_bayar) }}</td>
+                <td>{{ $purchase->po_type_pembayaran }}</td>
+                <td>{{ $purchase->po_status }}</td>
+                <td>{{ $purchase->s_company }}</td>
 			</tr>
 			@endforeach
 		</tbody>

@@ -49,7 +49,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="menu-table hide-on-small">
 					<li class="">
-						<a href="#">
+						<a href="{{ url('/pembelian/purchase-order') }}">
 							<i class="fa fa-table"></i> &nbsp;Purchase Order
 						</a>
 					</li>

@@ -49,7 +49,7 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="menu-table hide-on-small">
 					<li class="">
-						<a href="#">
+						<a href="{{ url('/pembelian/purchase-order') }}">
 							<i class="fa fa-table"></i> &nbsp;Purchase Order
 						</a>
 					</li>
@@ -123,6 +123,7 @@
 									<th data-hide="phone"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Supplier</th>
 									<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Kuantitas</th>
 									<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Harga Satuan</th>
+									<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Status</th>
 									<th class="text-center" data-hide="phone,tablet" width="15%"> Aksi</th>
 								</tr>
 							</thead>
@@ -147,6 +148,7 @@
 		                                <td>{{ $data->s_name }}</td>
 		                                <td><center>{{ $data->podt_kuantitas }}</center></td>
 		                                <td>{{ rupiah($data->podt_harga_satuan) }}</td>
+		                                <td>{{ $data->po_status }}</td>
 		                                <td class="text-center">
 		                                	<button type="button" class="btn btn-xs btn-success btn-circle view" data-toggle="tooltip" data-placement="top" title="View Data" data-id="{{ $data->podt_no }}"><i class="fa fa-eye fa-fw"></i></button>
 		                                	<button class="btn btn-xs btn-success btn-circle edit" data-toggle="tooltip" data-placement="top" title="Edit Data" data-id="{{ $data->podt_no }}"><i class="fa fa-pencil fa-fw"></i></button>

@@ -90,7 +90,7 @@
 					</li>
 
 					<li>
-						<a href="flot.html">Return Barang</a>
+						<a href="{{ url('/pembelian/purchase-return') }}">Return Barang</a>
 					</li>
 
 					<li>
