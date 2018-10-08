@@ -2,11 +2,9 @@
 
 @section('title', 'Purchase Return')
 
-
 @section('extra_style')
 
 @endsection
-
 
 @section('ribbon')
 <!-- RIBBON -->
@@ -81,7 +79,6 @@
 					<fieldset>
 						<legend>
 							Form Tambah Purchase Return
-
 							<span class="pull-right" style="font-size: 0.6em; font-weight: 600">
 								<a href="{{ url('/pembelian/purchase-return') }}">
 									<i class="fa fa-arrow-left"></i> &nbsp;Kembali Ke Halaman Data Table

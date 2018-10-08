@@ -1,3 +1,4 @@
+<?php $url = url()->current(); ?>
 <aside id="left-panel">
 
 	<!-- User info -->
@@ -37,12 +38,12 @@
 						<a href="{{ route('karyawan.index') }}">Master karyawan</a>
 					</li>
 
-					<li>
-						<a href="flot.html">Master Jabatan</a>
+					<li class="{{ (Request::is('/master/jabatan*') || Request::is('/master/jabatan')) ? 'active' : '' }}">
+						<a href="{{ url('/master/jabatan') }}">Master Jabatan</a>
 					</li>
 
-					<li>
-						<a href="flot.html">Master Posisi</a>
+					<li class="{{ (Request::is('/master/posisi*') || Request::is('/master/posisi')) ? 'active' : '' }}">
+						<a href="{{ url('/master/posisi') }}">Master Posisi</a>
 					</li>
 
 					<li>
@@ -71,9 +72,9 @@
 				</ul>
 			</li>
 
-			<li>
+			<li <?php if(preg_match("/request-order/i", $url)) { ?> class="active open" <?php } ?>>
 				<a href="#"><i class="fa fa-lg fa-fw fa-credit-card"></i> <span class="menu-item-parent">Pembelian</span></a>
-				<ul>
+				<ul <?php if(preg_match("/request-order/i", $url)) { ?> style="display: block;" <?php } ?>>
 					<li>
 						<a href="{{ url('/pembelian/request-order') }}">Request Order</a>
 					</li>
@@ -94,7 +95,7 @@
 					</li>
 
 					<li>
-						<a href="flot.html">Refund</a>
+						<a href="#">Refund</a>
 					</li>
 				</ul>
 			</li>

@@ -1,48 +1,48 @@
 <style type="text/css">
-	table {
-	    border-collapse: collapse;
-	    width: 100%;
-	}
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
 
-	th {
-		height: 50px;
-		font-size: 14px;
-	}
+th {
+	height: 50px;
+	font-size: 14px;
+}
 
-	td {
-		font-size: 12px;
-	}
+td {
+	font-size: 12px;
+}
 
-	table, th, td {
-	    border: 1px solid black;
-	    padding: 10px 10px 10px 10px;
-	}
+table, th, td {
+	border: 1px solid black;
+	padding: 10px 10px 10px 10px;
+}
 
-	tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(even) {background-color: #f2f2f2;}
 
-	h2{
-		text-align: center;
-		margin-top: 30px;
-		margin-bottom: 60px;
-	}
+h2{
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 60px;
+}
 
-	.table-responsive{
-		overflow-x:auto;
-	}
+.table-responsive{
+	overflow-x:auto;
+}
 
-	.ttd{
-		float: right;
-		margin-top: 50px;
-	}
+.ttd{
+	float: right;
+	margin-top: 50px;
+}
 
-	.name{
-		margin-top: 100px;
-		text-align: center;
-	}
+.name{
+	margin-top: 100px;
+	text-align: center;
+}
 
-	.center{
-		text-align: center;
-	}
+.center{
+	text-align: center;
+}
 </style>
 
 <!DOCTYPE html>
@@ -75,27 +75,27 @@
 		</thead>
 		<tbody>
 			<?php 
-				function rupiah($angka){
+			function rupiah($angka){
 
-					$hasil_rupiah = "Rp" . number_format($angka,2,',','.');
-					return $hasil_rupiah;
-				 
-				}
+				$hasil_rupiah = "Rp" . number_format($angka,2,',','.');
+				return $hasil_rupiah;
+				
+			}
 			?>
 			@foreach($data_purchase as $purchase)
 			<tr>
-                <td>{{ $purchase->po_no }}</td>
-                <td>{{ $purchase->c_nama }}</td>
-                <td>{{ $purchase->podt_kode_barang }}</td>
-                <td class="center">{{ $purchase->podt_kuantitas }}</td>
-                <td class="center">{{ $purchase->po_diskon }}</td>
-                <td class="center">{{ $purchase->po_ppn }}</td>
-                <td>{{ rupiah($purchase->podt_harga_satuan) }}</td>
-                <td>{{ rupiah($purchase->po_total_harga) }}</td>
-                <td>{{ rupiah($purchase->po_total_bayar) }}</td>
-                <td>{{ $purchase->po_type_pembayaran }}</td>
-                <td>{{ $purchase->po_status }}</td>
-                <td>{{ $purchase->s_company }}</td>
+				<td>{{ $purchase->po_no }}</td>
+				<td>{{ $purchase->c_nama }}</td>
+				<td>{{ $purchase->podt_kode_barang }}</td>
+				<td class="center">{{ $purchase->podt_kuantitas }}</td>
+				<td class="center">{{ $purchase->po_diskon }}</td>
+				<td class="center">{{ $purchase->po_ppn }}</td>
+				<td>{{ rupiah($purchase->podt_harga_satuan) }}</td>
+				<td>{{ rupiah($purchase->po_total_harga) }}</td>
+				<td>{{ rupiah($purchase->po_total_bayar) }}</td>
+				<td>{{ $purchase->po_type_pembayaran }}</td>
+				<td>{{ $purchase->po_status }}</td>
+				<td>{{ $purchase->s_company }}</td>
 			</tr>
 			@endforeach
 		</tbody>

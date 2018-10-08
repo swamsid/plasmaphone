@@ -2,11 +2,9 @@
 
 @section('title', 'Purchase Return')
 
-
 @section('extra_style')
 
 @endsection
-
 
 @section('ribbon')
 <!-- RIBBON -->
@@ -38,7 +36,6 @@
 </div>
 <!-- END RIBBON -->
 @endsection
-
 
 @section('main_content')
 
@@ -90,24 +87,24 @@
 						</legend>
 
 						<div class="row" style="border-bottom: 1px dotted #aaa; margin-bottom: 20px;">
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="col-xs-4 col-lg-4 control-label text-left">Pilih Data Yang Diedit</label>
-										<div class="col-xs-7 col-lg-7 inputGroupContainer">
-											<select class="form-control" name="return_id" id="return_id">
-												@foreach($data as $key => $return)
-													<option value="{{ $return->pr_id }}">{{ $return->pr_po_id }} - {{ $return->pr_code }}</option>
-												@endforeach
-											</select>
-										</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="col-xs-4 col-lg-4 control-label text-left">Pilih Data Yang Diedit</label>
+									<div class="col-xs-7 col-lg-7 inputGroupContainer">
+										<select class="form-control" name="return_id" id="return_id">
+											@foreach($data as $key => $return)
+											<option value="{{ $return->pr_id }}">{{ $return->pr_po_id }} - {{ $return->pr_code }}</option>
+											@endforeach
+										</select>
 									</div>
 								</div>
-
-								<div class="col-md-6 text-left" style="padding: 10px 0px; display: none;" id="form-load-section-status">
-									<i class="fa fa-cog fa-spin fa-fw"></i> &nbsp;
-									<small>Sedang Mengambil Data Baru...</small>
-								</div>
 							</div>
+
+							<div class="col-md-6 text-left" style="padding: 10px 0px; display: none;" id="form-load-section-status">
+								<i class="fa fa-cog fa-spin fa-fw"></i> &nbsp;
+								<small>Sedang Mengambil Data Baru...</small>
+							</div>
+						</div>
 
 						<div class="row" style="margin-top: 15px" >
 
@@ -387,7 +384,7 @@
 					})
 					$('#form-load-section-status').fadeOut(200);
 				}else{
-					console.log(response.data);
+					// console.log(response.data);
 					resetForm();
 					init(response.data);
 					$('#form-load-section-status').fadeOut(200);

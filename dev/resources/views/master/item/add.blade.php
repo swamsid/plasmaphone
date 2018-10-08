@@ -556,7 +556,7 @@
 								this.data_classsub = response.data.classsub;
 								this.data_supplier = response.data.suplier;
 
-								// console.log(this.data_classsub);
+								console.log(this.data_classsub);
 								$("#overlay").fadeOut(200);
 							})
 				},

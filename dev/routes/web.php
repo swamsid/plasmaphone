@@ -43,178 +43,263 @@ Route::group(['middleware' => 'auth'], function(){
 
 	// main route
 
-		Route::get('/dashboard', function () {
-		    return view('dashboard');
-		})->name('home');
+	Route::get('/dashboard', function () {
+	    return view('dashboard');
+	})->name('home');
 
 
-		// master karyawan
+	// master karyawan
 
-			Route::get('master/karyawan', [
-				'uses'	=> 'master\karyawan\karyawan_controller@index',
-			])->name('karyawan.index');
+	Route::get('master/karyawan', [
+		'uses'	=> 'master\karyawan\karyawan_controller@index',
+	])->name('karyawan.index');
 
-			Route::get('master/karyawan/add', [
-				'uses'	=> 'master\karyawan\karyawan_controller@add',
-			])->name('karyawan.add');
+	Route::get('master/karyawan/add', [
+		'uses'	=> 'master\karyawan\karyawan_controller@add',
+	])->name('karyawan.add');
 
-			Route::post('master/karyawan/insert', [
-				'uses'	=> 'master\karyawan\karyawan_controller@insert',
-			])->name('karyawan.insert');
+	Route::post('master/karyawan/insert', [
+		'uses'	=> 'master\karyawan\karyawan_controller@insert',
+	])->name('karyawan.insert');
 
-			Route::post('master/karyawan/edit-multiple', [
-				'uses'	=> 'master\karyawan\karyawan_controller@edit_multiple',
-			])->name('karyawan.edit_multiple');
+	Route::post('master/karyawan/edit-multiple', [
+		'uses'	=> 'master\karyawan\karyawan_controller@edit_multiple',
+	])->name('karyawan.edit_multiple');
 
-			Route::post('master/karyawan/update', [
-				'uses'	=> 'master\karyawan\karyawan_controller@update',
-			])->name('karyawan.update');
+	Route::post('master/karyawan/update', [
+		'uses'	=> 'master\karyawan\karyawan_controller@update',
+	])->name('karyawan.update');
 
-			Route::get('master/karyawan/edit', [
-				'uses'	=> 'master\karyawan\karyawan_controller@edit',
-			])->name('karyawan.edit');
+	Route::get('master/karyawan/edit', [
+		'uses'	=> 'master\karyawan\karyawan_controller@edit',
+	])->name('karyawan.edit');
 
-			Route::post('master/karyawan/multiple-delete', [
-				'uses'	=> 'master\karyawan\karyawan_controller@multiple_delete',
-			])->name('karyawan.multiple_delete');
-
-
-			Route::get('master/karyawan/grab/{id}', [
-				'uses'	=> 'master\karyawan\karyawan_controller@get',
-			])->name('karyawan.get');
-
-			Route::get('master/karyawan/get/form-resource', [
-				'uses'	=> 'master\karyawan\karyawan_controller@get_form_resources',
-			])->name('karyawan.get_form_resources');
-
-		// master karyawan end
+	Route::post('master/karyawan/multiple-delete', [
+		'uses'	=> 'master\karyawan\karyawan_controller@multiple_delete',
+	])->name('karyawan.multiple_delete');
 
 
-		// master barang
+	Route::get('master/karyawan/grab/{id}', [
+		'uses'	=> 'master\karyawan\karyawan_controller@get',
+	])->name('karyawan.get');
 
-			Route::get('master/barang', [
-				'uses'	=> 'master\barang\barang_controller@index',
-			])->name('barang.index');
+	Route::get('master/karyawan/get/form-resource', [
+		'uses'	=> 'master\karyawan\karyawan_controller@get_form_resources',
+	])->name('karyawan.get_form_resources');
 
-			Route::get('master/barang/add', [
-				'uses'	=> 'master\barang\barang_controller@add',
-			])->name('barang.add');
+	// master karyawan end
 
-			Route::post('master/barang/insert', [
-				'uses'	=> 'master\barang\barang_controller@insert',
-			])->name('barang.insert');
+	// master posisi karyawan
 
-			Route::post('master/karyawan/edit-multiple', [
-				'uses'	=> 'master\barang\barang_controller@edit_multiple',
-			])->name('karyawan.edit_multiple');
+	Route::get('/master/posisi', 'master\posisi\posisi_controller@index');
+	Route::match(['post', 'get'], '/master/posisi/add', 'master\posisi\posisi_controller@add');
+	Route::match(['post', 'get'], '/master/posisi/edit-multiple', 'master\posisi\posisi_controller@multiple_edit_posisi');
+	Route::get('/master/posisi/get/{id}', 'master\posisi\posisi_controller@get_posisi');
+	Route::post('/master/posisi/update', 'master\posisi\posisi_controller@update');
+	Route::get('/master/posisi/edit', 'master\posisi\posisi_controller@edit');
+	Route::match(['get', 'post'], '/master/posisi/multiple-delete', 'master\posisi\posisi_controller@multiple_delete');
 
-			Route::post('master/karyawan/update', [
-				'uses'	=> 'master\barang\barang_controller@update',
-			])->name('karyawan.update');
+	// end master posisi karyawan
 
-			Route::get('master/karyawan/edit', [
-				'uses'	=> 'master\barang\barang_controller@edit',
-			])->name('karyawan.edit');
+	// master jabatan
 
-			Route::post('master/karyawan/multiple-delete', [
-				'uses'	=> 'master\barang\barang_controller@multiple_delete',
-			])->name('karyawan.multiple_delete');
+	Route::get('/master/jabatan', 'master\jabatan\jabatan_controller@index');
+	Route::match(['post', 'get'], '/master/jabatan/add', 'master\jabatan\jabatan_controller@add');
+	Route::match(['post', 'get'], '/master/jabatan/edit-multiple', 'master\jabatan\jabatan_controller@multiple_edit_jabatan');
+	Route::get('/master/jabatan/get/{id}', 'master\jabatan\jabatan_controller@get_jabatan');
+	Route::post('/master/jabatan/update', 'master\jabatan\jabatan_controller@update');
+	Route::get('/master/jabatan/edit', 'master\jabatan\jabatan_controller@edit');
+	Route::match(['get', 'post'], '/master/jabatan/multiple-delete', 'master\jabatan\jabatan_controller@multiple_delete');
+
+	// end master jabatan
+
+	// master barang
+
+	Route::get('master/barang', [
+		'uses'	=> 'master\barang\barang_controller@index',
+	])->name('barang.index');
+
+	Route::get('master/barang/add', [
+		'uses'	=> 'master\barang\barang_controller@add',
+	])->name('barang.add');
+
+	Route::post('master/barang/insert', [
+		'uses'	=> 'master\barang\barang_controller@insert',
+	])->name('barang.insert');
+
+	Route::post('master/karyawan/edit-multiple', [
+		'uses'	=> 'master\barang\barang_controller@edit_multiple',
+	])->name('karyawan.edit_multiple');
+
+	Route::post('master/karyawan/update', [
+		'uses'	=> 'master\barang\barang_controller@update',
+	])->name('karyawan.update');
+
+	Route::get('master/karyawan/edit', [
+		'uses'	=> 'master\barang\barang_controller@edit',
+	])->name('karyawan.edit');
+
+	Route::post('master/karyawan/multiple-delete', [
+		'uses'	=> 'master\barang\barang_controller@multiple_delete',
+	])->name('karyawan.multiple_delete');
 
 
-			Route::get('master/karyawan/grab/{id}', [
-				'uses'	=> 'master\barang\barang_controller@get',
-			])->name('karyawan.get');
+	Route::get('master/karyawan/grab/{id}', [
+		'uses'	=> 'master\barang\barang_controller@get',
+	])->name('karyawan.get');
 
-			Route::get('master/barang/get/form-resource', [
-				'uses'	=> 'master\barang\barang_controller@get_form_resources',
-			])->name('barang.get_form_resources');
+	Route::get('master/barang/get/form-resource', [
+		'uses'	=> 'master\barang\barang_controller@get_form_resources',
+	])->name('barang.get_form_resources');
 
-		// master barang end
+	// master barang end
 
 
-		// master Suppplier
+	// master Suppplier
 
-			Route::get('/master/suplier/suplier', 'master\suplier\suplier_controller@suplier');
-			Route::match(['get', 'post'],'/master/suplier/suplier/add', 'master\suplier\suplier_controller@add_suplier');
-			Route::match(['get', 'post'], '/master/suplier/suplier/delete/{id}', 'MasterController@delete_supplier');
-			
-			Route::post('/master/suplier/suplier/edit-multiple', 'master\suplier\suplier_controller@edit_multiple');
-			Route::get('/master/suplier/suplier/edit', 'master\suplier\suplier_controller@edit');
+	Route::get('/master/suplier/suplier', 'master\suplier\suplier_controller@suplier');
 
-			Route::post('/master/suplier/suplier/update', 'master\suplier\suplier_controller@update');
-			Route::match(['get', 'post'], '/master/suplier/suplier/get/{id}', 'master\suplier\suplier_controller@get_supplier');
-			Route::match(['get', 'post'], '/master/suplier/suplier/multiple-delete', 'master\suplier\suplier_controller@multiple_delete');
+	Route::match(['get', 'post'],'/master/suplier/suplier/add', 'master\suplier\suplier_controller@add_suplier');
 
-		// master Suppplier end
+	Route::match(['get', 'post'], '/master/suplier/suplier/delete/{id}', 'MasterController@delete_supplier');
 
-		// Master Outlet
-		Route::get('/master/outlet','master\outlet\outlet_controller@index');
-		Route::get('/master/outlet/add','master\outlet\outlet_controller@outlet_add');
-		Route::get('/master/outlet/get-kecamatan','master\outlet\outlet_controller@get_kecamatan');
-		Route::get('/master/outlet/get-kota','master\outlet\outlet_controller@get_kota');
-		Route::get('/master/outlet/get-provinsi','master\outlet\outlet_controller@get_provinsi');
-		Route::post('/master/outlet/add-outlet','master\outlet\outlet_controller@add_outlet');
-		Route::get('/master/outlet/get-outlet/{id}','master\outlet\outlet_controller@get_outlet');
-		Route::get('/master/outlet/edit','master\outlet\outlet_controller@outlet_edit');
-		Route::post('/master/outlet/update-outlet','master\outlet\outlet_controller@update_outlet');
-		Route::post('/master/outlet/edit-multiple', 'master\outlet\outlet_controller@multiple_edit_outlet');
-		Route::match(['get', 'post'], '/master/outlet/multiple-delete', 'master\outlet\outlet_controller@multiple_delete_outlet');
-		// End Master Outlet
+	Route::post('/master/suplier/suplier/edit-multiple', 'master\suplier\suplier_controller@edit_multiple');
 
-		// Pembelian
-		// Request Order
-		Route::get('/pembelian/request-order','PembelianController@request_order');
-		Route::match(['get', 'post'],'/pembelian/request-order/add','PembelianController@request_order_add');
-		Route::post('/pembelian/request-order/edit-multiple', 'PembelianController@edit_multiple');
-		Route::get('/pembelian/request-order/edit', 'PembelianController@edit_order');
-		Route::match(['get', 'post'], '/pembelian/request-order/get/{id}', 'PembelianController@get_order');
-		Route::post('/pembelian/request-order/update', 'PembelianController@update_order');
-		Route::match(['get', 'post'], '/pembelian/request-order/multiple-delete', 'PembelianController@multiple_delete_order');
-		// End Request Order
+	Route::get('/master/suplier/suplier/edit', 'master\suplier\suplier_controller@edit');
 
-		// Rencana Pembelian
-		Route::get('/pembelian/rencana-pembelian','PembelianController@rencana_pembelian');
-		Route::post('/pembelian/rencana-pembelian/request-order-status','PembelianController@request_order_status');
-		Route::get('/pembelian/rencana-pembelian/rencana-pembelian/edit', 'PembelianController@rencana_pembelian_edit');
-		Route::post('/pembelian/rencana-pembelian/rencana-pembelian/update', 'PembelianController@update_rencana_pembelian');
-		Route::post('/pembelian/rencana-pembelian/rencana-pembelian/edit-multiple', 'PembelianController@multiple_edit_rencana_pembelian');
-		// End Rencana Pembelian
+	Route::post('/master/suplier/suplier/update', 'master\suplier\suplier_controller@update');
 
-		// Konfirmasi Pembelian
-		Route::get('/pembelian/konfirmasi-pembelian','PembelianController@konfirmasi_pembelian');
-		Route::get('/pembelian/konfirmasi-pembelian/get-data-order/{id}','PembelianController@get_data_order');
-		Route::get('/pembelian/konfirmasi-pembelian/generate-pdf/{id}','PembelianController@generatePDF');
-		// End Konfirmasi Pembelian
+	Route::match(['get', 'post'], '/master/suplier/suplier/get/{id}', 'master\suplier\suplier_controller@get_supplier');
 
-		// Purchase Order
-		Route::get('/pembelian/purchase-order','PembelianController@purchase_order');
-		Route::get('/pembelian/purchase-order/add','PembelianController@purchase_order_add');
-		Route::get('/pembelian/purchase-order/get-purchase/{id}','PembelianController@get_purchase');
-		Route::get('/pembelian/purchase-order/get-request-purchase/{id}','PembelianController@get_request_purchase');
-		Route::post('/pembelian/purchase-order/add-purchase', 'PembelianController@add_purchase');
-		Route::get('/pembelian/purchase-order/get/{id}','PembelianController@get_purchase_order');
-		Route::get('/pembelian/purchase-order/edit','PembelianController@edit_purchase_order');
-		Route::post('/pembelian/purchase-order/update', 'PembelianController@update_purchase_order');
-		Route::post('/pembelian/purchase-order/edit-multiple', 'PembelianController@multiple_edit_purchase_order');
-		Route::match(['get', 'post'], '/pembelian/purchase-order/multiple-delete', 'PembelianController@multiple_delete_purchase_order');
-		Route::get('/pembelian/purchase-order/cetak', 'PembelianController@cetak_purchase');
-		Route::get('/pembelian/purchase-order/get-purchase-data/{id}','PembelianController@get_purchase_data');
-		Route::get('/pembelian/purchase-order/print/{id}','PembelianController@print_purchase');
-		// End Purchase Order
+	Route::match(['get', 'post'], '/master/suplier/suplier/multiple-delete', 'master\suplier\suplier_controller@multiple_delete');
 
-		// Return Barang
-		Route::get('/pembelian/purchase-return','PembelianController@return_barang');
-		Route::match(['get', 'post'], '/pembelian/purchase-return/add', 'PembelianController@return_barang_add');
-		Route::get('/pembelian/show-purchase/{id}','PembelianController@show_purchase');
-		Route::get('/pembelian/get-current-return/{id}','PembelianController@get_current_return');
-		Route::get('/pembelian/purchase-return/edit','PembelianController@edit_purchase_return');
-		Route::match(['get', 'post'], '/pembelian/purchase-return/update', 'PembelianController@update_purchase_return');
-		Route::match(['get', 'post'], '/pembelian/purchase-return/edit-multiple', 'PembelianController@multiple_edit_purchase_return');
-		Route::get('/pembelian/purchase-return/get-current-return/{id}','PembelianController@get_edit_return');
-		Route::match(['get', 'post'], '/pembelian/purchase-return/multiple-delete', 'PembelianController@multiple_delete_purchase_return');
-		// End Return Barang
-		// Pembelian end
+	// master Suppplier end
+
+	// Master Outlet
+
+	Route::get('/master/outlet','master\outlet\outlet_controller@index');
+
+	Route::get('/master/outlet/add','master\outlet\outlet_controller@outlet_add');
+
+	Route::get('/master/outlet/get-kecamatan','master\outlet\outlet_controller@get_kecamatan');
+
+	Route::get('/master/outlet/get-kota','master\outlet\outlet_controller@get_kota');
+
+	Route::get('/master/outlet/get-provinsi','master\outlet\outlet_controller@get_provinsi');
+
+	Route::post('/master/outlet/add-outlet','master\outlet\outlet_controller@add_outlet');
+
+	Route::get('/master/outlet/get-outlet/{id}','master\outlet\outlet_controller@get_outlet');
+
+	Route::get('/master/outlet/edit','master\outlet\outlet_controller@outlet_edit');
+
+	Route::post('/master/outlet/update-outlet','master\outlet\outlet_controller@update_outlet');
+
+	Route::post('/master/outlet/edit-multiple', 'master\outlet\outlet_controller@multiple_edit_outlet');
+
+	Route::match(['get', 'post'], '/master/outlet/multiple-delete', 'master\outlet\outlet_controller@multiple_delete_outlet');
+
+	// End Master Outlet
+
+	// Pembelian
+
+	// Request Order
+
+	Route::get('/pembelian/request-order','PembelianController@request_order');
+
+	Route::match(['get', 'post'],'/pembelian/request-order/add','PembelianController@request_order_add');
+
+	Route::post('/pembelian/request-order/edit-multiple', 'PembelianController@edit_multiple');
+
+	Route::get('/pembelian/request-order/edit', 'PembelianController@edit_order');
+
+	Route::match(['get', 'post'], '/pembelian/request-order/get/{id}', 'PembelianController@get_order');
+
+	Route::post('/pembelian/request-order/update', 'PembelianController@update_order');
+
+	Route::match(['get', 'post'], '/pembelian/request-order/multiple-delete', 'PembelianController@multiple_delete_order');
+
+	// End Request Order
+
+	// Rencana Pembelian
+
+	Route::get('/pembelian/rencana-pembelian','PembelianController@rencana_pembelian');
+
+	Route::post('/pembelian/rencana-pembelian/request-order-status','PembelianController@request_order_status');
+
+	Route::get('/pembelian/rencana-pembelian/rencana-pembelian/edit', 'PembelianController@rencana_pembelian_edit');
+
+	Route::post('/pembelian/rencana-pembelian/rencana-pembelian/update', 'PembelianController@update_rencana_pembelian');
+
+	Route::post('/pembelian/rencana-pembelian/rencana-pembelian/edit-multiple', 'PembelianController@multiple_edit_rencana_pembelian');
+
+	// End Rencana Pembelian
+
+	// Konfirmasi Pembelian
+
+	Route::get('/pembelian/konfirmasi-pembelian','PembelianController@konfirmasi_pembelian');
+
+	Route::get('/pembelian/konfirmasi-pembelian/get-data-order/{id}','PembelianController@get_data_order');
+
+	Route::get('/pembelian/konfirmasi-pembelian/generate-pdf/{id}','PembelianController@generatePDF');
+	Route::get('/pembelian/konfirmasi-pembelian/print/{id}','PembelianController@print');
+
+	// End Konfirmasi Pembelian
+
+	// Purchase Order
+
+	Route::get('/pembelian/purchase-order','PembelianController@purchase_order');
+
+	Route::get('/pembelian/purchase-order/add','PembelianController@purchase_order_add');
+
+	Route::get('/pembelian/purchase-order/get-purchase/{id}','PembelianController@get_purchase');
+
+	Route::get('/pembelian/purchase-order/get-request-purchase/{id}','PembelianController@get_request_purchase');
+
+	Route::post('/pembelian/purchase-order/add-purchase', 'PembelianController@add_purchase');
+
+	Route::get('/pembelian/purchase-order/get/{id}','PembelianController@get_purchase_order');
+
+	Route::get('/pembelian/purchase-order/edit','PembelianController@edit_purchase_order');
+
+	Route::post('/pembelian/purchase-order/update', 'PembelianController@update_purchase_order');
+
+	Route::post('/pembelian/purchase-order/edit-multiple', 'PembelianController@multiple_edit_purchase_order');
+
+	Route::match(['get', 'post'], '/pembelian/purchase-order/multiple-delete', 'PembelianController@multiple_delete_purchase_order');
+
+	Route::get('/pembelian/purchase-order/cetak', 'PembelianController@cetak_purchase');
+
+	Route::get('/pembelian/purchase-order/get-purchase-data/{id}','PembelianController@get_purchase_data');
+
+	Route::get('/pembelian/purchase-order/print/{id}','PembelianController@print_purchase');
+
+	// End Purchase Order
+
+	// Return Barang
+
+	Route::get('/pembelian/purchase-return','PembelianController@return_barang');
+
+	Route::match(['get', 'post'], '/pembelian/purchase-return/add', 'PembelianController@return_barang_add');
+
+	Route::get('/pembelian/show-purchase/{id}','PembelianController@show_purchase');
+
+	Route::get('/pembelian/get-current-return/{id}','PembelianController@get_current_return');
+
+	Route::get('/pembelian/purchase-return/edit','PembelianController@edit_purchase_return');
+
+	Route::match(['get', 'post'], '/pembelian/purchase-return/update', 'PembelianController@update_purchase_return');
+
+	Route::match(['get', 'post'], '/pembelian/purchase-return/edit-multiple', 'PembelianController@multiple_edit_purchase_return');
+
+	Route::get('/pembelian/purchase-return/get-current-return/{id}','PembelianController@get_edit_return');
+	
+	Route::match(['get', 'post'], '/pembelian/purchase-return/multiple-delete', 'PembelianController@multiple_delete_purchase_return');
+
+	// End Return Barang
+
+	// Pembelian end
 
 	// main route end
-
+	Route::get('/coba-print', 'PembelianController@coba_print');
 });

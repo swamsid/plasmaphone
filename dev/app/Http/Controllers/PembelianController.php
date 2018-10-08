@@ -50,15 +50,21 @@ class PembelianController extends Controller
                         ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
                         ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                 ->where('d_request_order_dt.rdt_supplier', $id)->get();
-        return view('pembelian/konfirmasi_pembelian/print', compact('data_order'));
+        // return view('pembelian/konfirmasi_pembelian/print', compact('data_order'));
 
-        // return view('pembelian.konfirmasi_pembelian.generate_pdf', compact('data_order'));
-        // $html_content = '<h1>Generate a PDF using TCPDF in Laravel</h1>
-        //                 <h4>by</br>Syahrul</h4>';
-        // PDF::SetTitle('Sample PDF');
-        // PDF::AddPage();
-        // PDF::writeHTML($html_content, true, false, true, false, '');
-        // PDF::Output('SamplePDF.pdf');
+        $pdf = PDF::loadView('pembelian/konfirmasi_pembelian/print', compact('data_order'));
+        return $pdf->stream();
+    }
+
+    public function print($id)
+    {
+        $data_order = DB::table('d_request_order_dt')
+                        ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*', 'd_cabang.*')
+                        ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                        ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
+                        ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
+                ->where('d_request_order_dt.rdt_supplier', $id)->get();
+        return view('pembelian/konfirmasi_pembelian/print', compact('data_order'));
     }
 
     public function return_barang()
@@ -982,6 +988,13 @@ class PembelianController extends Controller
 
             return json_encode($response);
         }
+    }
+
+    public function coba_print()
+    {
+        $pdf = PDF::loadView('pembelian.coba_cetak');
+        return $pdf->stream();
+        // return $pdf->download('footballerdetail.pdf');
     }
     
 }
