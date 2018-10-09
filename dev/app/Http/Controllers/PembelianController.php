@@ -331,6 +331,7 @@ class PembelianController extends Controller
                 ->select('d_purchase_order_dt.*', 'd_purchase_order.*', 'd_supplier.*')
                 ->join('d_purchase_order', 'd_purchase_order_dt.podt_purchase', 'd_purchase_order.po_no')
                 ->join('d_supplier', 'd_purchase_order_dt.podt_kode_suplier', '=', 'd_supplier.s_id')
+                ->orderBy('d_purchase_order.po_status', 'desc')
                 ->get();
     	return view('pembelian/purchase_order/index', compact('data'));
     }
@@ -429,11 +430,12 @@ class PembelianController extends Controller
     public function get_purchase_order($id)
     {
         $data = DB::table('d_purchase_order_dt')
-                ->select('d_purchase_order_dt.*', 'd_purchase_order.*', 'd_supplier.*', 'd_request_order.ro_cabang')
+                ->select('d_purchase_order_dt.*', 'd_purchase_order.*', 'd_supplier.*', 'd_request_order.ro_cabang','d_cabang.c_nama')
                 ->join('d_purchase_order', 'd_purchase_order_dt.podt_purchase', '=', 'd_purchase_order.po_no')
                 ->join('d_supplier', 'd_purchase_order_dt.podt_kode_suplier', '=', 'd_supplier.s_id')
                 ->join('d_request_order_dt', 'd_purchase_order.po_request_order_no', '=', 'd_request_order_dt.rdt_no')
                 ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                 ->where('d_purchase_order_dt.podt_no', $id)->first();
 
         return json_encode($data);
@@ -442,11 +444,12 @@ class PembelianController extends Controller
     public function edit_purchase_order(Request $request)
     {
         $data = DB::table('d_purchase_order_dt')
-                ->select('d_purchase_order.*', 'd_purchase_order_dt.*', 'd_request_order.ro_cabang', 'd_supplier.s_name')
+                ->select('d_purchase_order.*', 'd_purchase_order_dt.*', 'd_request_order.ro_cabang', 'd_supplier.s_name', 'd_cabang.c_nama')
                 ->join('d_purchase_order', 'd_purchase_order_dt.podt_purchase', '=', 'd_purchase_order.po_no')
                 ->join('d_request_order_dt', 'd_purchase_order.po_request_order_no', '=', 'd_request_order_dt.rdt_no')
                 ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
                 ->join('d_supplier', 'd_purchase_order_dt.podt_kode_suplier', '=', 'd_supplier.s_id')
+                ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                 ->where('d_purchase_order_dt.podt_no', $request->id)->get();
 
         if(count($data) == 0){
@@ -505,11 +508,12 @@ class PembelianController extends Controller
     public function multiple_edit_purchase_order(Request $request)
     {
         $data = DB::table('d_purchase_order_dt')
-                ->select('d_purchase_order.*', 'd_purchase_order_dt.*', 'd_request_order.ro_cabang', 'd_supplier.s_name')
+                ->select('d_purchase_order.*', 'd_purchase_order_dt.*', 'd_request_order.ro_cabang', 'd_supplier.s_name', 'd_cabang.c_nama')
                 ->join('d_purchase_order', 'd_purchase_order_dt.podt_purchase', '=', 'd_purchase_order.po_no')
                 ->join('d_request_order_dt', 'd_purchase_order.po_request_order_no', '=', 'd_request_order_dt.rdt_no')
                 ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
                 ->join('d_supplier', 'd_purchase_order_dt.podt_kode_suplier', '=', 'd_supplier.s_id')
+                ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                 ->whereIn('d_purchase_order_dt.podt_no', $request->data_check)->get();
 
         if(count($data) == 0){

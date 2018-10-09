@@ -73,7 +73,7 @@
 										<input type="hidden" name="po_no" id="po_no" value="{{ $data[0]->podt_purchase }}">
 										<select class="form-control" name="podt_no" id="podt_no">
 											@foreach($data as $key => $dt)
-											<option value="{{ $dt->podt_no }}">Cabang-{{ $dt->ro_cabang }} | {{ $dt->podt_kode_barang }}</option>
+											<option value="{{ $dt->podt_no }}">Cabang-{{ $dt->c_nama }} | {{ $dt->podt_kode_barang }}</option>
 											@endforeach
 										</select>
 										<input type="hidden" name="ro_cabang" id="ro_cabang" value="{{ $data[0]->ro_cabang }}">
@@ -294,6 +294,23 @@
 			return prefix == undefined ? rupiah : (rupiah ? 'Rp' + rupiah : '');
 		}
 
+		function rupiah(angka, prefix)
+		{
+			var number_string = angka.toString(),
+			split	= number_string.split(','),
+			sisa 	= split[0].length % 3,
+			rupiah 	= split[0].substr(0, sisa),
+			ribuan 	= split[0].substr(sisa).match(/\d{3}/gi);
+
+			if (ribuan) {
+				separator = sisa ? '.' : '';
+				rupiah += separator + ribuan.join('.');
+			}
+
+			rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+			return prefix == undefined ? rupiah : (rupiah ? 'Rp' + rupiah : '');
+		}
+
 		// product form
 
 		$('#form-edit').bootstrapValidator({
@@ -394,14 +411,14 @@
 			$('#ro_kode_barang').val(data.podt_kode_barang);
 			$('#status').val(data.po_status);
 			$('#tipe_pembayaran').val(data.po_type_pembayaran);
-			$('#total_harga').val(data.po_total_harga);
+			$('#total_harga').val(rupiah(data.po_total_harga, 'Rp'));
 			$('#diskon').val(data.po_diskon);
 			$('#ppn').val(data.po_ppn);
-			$('#total_bayar').val(data.po_total_bayar);
+			$('#total_bayar').val(rupiah(data.po_total_bayar, 'Rp'));
 			$('#kode_barang').val(data.podt_kode_barang);
 			$('#supplier').val(data.s_name);
 			$('#kuantitas').val(data.podt_kuantitas);
-			$('#harga_satuan').val(data.podt_harga_satuan);
+			$('#harga_satuan').val(rupiah(data.podt_harga_satuan, 'Rp'));
 		}
 
 		// End select order

@@ -499,7 +499,7 @@
 		});
 
 		function initiate(data){
-			$('#cabang').val(data.ro_cabang);
+			$('#cabang').val(data.c_nama);
 			$('#kode_barang').val(data.podt_kode_barang);
 			$('#kuantitas').val(data.podt_kuantitas);
 			$('#harga_satuan').val(data.podt_harga_satuan);

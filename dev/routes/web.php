@@ -300,6 +300,13 @@ Route::group(['middleware' => 'auth'], function(){
 
 	// Pembelian end
 
+	// Inventory
+	// Penerimaan barang dari supplier
+	Route::get('/inventory/penerimaan/supplier', 'inventory\ReceptionController@index_supplier');
+	Route::match(['get', 'post'], '/inventory/penerimaan/supplier/add', 'inventory\ReceptionController@add_items_from_supplier');
+	// End penerimaan barang dari supplier
+	// End Inventory
+
 	// main route end
 	Route::get('/coba-print', 'PembelianController@coba_print');
 });

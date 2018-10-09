@@ -107,7 +107,7 @@
 						<a href="#">Penerimaan Barang</a>
 						<ul>
 							<li>
-								<a href="glyph.html">Dari Supplier</a>
+								<a href="{{ url('/inventory/penerimaan/supplier') }}">Dari Supplier</a>
 							</li>	
 							<li>
 								<a href="flags.html">Kiriman Pusat</a>
