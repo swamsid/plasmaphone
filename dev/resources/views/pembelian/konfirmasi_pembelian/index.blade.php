@@ -57,7 +57,7 @@
 		<div>
 			<input type="hidden" name="id_supplier" id="id_supplier" value="{{ $data }}" />
 			<a href="{{ url('/pembelian/konfirmasi-pembelian/print/'.$data) }}" target="_blank" class="btn btn-primary" disabled id="btn_cetak"><i class="fa fa-print"></i>&nbsp;Print</a>
-			<a href="{{ url('/pembelian/konfirmasi-pembelian/generate-pdf/'.$data) }}" target="_blank" class="btn btn-danger" disabled id="btn_download"><i class="fa fa-download"></i>&nbsp;Download</a>
+			<a href="{{ url('/pembelian/konfirmasi-pembelian/generate-pdf/'.$data) }}" class="btn btn-danger" disabled id="btn_download"><i class="fa fa-download"></i>&nbsp;Download</a>
 		</div>
 	</div>
 

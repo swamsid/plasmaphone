@@ -95,7 +95,7 @@
 										<input type="text" list="list_purchase" class="form-control" name="purchase_order" id="purchase_order" placeholder="Masukkan nomor purchase order...." autocomplete="off" autofocus="" onchange="showPurchase()">
 										<datalist id="list_purchase">
 											@foreach($purchase as $purchase)
-											<option value="{{ $purchase->podt_purchase }}">{{ $purchase->podt_kode_barang }}</option>
+											<option value="{{ $purchase->podt_purchase }}">{{ $purchase->podt_purchase }}</option>
 											@endforeach
 										</datalist>
 									</div>

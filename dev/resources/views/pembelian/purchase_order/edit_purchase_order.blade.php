@@ -125,7 +125,7 @@
 										<div class="form-group">
 											<label class="col-xs-3 col-lg-3 control-label text-left">Total Harga</label>
 											<div class="col-xs-8 col-lg-8 inputGroupContainer">
-												<input type="text" class="form-control" name="total_harga" id="total_harga" placeholder="Masukkan total harga" rel="{{ $data[0]->po_total_harga }}" required />
+												<input type="text" class="form-control" name="total_harga" id="total_harga" onkeypress="return isNumberKey(event)" placeholder="Masukkan total harga" rel="{{ $data[0]->po_total_harga }}" required />
 											</div>
 										</div>
 									</div>
@@ -152,7 +152,7 @@
 										<div class="form-group">
 											<label class="col-xs-3 col-lg-3 control-label text-left">Total Bayar</label>
 											<div class="col-xs-8 col-lg-8 inputGroupContainer">
-												<input type="text" class="form-control" name="total_bayar" id="total_bayar" placeholder="Masukkan total bayar" rel="{{ $data[0]->po_total_bayar }}" required />
+												<input type="text" class="form-control" name="total_bayar" id="total_bayar" onkeypress="return isNumberKey(event)" placeholder="Masukkan total bayar" rel="{{ $data[0]->po_total_bayar }}" required />
 											</div>
 										</div>
 									</div>
@@ -198,7 +198,7 @@
 										<div class="form-group">
 											<label class="col-xs-3 col-lg-3 control-label text-left">Harga Satuan</label>
 											<div class="col-xs-8 col-lg-8 inputGroupContainer">
-												<input type="text" class="form-control" name="harga_satuan" id="harga_satuan" placeholder="Masukkan harga satuan" rel="{{ $data[0]->podt_harga_satuan }}" required />
+												<input type="text" class="form-control" name="harga_satuan" id="harga_satuan" onkeypress="return isNumberKey(event)" placeholder="Masukkan harga satuan" rel="{{ $data[0]->podt_harga_satuan }}" required />
 											</div>
 										</div>
 									</div>
@@ -249,7 +249,12 @@
 <script src="{{ asset('template_asset/js/plugin/bootstrapvalidator/bootstrapValidator.min.js') }}"></script>
 
 <script type="text/javascript">
-
+	function isNumberKey(evt) {
+	    var charCode = (evt.which) ? evt.which : evt.keyCode;
+	    if (charCode > 31 && (charCode < 48 || charCode > 57))
+	        return false;
+	    return true;
+	}
 
 	$(document).ready(function(){
 
@@ -276,6 +281,8 @@
 		});
 
 		i_harga_satuan.value = formatRupiah($('#harga_satuan').attr('rel'), 'Rp');
+
+		
 
 		function formatRupiah(angka, prefix)
 		{

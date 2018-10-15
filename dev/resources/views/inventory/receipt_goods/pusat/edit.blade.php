@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Inventory Penerimaan Barang Dari Supplier')
+@section('title', 'Inventory | Penerimaan Barang Dari Pusat')
 
 
 @section('extra_style')
@@ -20,7 +20,7 @@
 
 		<!-- breadcrumb -->
 		<ol class="breadcrumb">
-			<li>Home</li><li>Inventory</li><li>Penerimaan Barang Dari Supplier</li><li>Tambah</li>
+			<li>Home</li><li>Inventory</li><li>Penerimaan Barang Dari Pusat</li><li>Edit</li>
 		</ol>
 		<!-- end breadcrumb -->
 
@@ -54,39 +54,38 @@
 
 					{{-- FormTemplate .. --}}
 
-					<form id="add-form" class="form-horizontal" action="{{ url('/inventory/penerimaan/supplier/add') }}" method="post">
+					<form id="form-edit" class="form-horizontal" method="post">
 						{{ csrf_field() }}
 						<fieldset>
 							<legend>
-								Form Tambah Penerimaan Barang Dari Supplier
+								Form Edit Penerimaan Barang Dari Pusat
 
 								<span class="pull-right" style="font-size: 0.6em; font-weight: 600">
-									<a href="{{ url('/inventory/penerimaan/supplier') }}">
+									<a href="{{ url('/inventory/penerimaan/pusat') }}">
 										<i class="fa fa-arrow-left"></i> &nbsp;Kembali Ke Halaman Data Table
 									</a>
 								</span>
 							</legend>
 
-							<div class="row" style="margin-top: 15px" >
+							<div class="row" style="border-bottom: 1px dotted #aaa; margin-bottom: 20px;">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="col-xs-4 col-lg-4 control-label text-left">No. Purchase Order</label>
-										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="text" list="list_purchase" class="form-control" name="purchase_order" id="purchase_order" placeholder="Masukkan nomor purchase order...." autocomplete="off" autofocus="" onchange="showPurchase()">
-											<datalist id="list_purchase">
-												@if($purchase == 'null')
-													<option value="">Belum ada purchase order</option>
-												@else
-												@foreach($purchase as $purchase)
-												<option value="{{ $purchase->podt_purchase }}">{{ $purchase->podt_purchase }}</option>
+										<label class="col-xs-4 col-lg-4 control-label text-left">Pilih Data Yang Diedit</label>
+										<div class="col-xs-7 col-lg-7 inputGroupContainer">
+											<select class="form-control" name="i_id" id="id">
+												@foreach($data as $key => $barang)
+													<option value="{{ $barang->i_id }}">{{ $barang->i_kode_barang }} - {{ $barang->i_nama_barang }}</option>
 												@endforeach
-												@endif
-											</datalist>
+											</select>
 										</div>
 									</div>
 								</div>
+
+								<div class="col-md-6 text-left" style="padding: 10px 0px; display: none;" id="form-load-section-status">
+									<i class="fa fa-cog fa-spin fa-fw"></i> &nbsp;
+									<small>Sedang Mengambil Data Baru...</small>
+								</div>
 							</div>
-							<hr>
 
 							<div class="row">
 								<div class="col-md-6">
@@ -94,10 +93,10 @@
 										<label class="col-xs-4 col-lg-4 control-label text-left">Kategori</label>
 										<div class="col-xs-7 col-lg-7 inputGroupContainer">
 											<select class="form-control" name="kategori" id="kategori">
-												<option value="">---Pilih kategori---</option>
-												<option value="Handphone">Handphone</option>
-												<option value="Simcard">Simcard</option>
-												<option value="Accessories">Accessories</option>
+												<option value="" @if($data[0]->i_kategori == "") selected @endif>---Pilih kategori---</option>
+												<option value="Handphone" @if($data[0]->i_kategori == "Handphone") selected @endif>Handphone</option>
+												<option value="Simcard" @if($data[0]->i_kategori == "Simcard") selected @endif>Simcard</option>
+												<option value="Accessories" @if($data[0]->i_kategori == "Accessories") selected @endif>Accessories</option>
 											</select>
 										</div>
 									</div>
@@ -109,7 +108,7 @@
 									<div class="form-group">
 										<label class="col-xs-4 col-lg-4 control-label text-left">IMEI</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="text" class="form-control" name="imei" id="imei" placeholder="Masukkan IMEI" />
+											<input type="text" class="form-control" name="imei" id="imei" value="@if($data[0]->i_imei != null) {{ $data[0]->i_imei }} @endif" placeholder="Masukkan IMEI" />
 										</div>
 									</div>
 								</div>
@@ -118,7 +117,7 @@
 									<div class="form-group">
 										<label id="lbl_kb" class="col-xs-4 col-lg-4 control-label text-left">Kode Barang</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="text" class="form-control" name="kode_barang" id="kode_barang" placeholder="Masukkan kode barang" />
+											<input type="text" class="form-control" name="kode_barang" id="kode_barang" value="{{ $data[0]->i_kode_barang }}" placeholder="Masukkan kode barang" />
 										</div>
 									</div>
 								</div>
@@ -129,7 +128,7 @@
 									<div class="form-group">
 										<label class="col-xs-4 col-lg-4 control-label text-left">Nama Barang</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="text" class="form-control" name="nama_barang" id="nama_barang" placeholder="Masukkan nama barang" />
+											<input type="text" class="form-control" name="nama_barang" id="nama_barang" value="{{ $data[0]->i_nama_barang }}" placeholder="Masukkan nama barang" />
 										</div>
 									</div>
 								</div>
@@ -138,7 +137,7 @@
 									<div class="form-group">
 										<label class="col-xs-3 col-lg-3 control-label text-left">Kuantitas</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="number" min="1" class="form-control" name="qty" id="qty" placeholder="Masukkan kuantitas barang" />
+											<input type="number" min="1" class="form-control" name="qty" id="qty" value="{{ $data[0]->i_qty }}" placeholder="Masukkan kuantitas barang" />
 										</div>
 									</div>
 								</div>
@@ -149,21 +148,7 @@
 									<div class="form-group">
 										<label class="col-xs-4 col-lg-4 control-label text-left">Tanggal Masuk</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="text" class="form-control" name="tgl_masuk" id="tgl_masuk" placeholder="Masukkan tanggal masuk barang" />
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="col-xs-3 col-lg-3 control-label text-left">Supplier</label>
-										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<select class="form-control" name="supplier" id="supplier">
-												<option value="">---Pilih supplier---</option>
-												@foreach($data_supplier as $supplier)
-												<option value="{{ $supplier->s_id }}">{{ $supplier->s_company }}</option>
-												@endforeach
-											</select>
+											<input type="text" class="form-control" name="tgl_masuk" id="tgl_masuk" value="{{ $data[0]->i_tgl_masuk }}" placeholder="Masukkan tanggal masuk barang" />
 										</div>
 									</div>
 								</div>
@@ -174,7 +159,7 @@
 						<div class="form-actions">
 							<div class="row">
 								<div class="col-md-12">
-									<button class="btn btn-default" type="submit">
+									<button class="btn btn-default" id="submit">
 										<i class="fa fa-floppy-o"></i>
 										&nbsp;Simpan
 									</button>
@@ -211,53 +196,6 @@
 <script src="{{ asset('template_asset/js/plugin/bootstrapvalidator/bootstrapValidator.min.js') }}"></script>
 
 <script type="text/javascript">
-	function showPurchase() 
-	{
-		$('#form-load-section-status').fadeIn(200);
-		this.reset();
-		var parameter = $("#purchase_order").val();
-		if (parameter == "") {
-			$.toast({
-				text: 'Ups . Data Yang Anda pilih belum diterima atau sudah dihapus!',
-				showHideTransition: 'fade',
-				icon: 'error'
-			})
-		} else {
-			axios.get(baseUrl+'/pembelian/show-purchase/'+parameter)
-			.then((response) => {
-				if(response.data == null){
-					$.toast({
-						text: 'Ups . Data Yang Anda pilih belum diterima atau sudah dihapus!',
-						showHideTransition: 'fade',
-						icon: 'error'
-					})
-					$('#form-load-section-status').fadeOut(200);
-				}else{
-					initiate(response.data);
-					$('#form-load-section-status').fadeOut(200);
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			})
-		}
-		
-	}
-
-	function initiate(data)
-	{
-		$('#kode_barang').val(data.podt_kode_barang);
-		$('#qty').val(data.podt_kuantitas);
-		$('#supplier').val(data.podt_kode_suplier);
-	}
-
-	function reset()
-	{
-		$('#kode_barang').val('');
-		$('#qty').val('');
-		$('#supplier').val('');
-	}
-
 	$(document).ready(function(){
 
 		$('#tgl_masuk').datepicker({
@@ -265,26 +203,24 @@
 		    prevText: '<i class="fa fa-chevron-left"></i>',
 		    nextText: '<i class="fa fa-chevron-right"></i>'
 		});
-		
+
 		if ($('#kategori').val() == "" || $('#kategori').val() != "Handphone") {
 			$('#imei').val('');
 			$('#field_imei').hide();
+		} else {
+			$('#field_imei').show();
+			$('#lbl_kb').removeClass( "col-xs-4 col-lg-4" ).addClass( "col-xs-3 col-lg-3" );
 		}
 
-		$('#add-form').bootstrapValidator({
+		// validator
+
+		$('#form-edit').bootstrapValidator({
 			feedbackIcons : {
 				valid : 'glyphicon glyphicon-ok',
 				invalid : 'glyphicon glyphicon-remove',
 				validating : 'glyphicon glyphicon-refresh'
 			},
 			fields : {
-				purchase_order : {
-					validators : {
-						notEmpty : {
-							message : 'Masukkan nomor purchase order'
-						}
-					}
-				},
 				kategori : {
 					validators : {
 						notEmpty : {
@@ -329,29 +265,93 @@
 							message : 'Masukkan tanggal masuk barang'
 						}
 					}
-				},
-				supplier : {
-					validators : {
-						notEmpty : {
-							message : 'Pilih supplier'
-						}
-					}
 				}
 			}
 		});
 
-		$('#kategori').on('change', function(e){
-			var context = $(this);
-			if (context.val() == "Handphone") {
-				$('#imei').val('');
-				$('#field_imei').show();
-				$('#lbl_kb').removeClass( "col-xs-4 col-lg-4" ).addClass( "col-xs-3 col-lg-3" );
-			} else {
-				$('#imei').val('');
+		// end validator
+
+		$('#id').change(function(evt){
+			evt.preventDefault(); let context = $(this);
+			$('#form-load-section-status').fadeIn(200);
+
+			axios.get(baseUrl+'/inventory/penerimaan/pusat/get-current-receipt-pusat/'+context.val())
+				.then((response) => {
+					if(response.data == null){
+						context.children('option:selected').attr('disabled', 'disabled');
+						$.toast({
+						    text: 'Ups . Data Yang Ingin Anda Edit Sudah Tidak Ada..',
+						    showHideTransition: 'fade',
+						    icon: 'error'
+						})
+						$('#form-load-section-status').fadeOut(200);
+					}else{
+						initiate(response.data);
+						console.log(response.data);
+						$('#form-load-section-status').fadeOut(200);
+					}
+				})
+				.catch((err) => {
+					console.log(err);
+				})
+			
+		})
+
+		function initiate(data){
+			if (data.i_imei == null) {
+				$("#kategori").val(data.i_kategori);
+				$("#imei").val('');
+				$("#kode_barang").val(data.i_kode_barang);
+				$("#nama_barang").val(data.i_nama_barang);
+				$("#qty").val(data.i_qty);
+				$("#tgl_masuk").val(data.i_tgl_masuk);
 				$('#field_imei').hide();
 				$('#lbl_kb').removeClass( "col-xs-3 col-lg-3" ).addClass( "col-xs-4 col-lg-4" );
+			} else {
+				$("#kategori").val(data.i_kategori);
+				$("#imei").val(data.i_imei);
+				$("#kode_barang").val(data.i_kode_barang);
+				$("#nama_barang").val(data.i_nama_barang);
+				$("#qty").val(data.i_qty);
+				$("#tgl_masuk").val(data.i_tgl_masuk);
+				$('#field_imei').show();
+				$('#lbl_kb').removeClass( "col-xs-4 col-lg-4" ).addClass( "col-xs-3 col-lg-3" );
 			}
+			
+		}
+
+		$('#form-edit').submit(function(evt){
+			evt.preventDefault();
+			if($(this).data('bootstrapValidator').validate().isValid()){
+				
+				let btn = $('#submit');
+				btn.attr('disabled', 'disabled');
+
+				axios.post(baseUrl+'/inventory/penerimaan/pusat/update', $('#form-edit').serialize())
+				.then((response) => {
+					if(response.data.status == 'berhasil'){
+						$.toast({
+						    text: 'Data Ini berhasil Diupdate',
+						    showHideTransition: 'fade',
+						    icon: 'success'
+						})
+					}else if(response.data.status == 'tidak ada'){
+						$.toast({
+						    text: 'Ups . Data Yang Ingin Anda Edit Sudah Tidak Ada..',
+						    showHideTransition: 'fade',
+						    icon: 'error'
+						})
+					}
+				}).catch((err) => {
+					console.log(err);
+				}).then(function(){
+					btn.removeAttr('disabled');
+				})
+			}
+
 		})
+
+		
 	})
 </script>
 

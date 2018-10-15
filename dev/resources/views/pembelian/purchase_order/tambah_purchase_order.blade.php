@@ -143,7 +143,7 @@
 										<div class="form-group">
 											<label class="col-xs-3 col-lg-3 control-label text-left">Total Harga</label>
 											<div class="col-xs-8 col-lg-8 inputGroupContainer">
-												<input type="text" class="form-control" name="total_harga" id="total_harga" placeholder="Masukkan total harga" required />
+												<input type="text" class="form-control" name="total_harga" id="total_harga" onkeypress="return isNumberKey(event)" placeholder="Masukkan total harga" required />
 											</div>
 										</div>
 									</div>
@@ -170,7 +170,7 @@
 										<div class="form-group">
 											<label class="col-xs-3 col-lg-3 control-label text-left">Total Bayar</label>
 											<div class="col-xs-8 col-lg-8 inputGroupContainer">
-												<input type="text" class="form-control" name="total_bayar" id="total_bayar" placeholder="Masukkan total bayar" required />
+												<input type="text" class="form-control" name="total_bayar" id="total_bayar" onkeypress="return isNumberKey(event)" placeholder="Masukkan total bayar" required />
 											</div>
 										</div>
 									</div>
@@ -216,7 +216,7 @@
 										<div class="form-group">
 											<label class="col-xs-3 col-lg-3 control-label text-left">Harga Satuan</label>
 											<div class="col-xs-8 col-lg-8 inputGroupContainer">
-												<input type="text" class="form-control" name="harga_satuan" id="harga_satuan" placeholder="Masukkan harga satuan" required />
+												<input type="text" class="form-control" name="harga_satuan" id="harga_satuan" onkeypress="return isNumberKey(event)" placeholder="Masukkan harga satuan" required />
 											</div>
 										</div>
 									</div>
@@ -284,6 +284,13 @@
 	{
 		i_harga_satuan.value = formatRupiah(this.value, 'Rp');
 	});
+
+	function isNumberKey(evt) {
+	    var charCode = (evt.which) ? evt.which : evt.keyCode;
+	    if (charCode > 31 && (charCode < 48 || charCode > 57))
+	        return false;
+	    return true;
+	}
 
 	function formatRupiah(angka, prefix)
 	{

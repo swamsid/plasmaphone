@@ -102,7 +102,7 @@ h2{
 	</table>
 	<div class="ttd">
 		<p>Surabaya, <?php echo date('d F Y'); ?></p>
-		<p class="name">Ahmad Syahrul Yusuf</p>
+		<p class="name">Ka. Keuangan</p>
 	</div>
 </body>
 </html>

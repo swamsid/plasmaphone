@@ -121,7 +121,7 @@
 										<div class="form-group">
 											<label class="col-xs-3 col-lg-3 control-label text-left">Kuantitas</label>
 											<div class="col-xs-8 col-lg-8 inputGroupContainer">
-												<input type="number" class="form-control" name="kuantitas[]" placeholder="Masukkan kuantitas" required />
+												<input type="number" class="form-control" min="1" name="kuantitas[]" placeholder="Masukkan kuantitas" required />
 											</div>
 										</div>
 									</div>
@@ -177,7 +177,7 @@
 
 		var addButton = $('.add_button');
 		var wrapper = $('.field_wrapper');
-		var fieldHTML = '<div><a href="javascript:void(0);" class="btn btn-xs btn-danger btn-circle remove_button" title="Remove Field"><i class="fa fa-minus fa-fw"></i></a><hr><div class="row" style="margin-top:15px;"><div><div class="col-md-6"><div class="form-group"><label class="col-xs-3 col-lg-3 control-label text-left">Kode Barang</label><div class="col-xs-8 col-lg-8 inputGroupContainer"><input type="text" class="form-control" name="kode_barang[]" placeholder="Masukkan kode barang" required /></div></div></div><div class="col-md-6"><div class="form-group"><label class="col-xs-3 col-lg-3 control-label text-left">Kuantitas</label><div class="col-xs-8 col-lg-8 inputGroupContainer"><input type="text" class="form-control" name="kuantitas[]" placeholder="Masukkan kuantitas" required /></div></div></div></div></div><div>';
+		var fieldHTML = '<div><a href="javascript:void(0);" class="btn btn-xs btn-danger btn-circle remove_button" title="Remove Field"><i class="fa fa-minus fa-fw"></i></a><hr><div class="row" style="margin-top:15px;"><div><div class="col-md-6"><div class="form-group"><label class="col-xs-3 col-lg-3 control-label text-left">Kode Barang</label><div class="col-xs-8 col-lg-8 inputGroupContainer"><input type="text" class="form-control" name="kode_barang[]" placeholder="Masukkan kode barang" required /></div></div></div><div class="col-md-6"><div class="form-group"><label class="col-xs-3 col-lg-3 control-label text-left">Kuantitas</label><div class="col-xs-8 col-lg-8 inputGroupContainer"><input type="number" min="1" class="form-control" name="kuantitas[]" placeholder="Masukkan kuantitas" required /></div></div></div></div></div><div>';
 		var x = 1;
 		$(addButton).click(function(){
 			x++;

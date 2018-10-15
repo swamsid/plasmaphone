@@ -136,7 +136,7 @@
 												<select name="supplier" id="supplier" class="form-control">
 													<option value="0">Pilih Supplier</option>
 													@foreach($data_supplier as $supplier)
-													<option value="{{ $supplier->s_id }}" @if($data[0]->rdt_supplier != 0) selected @endif>{{ $supplier->s_name }}</option>
+													<option value="{{ $sid = $supplier->s_id }}" @if($data[0]->rdt_supplier == $sid) selected @endif>{{ $supplier->s_name }}</option>
 													@endforeach
 												</select>
 											</div>

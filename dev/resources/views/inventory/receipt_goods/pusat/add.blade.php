@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Inventory Penerimaan Barang Dari Supplier')
+@section('title', 'Inventory Penerimaan Barang Dari Pusat')
 
 
 @section('extra_style')
@@ -20,7 +20,7 @@
 
 		<!-- breadcrumb -->
 		<ol class="breadcrumb">
-			<li>Home</li><li>Inventory</li><li>Penerimaan Barang Dari Supplier</li><li>Tambah</li>
+			<li>Home</li><li>Inventory</li><li>Penerimaan Barang Dari Pusat</li><li>Tambah</li>
 		</ol>
 		<!-- end breadcrumb -->
 
@@ -54,39 +54,18 @@
 
 					{{-- FormTemplate .. --}}
 
-					<form id="add-form" class="form-horizontal" action="{{ url('/inventory/penerimaan/supplier/add') }}" method="post">
+					<form id="add-form" class="form-horizontal" action="{{ url('/inventory/penerimaan/pusat/add') }}" method="post">
 						{{ csrf_field() }}
 						<fieldset>
 							<legend>
-								Form Tambah Penerimaan Barang Dari Supplier
+								Form Tambah Penerimaan Barang Dari Pusat
 
 								<span class="pull-right" style="font-size: 0.6em; font-weight: 600">
-									<a href="{{ url('/inventory/penerimaan/supplier') }}">
+									<a href="{{ url('/inventory/penerimaan/pusat') }}">
 										<i class="fa fa-arrow-left"></i> &nbsp;Kembali Ke Halaman Data Table
 									</a>
 								</span>
 							</legend>
-
-							<div class="row" style="margin-top: 15px" >
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="col-xs-4 col-lg-4 control-label text-left">No. Purchase Order</label>
-										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="text" list="list_purchase" class="form-control" name="purchase_order" id="purchase_order" placeholder="Masukkan nomor purchase order...." autocomplete="off" autofocus="" onchange="showPurchase()">
-											<datalist id="list_purchase">
-												@if($purchase == 'null')
-													<option value="">Belum ada purchase order</option>
-												@else
-												@foreach($purchase as $purchase)
-												<option value="{{ $purchase->podt_purchase }}">{{ $purchase->podt_purchase }}</option>
-												@endforeach
-												@endif
-											</datalist>
-										</div>
-									</div>
-								</div>
-							</div>
-							<hr>
 
 							<div class="row">
 								<div class="col-md-6">
@@ -153,20 +132,6 @@
 										</div>
 									</div>
 								</div>
-
-								<div class="col-md-6">
-									<div class="form-group">
-										<label class="col-xs-3 col-lg-3 control-label text-left">Supplier</label>
-										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<select class="form-control" name="supplier" id="supplier">
-												<option value="">---Pilih supplier---</option>
-												@foreach($data_supplier as $supplier)
-												<option value="{{ $supplier->s_id }}">{{ $supplier->s_company }}</option>
-												@endforeach
-											</select>
-										</div>
-									</div>
-								</div>
 							</div>
 
 						</fieldset>
@@ -211,53 +176,6 @@
 <script src="{{ asset('template_asset/js/plugin/bootstrapvalidator/bootstrapValidator.min.js') }}"></script>
 
 <script type="text/javascript">
-	function showPurchase() 
-	{
-		$('#form-load-section-status').fadeIn(200);
-		this.reset();
-		var parameter = $("#purchase_order").val();
-		if (parameter == "") {
-			$.toast({
-				text: 'Ups . Data Yang Anda pilih belum diterima atau sudah dihapus!',
-				showHideTransition: 'fade',
-				icon: 'error'
-			})
-		} else {
-			axios.get(baseUrl+'/pembelian/show-purchase/'+parameter)
-			.then((response) => {
-				if(response.data == null){
-					$.toast({
-						text: 'Ups . Data Yang Anda pilih belum diterima atau sudah dihapus!',
-						showHideTransition: 'fade',
-						icon: 'error'
-					})
-					$('#form-load-section-status').fadeOut(200);
-				}else{
-					initiate(response.data);
-					$('#form-load-section-status').fadeOut(200);
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-			})
-		}
-		
-	}
-
-	function initiate(data)
-	{
-		$('#kode_barang').val(data.podt_kode_barang);
-		$('#qty').val(data.podt_kuantitas);
-		$('#supplier').val(data.podt_kode_suplier);
-	}
-
-	function reset()
-	{
-		$('#kode_barang').val('');
-		$('#qty').val('');
-		$('#supplier').val('');
-	}
-
 	$(document).ready(function(){
 
 		$('#tgl_masuk').datepicker({
@@ -278,13 +196,6 @@
 				validating : 'glyphicon glyphicon-refresh'
 			},
 			fields : {
-				purchase_order : {
-					validators : {
-						notEmpty : {
-							message : 'Masukkan nomor purchase order'
-						}
-					}
-				},
 				kategori : {
 					validators : {
 						notEmpty : {
@@ -327,13 +238,6 @@
 					validators : {
 						notEmpty : {
 							message : 'Masukkan tanggal masuk barang'
-						}
-					}
-				},
-				supplier : {
-					validators : {
-						notEmpty : {
-							message : 'Pilih supplier'
 						}
 					}
 				}

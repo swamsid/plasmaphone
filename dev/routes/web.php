@@ -273,6 +273,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/pembelian/purchase-order/get-purchase-data/{id}','PembelianController@get_purchase_data');
 
 	Route::get('/pembelian/purchase-order/print/{id}','PembelianController@print_purchase');
+	Route::get('/pembelian/purchase-order/pdf/{id}','PembelianController@pdf_purchase');
 
 	// End Purchase Order
 
@@ -304,9 +305,30 @@ Route::group(['middleware' => 'auth'], function(){
 	// Penerimaan barang dari supplier
 	Route::get('/inventory/penerimaan/supplier', 'inventory\ReceptionController@index_supplier');
 	Route::match(['get', 'post'], '/inventory/penerimaan/supplier/add', 'inventory\ReceptionController@add_items_from_supplier');
+	Route::get('/inventory/penerimaan/supplier/get-current-receipt/{id}','inventory\ReceptionController@get_current_receipt');
+	Route::get('/inventory/penerimaan/supplier/edit','inventory\ReceptionController@edit');
+	Route::match(['get', 'post'], '/inventory/penerimaan/supplier/edit-multiple', 'inventory\ReceptionController@multiple_edit_penerimaan_barang');
+	Route::match(['get', 'post'], '/inventory/penerimaan/supplier/update', 'inventory\ReceptionController@update_penerimaan_barang');
+	Route::match(['get', 'post'], '/inventory/penerimaan/supplier/multiple-delete', 'inventory\ReceptionController@multiple_delete_penerimaan');
 	// End penerimaan barang dari supplier
+
+	// Penerimaan barang dari pusat
+	Route::get('/inventory/penerimaan/pusat', 'inventory\ReceptionController@index_pusat');
+	Route::match(['get', 'post'], '/inventory/penerimaan/pusat/add', 'inventory\ReceptionController@add_items_from_pusat');
+	Route::get('/inventory/penerimaan/pusat/get-current-receipt-pusat/{id}','inventory\ReceptionController@get_current_receipt_pusat');
+	Route::get('/inventory/penerimaan/pusat/edit','inventory\ReceptionController@edit_barang_pusat');
+	Route::match(['get', 'post'], '/inventory/penerimaan/pusat/edit-multiple', 'inventory\ReceptionController@multiple_edit_penerimaan_barang_pusat');
+	Route::match(['get', 'post'], '/inventory/penerimaan/pusat/update', 'inventory\ReceptionController@update_penerimaan_barang_pusat');
+	Route::match(['get', 'post'], '/inventory/penerimaan/pusat/multiple-delete', 'inventory\ReceptionController@multiple_delete_penerimaan_pusat');
+	// End penerimaan barang dari pusat
+
+	// Distribusi barang
+	Route::get('/inventory/distribusi', 'inventory\DistribusiController@index_distribusi');
+	Route::get('/inventory/distribusi/get-purchase/{id}','inventory\DistribusiController@show_purchase');
+	Route::match(['get', 'post'], '/inventory/distribusi/print', 'inventory\DistribusiController@print');
+	// End ditribusi barang
 	// End Inventory
 
 	// main route end
-	Route::get('/coba-print', 'PembelianController@coba_print');
+	// Route::get('/coba-print', 'PembelianController@coba_print');
 });

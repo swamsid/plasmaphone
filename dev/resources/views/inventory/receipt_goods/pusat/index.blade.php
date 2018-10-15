@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Penerimaan Barang Dari Supplier')
+@section('title', 'Penerimaan Barang Dari Pusat')
 
 @section('extra_style')
 
@@ -18,7 +18,7 @@
 
 	<!-- breadcrumb -->
 	<ol class="breadcrumb">
-		<li>Home</li><li>Inventory</li><li>Penerimaan Barang Dari Supplier</li>
+		<li>Home</li><li>Inventory</li><li>Penerimaan Barang Dari Pusat</li>
 	</ol>
 	<!-- end breadcrumb -->
 
@@ -47,12 +47,12 @@
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<ul class="menu-table hide-on-small">
 				<li class="">
-					<a href="{{ url('/inventory/penerimaan/supplier') }}">
+					<a href="{{ url('/inventory/penerimaan/pusat') }}">
 						<i class="fa fa-table"></i> &nbsp;Data Tabel
 					</a>
 				</li>
 				<li>
-					<a href="{{ url('/inventory/penerimaan/supplier/add') }}">
+					<a href="{{ url('/inventory/penerimaan/pusat/add') }}">
 						<i class="fa fa-plus"></i> &nbsp;Tambahkan Data
 					</a>
 				</li>
@@ -101,7 +101,7 @@
 		<!-- row -->
 		<div class="row">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px 20px; margin-top: {{ $mt }};">
-				<form id="table-form" method="post" action="{{ url('/inventory/penerimaan/supplier/edit-multiple') }}">
+				<form id="table-form" method="post" action="{{ url('/inventory/penerimaan/pusat/edit-multiple') }}">
 					{!! csrf_field() !!}
 					<table id="dt_basic" class="table table-striped table-bordered table-hover" width="100%">
 						<thead>			                
@@ -110,14 +110,12 @@
 								<th class="text-center" width="5%" style="vertical-align: middle;">
 									---
 								</th>
-								<th data-class="expand"><i class="fa fa-fw fa-building text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;No. Purchase Order</th>
 								<th data-class="expand"><i class="fa fa-fw fa-building text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Kategori</th>
 								<th data-hide="phone"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;IMEI</th>
 								<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Kode Barang</th>
 								<th data-hide="phone"><i class="fa fa-fw fa-user text-muted hidden-md hidden-sm hidden-xs"></i> &nbsp;Nama Barang</th>
 								<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Kuantitas</th>
 								<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Tanggal Masuk</th>
-								<th data-hide="phone,tablet"><i class="fa fa-fw fa-map-marker txt-color-blue hidden-md hidden-sm hidden-xs"></i> &nbsp;Supplier</th>
 								<th class="text-center" data-hide="phone,tablet" width="15%"> Aksi</th>
 							</tr>
 						</thead>
@@ -128,14 +126,12 @@
 								<td class="text-center">
 									<input type="checkbox" class="check-me" name="data_check[]" data-id="{{$barang->i_id}}" value="{{ $barang->i_id }}"/>
 								</td>
-								<td>{{ $barang->i_po }}</td>
 								<td>{{ $barang->i_kategori }}</td>
 								<td>@if($barang->i_imei == "") <center> ----- </center> @else {{ $barang->i_imei }} @endif</td>
 								<td>{{ $barang->i_kode_barang }}</td>
 								<td>{{ $barang->i_nama_barang }}</td>
 								<td><center>{{ $barang->i_qty }}</center></td>
 								<td>{{ $barang->i_tgl_masuk }}</td>
-								<td>{{ $barang->s_company }}</td>
 								<td class="text-center">
 									<button type="button" class="btn btn-xs btn-success btn-circle view" data-toggle="tooltip" data-placement="top" title="View Data" data-id="{{ $barang->i_id }}"><i class="fa fa-eye fa-fw"></i></button>
 									<button class="btn btn-xs btn-success btn-circle edit" data-toggle="tooltip" data-placement="top" title="Edit Data" data-id="{{ $barang->i_id }}"><i class="fa fa-pencil fa-fw"></i></button>
@@ -202,10 +198,6 @@
 									<tr>
 										<td>Tanggal Masuk</td>
 										<td id="v_tgl_masuk"></td>
-									</tr>
-									<tr>
-										<td>Supplier</td>
-										<td id="v_supplier"></td>
 									</tr>
 									
 								</table>
@@ -314,7 +306,7 @@
 				let ask = confirm(selected.length+' Data Akan Dihapus Apakah Anda Yakin ?');
 				if(ask){
 					$('#overlay').fadeIn(300);
-					axios.post(baseUrl+'/inventory/penerimaan/supplier/multiple-delete', {
+					axios.post(baseUrl+'/inventory/penerimaan/pusat/multiple-delete', {
 						data 	: selected,
 						_token 	: '{{ csrf_token() }}'
 					})
@@ -347,7 +339,7 @@
 		$(".edit").click(function(evt){
 			evt.preventDefault(); context = $(this);
 
-			window.location = baseUrl+'/inventory/penerimaan/supplier/edit?id='+context.data('id');
+			window.location = baseUrl+'/inventory/penerimaan/pusat/edit?id='+context.data('id');
 		});
 
 		// hapus 1 click
@@ -357,7 +349,7 @@
 			let ask = confirm('Apakah Anda Yakin Akan Menghapus Data Ini?');
 			if(ask){
 				$('#overlay').fadeIn(300);
-				axios.post(baseUrl+'/inventory/penerimaan/supplier/multiple-delete', {
+				axios.post(baseUrl+'/inventory/penerimaan/pusat/multiple-delete', {
 					data 	: [context.data('id')],
 					_token 	: '{{ csrf_token() }}'
 				})
@@ -374,7 +366,7 @@
 		// view click
 		$(".view").click(function(evt){
 			evt.preventDefault(); context = $(this);
-			axios.get(baseUrl+'/inventory/penerimaan/supplier/get-current-receipt/'+context.data('id'))
+			axios.get(baseUrl+'/inventory/penerimaan/pusat/get-current-receipt-pusat/'+context.data('id'))
 			.then((response) => {
 				if(response.data == null){
 					$.toast({
@@ -407,7 +399,6 @@
 			$('#v_nama_barang').text(data.i_nama_barang);
 			$('#v_qty').text(data.i_qty);
 			$('#v_tgl_masuk').text(data.i_tgl_masuk);
-			$('#v_supplier').text(data.s_company);
 			$('#myModal').modal('show');
 		}
 

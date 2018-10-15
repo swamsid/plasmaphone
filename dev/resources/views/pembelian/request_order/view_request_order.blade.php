@@ -44,7 +44,7 @@
 <div id="content">
 
 	<div class="row">
-		<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 			<ul class="menu-table hide-on-small">
 				<li class="">
 					<a href="{{ url('/pembelian/request-order') }}">
@@ -80,7 +80,7 @@
 
 		@if(Session::has('flash_message_success'))
 		<?php $mt = '0px'; ?>
-		<div class="col-md-8" style="margin-top: 20px;">
+		<div class="col-md-12" style="margin-top: 20px;">
 			<div class="alert alert-success alert-block">
 				<a class="close" data-dismiss="alert" href="#">×</a>
 				<h4 class="alert-heading">&nbsp;<i class="fa fa-thumbs-up"></i> &nbsp;Pemberitahuan Berhasil</h4>
@@ -89,7 +89,7 @@
 		</div>
 		@elseif(Session::has('flash_message_error'))
 		<?php $mt = '0px'; ?>
-		<div class="col-md-8" style="margin-top: 20px;">
+		<div class="col-md-12" style="margin-top: 20px;">
 			<div class="alert alert-danger alert-block">
 				<a class="close" data-dismiss="alert" href="#">×</a>
 				<h4 class="alert-heading">&nbsp;<i class="fa fa-frown-o"></i> &nbsp;Pemberitahuan Gagal</h4>
