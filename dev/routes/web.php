@@ -241,6 +241,7 @@ Route::group(['middleware' => 'auth'], function(){
 
 	Route::get('/pembelian/konfirmasi-pembelian/get-data-order/{id}','PembelianController@get_data_order');
 
+	Route::get('/pembelian/konfirmasi-pembelian/download-pdf/{id}','PembelianController@downloadpdf');
 	Route::get('/pembelian/konfirmasi-pembelian/generate-pdf/{id}','PembelianController@generatePDF');
 	Route::get('/pembelian/konfirmasi-pembelian/print/{id}','PembelianController@print');
 
@@ -296,6 +297,8 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/pembelian/purchase-return/get-current-return/{id}','PembelianController@get_edit_return');
 	
 	Route::match(['get', 'post'], '/pembelian/purchase-return/multiple-delete', 'PembelianController@multiple_delete_purchase_return');
+
+	// Route::get('/newprint', 'PembelianController@new_print');
 
 	// End Return Barang
 

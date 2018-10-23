@@ -143,7 +143,7 @@
 								<td>{{ $data->podt_kode_barang }}</td>
 								<td>{{ $data->s_name }}</td>
 								<td><center>{{ $data->podt_kuantitas }}</center></td>
-								<td>{{ rupiah($data->podt_harga_satuan) }}</td>
+								<td style="text-align: right;">{{ rupiah($data->podt_harga_satuan) }}</td>
 								<td>{{ $data->po_status }}</td>
 								<td class="text-center">
 									<button type="button" class="btn btn-xs btn-success btn-circle view" data-toggle="tooltip" data-placement="top" title="View Data" data-id="{{ $data->podt_no }}"><i class="fa fa-eye fa-fw"></i></button>

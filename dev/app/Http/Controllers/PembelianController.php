@@ -54,7 +54,7 @@ class PembelianController extends Controller
                 ->where('d_request_order_dt.rdt_supplier', $id)->get();
         // return view('pembelian/konfirmasi_pembelian/print', compact('data_order'));
 
-        $pdf = PDF::loadView('pembelian/konfirmasi_pembelian/print', compact('data_order'));
+        $pdf = PDF::loadView('pembelian/konfirmasi_pembelian/newpdf', compact('data_order'));
         return $pdf->stream();
     }
 
@@ -66,7 +66,18 @@ class PembelianController extends Controller
                         ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
                         ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
                 ->where('d_request_order_dt.rdt_supplier', $id)->get();
-        return view('pembelian/konfirmasi_pembelian/print', compact('data_order'));
+        return view('pembelian/konfirmasi_pembelian/newprint', compact('data_order'));
+    }
+
+    public function downloadpdf($id)
+    {
+        $data_order = DB::table('d_request_order_dt')
+                        ->select('d_request_order_dt.*', 'd_request_order.*', 'd_supplier.*', 'd_cabang.*')
+                        ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                        ->join('d_supplier', 'd_request_order_dt.rdt_supplier', '=', 'd_supplier.s_id', 'left')
+                        ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
+                ->where('d_request_order_dt.rdt_supplier', $id)->get();
+        return view('pembelian/konfirmasi_pembelian/pdf', compact('data_order', 'id'));
     }
 
     public function return_barang()
@@ -381,6 +392,31 @@ class PembelianController extends Controller
         return implode("", explode(".", $explode_rp));
     }
 
+    function generate_code($table, $field, $lebar=0, $awalan)
+    {
+        $order = DB::table($table)->select($field)->orderBy($field, 'desc')->limit(1);
+        $countData = $order->count();
+        if ($countData == 0) {
+            $nomor = 1;
+        }else{
+            $getData = $order->get();
+            $row = array();
+            foreach ($getData as $value) {
+                $row = array($value->$field);
+            }
+            // print_r($row); die;
+            $nomor = intval(substr($row[0], strlen($awalan)))+1;
+        }
+
+        if ($lebar > 0) {
+            $angka = $awalan.str_pad($nomor, $lebar,"0", STR_PAD_LEFT);
+        }else{
+            $angka = $awalan.$nomor;
+        }
+
+        return $angka;
+    }
+
     public function add_purchase(Request $request)
     {
         // print_r($request->all()); die;
@@ -388,12 +424,9 @@ class PembelianController extends Controller
         $total_bayar = $this->formatPrice($request->total_bayar);
         $harga_satuan = $this->formatPrice($request->harga_satuan);
         // echo $harga_satuan; die;
-        $order = DB::table('d_purchase_order')->get();
-        $count = count($order)+1;
-        $po_no = "PO".date('Ymd').$count;
-        $dt_order = DB::table('d_purchase_order_dt')->get();
-        $count = count($dt_order)+1;
-        $podt_no = date('Ymd').$count;
+        $po_no = $this->generate_code('d_purchase_order', 'po_no', 4, 'PO'.date('ymd'));
+        
+        $podt_no = $this->generate_code('d_purchase_order_dt', 'podt_no', 4, 'PODT'.date('dmy'));
         // print_r($po_no); die;
         if ($request->diskon == "") {
             # code...
@@ -652,23 +685,24 @@ class PembelianController extends Controller
 
             // print_r($data); die;
 
-            $ro_no = date('YmdHms');
-            $rdt_no = date('HmsYmd').'1';
+            $ro_no = $this->generate_code('d_request_order', 'ro_no', 4, 'RO'.date('ymd'));
+            // $rdt_no = date('HmsYmd').'1';
 
             $sql = DB::table('d_request_order')->insert([
                         'ro_no'=>$ro_no,
                         'ro_cabang'=>$data['ro_cabang']
                     ]);
+            
             $no = 1;
             foreach ($data['kode_barang'] as $key => $value) {
-                
+                $rdt_no = $this->generate_code('d_request_order_dt', 'rdt_no', 4, 'RODT'.date('dmy'));
                 if (!empty($value)) {
 
-                    $check_rdtno = DB::table('d_request_order_dt')->where('rdt_no', $rdt_no)->get();
+                    // $check_rdtno = DB::table('d_request_order_dt')->where('rdt_no', $rdt_no)->count();
 
-                    if (count($check_rdtno) > 0) {
-                        $rdt_no = date('HmsYmd').$no;
-                    }
+                    // if ($check_rdtno > 0) {
+                    //     $rdt_no = date('HmsYmd').$no;
+                    // }
                     
                     $sql2 = DB::table('d_request_order_dt')->insert([
                         'rdt_request'=>$ro_no,
@@ -1009,6 +1043,11 @@ class PembelianController extends Controller
         $pdf = PDF::loadView('pembelian.coba_cetak');
         return $pdf->stream();
         // return $pdf->download('footballerdetail.pdf');
+    }
+
+    public function new_print()
+    {
+        return view('pembelian.konfirmasi_pembelian.newprint');
     }
     
 }
