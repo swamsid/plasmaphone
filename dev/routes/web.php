@@ -154,6 +154,27 @@ Route::group(['middleware' => 'auth'], function(){
 
 	// master barang end
 
+	// master gudang
+	Route::get('/master/gudang', 'master\gudang\gudang_controller@gudang')->name('gudang.index');
+	Route::match(['get', 'post'],'/master/gudang/add', 'master\gudang\gudang_controller@add_gudang');
+	Route::match(['get', 'post'], '/master/gudang/multiple-delete', 'master\gudang\gudang_controller@multiple_delete');
+	Route::post('/master/gudang/edit-multiple', 'master\gudang\gudang_controller@edit_multiple');
+	Route::get('/master/gudang/edit', 'master\gudang\gudang_controller@edit');
+	Route::post('/master/gudang/update', 'master\gudang\gudang_controller@update');
+	Route::match(['get', 'post'], '/master/gudang/get/{id}', 'master\gudang\gudang_controller@get_gudang');
+	// master gudang end
+
+	// master jenis barang
+	Route::get('/master/jenis-barang', 'master\jenisbarang\jenisbarang_controller@index')->name('jenis-barang.index');
+	// master jenis barang end
+
+	// master class barang
+	Route::get('/master/class-barang', 'master\classbarang\classbarang_controller@index')->name('class-barang.index');
+	// master class barang end
+
+	// master satuan barang
+	Route::get('/master/satuan-barang', 'master\satuanbarang\satuanbarang_controller@index')->name('satuan-barang.index');
+	// master satuan barang end
 
 	// master Suppplier
 
@@ -274,7 +295,8 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/pembelian/purchase-order/get-purchase-data/{id}','PembelianController@get_purchase_data');
 
 	Route::get('/pembelian/purchase-order/print/{id}','PembelianController@print_purchase');
-	Route::get('/pembelian/purchase-order/pdf/{id}','PembelianController@pdf_purchase');
+	Route::get('/pembelian/purchase-order/purchase-pdf/{id}','PembelianController@viewpdf_purchase');
+	Route::get('/pembelian/purchase-order/generate-pdf/{id}','PembelianController@pdf_purchase');
 
 	// End Purchase Order
 

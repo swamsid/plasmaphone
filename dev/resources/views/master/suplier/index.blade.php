@@ -46,7 +46,7 @@
 	<div id="content">
 
 		<div class="row">
-			<div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<ul class="menu-table hide-on-small">
 					<li class="active">
 						<a href="#">

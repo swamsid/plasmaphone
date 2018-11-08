@@ -30,6 +30,22 @@
 						<a href="{{ url('master/suplier/suplier') }}">Master Supplier</a>
 					</li>
 
+					<li class="{{ (Request::is('master/gudang/*') || Request::is('master/gudang')) ? 'active' : '' }}">
+						<a href="{{ route('gudang.index') }}">Master Gudang</a>
+					</li>
+
+					<li class="{{ (Request::is('master/jenis-barang/*') || Request::is('master/jenis-barang')) ? 'active' : '' }}">
+						<a href="{{ route('jenis-barang.index') }}">Master Jenis Barang</a>
+					</li>
+
+					<li class="{{ (Request::is('master/class-barang/*') || Request::is('master/class-barang')) ? 'active' : '' }}">
+						<a href="{{ route('class-barang.index') }}">Master Class Barang</a>
+					</li>
+
+					<li class="{{ (Request::is('master/satuan-barang/*') || Request::is('master/satuan-barang')) ? 'active' : '' }}">
+						<a href="{{ route('satuan-barang.index') }}">Master Satuan Barang</a>
+					</li>
+
 					<li class="{{ (Request::is('master/barang/*') || Request::is('master/barang')) ? 'active' : '' }}">
 						<a href="{{ route('barang.index') }}">Master Barang</a>
 					</li>
@@ -74,23 +90,23 @@
 
 			<li <?php if(preg_match("/request-order/i", $url)) { ?> class="active open" <?php } ?>>
 				<a href="#"><i class="fa fa-lg fa-fw fa-credit-card"></i> <span class="menu-item-parent">Pembelian</span></a>
-				<ul <?php if(preg_match("/request-order/i", $url)) { ?> style="display: block;" <?php } ?>>
-					<li>
+				<ul <?php if(preg_match("/request-order/i", $url) || preg_match("/rencana-pembelian/i", $url) || preg_match("/konfirmasi-pembelian/i", $url) || preg_match("/purchase-order/i", $url) || preg_match("/purchase-return/i", $url)) { ?> style="display: block;" <?php } ?>>
+					<li <?php if(preg_match("/request-order/i", $url)) { ?> class="active" <?php } ?>>
 						<a href="{{ url('/pembelian/request-order') }}">Request Order</a>
 					</li>
-					<li>
+					<li <?php if(preg_match("/rencana-pembelian/i", $url)) { ?> class="active" <?php } ?>>
 						<a href="{{ url('/pembelian/rencana-pembelian') }}">Rencana Pembelian</a>
 					</li>
 
-					<li>
+					<li <?php if(preg_match("/konfirmasi-pembelian/i", $url)) { ?> class="active" <?php } ?>>
 						<a href="{{ url('/pembelian/konfirmasi-pembelian') }}">Konfirmasi Pembelian</a>
 					</li>
 
-					<li>
+					<li <?php if(preg_match("/purchase-order/i", $url)) { ?> class="active" <?php } ?>>
 						<a href="{{ url('/pembelian/purchase-order') }}">Purchase Order</a>
 					</li>
 
-					<li>
+					<li <?php if(preg_match("/purchase-return/i", $url)) { ?> class="active" <?php } ?>>
 						<a href="{{ url('/pembelian/purchase-return') }}">Return Barang</a>
 					</li>
 

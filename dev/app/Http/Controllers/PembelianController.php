@@ -623,7 +623,7 @@ class PembelianController extends Controller
     public function print_purchase($id)
     {
         $data_purchase = DB::table('d_purchase_order_dt')
-                        ->select('d_supplier.s_company', 'd_purchase_order.*', 'd_purchase_order_dt.*', 'd_cabang.c_nama')
+                        ->select('d_supplier.s_company', 'd_supplier.s_phone', 'd_supplier.s_address', 'd_purchase_order.*', 'd_purchase_order_dt.*', 'd_cabang.c_nama')
                         ->join('d_purchase_order', 'd_purchase_order_dt.podt_purchase', '=', 'd_purchase_order.po_no')
                         ->join('d_request_order_dt', 'd_purchase_order.po_request_order_no', '=', 'd_request_order_dt.rdt_no')
                         ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
@@ -632,7 +632,43 @@ class PembelianController extends Controller
                         ->where('d_purchase_order_dt.podt_kode_suplier', $id)
                         ->where('d_purchase_order.po_status', 'Menunggu')
                         ->get();
-        return view('pembelian/purchase_order/print_out', compact('data_purchase'));
+        foreach ($data_purchase as $value) {
+            # code...
+            $sub_total_bayar = $value->po_total_bayar;
+
+            $total_bayar_sub[] = $sub_total_bayar;
+        }
+
+        $jumlah = array_sum($total_bayar_sub);
+        return view('pembelian/purchase_order/print_out', compact('data_purchase', 'jumlah', 'id'));
+    }
+
+    public function viewpdf_purchase($id)
+    {
+        $data_purchase = DB::table('d_purchase_order_dt')
+                        ->select('d_supplier.s_company', 'd_supplier.s_phone', 'd_supplier.s_address', 'd_purchase_order.*', 'd_purchase_order_dt.*', 'd_cabang.c_nama')
+                        ->join('d_purchase_order', 'd_purchase_order_dt.podt_purchase', '=', 'd_purchase_order.po_no')
+                        ->join('d_request_order_dt', 'd_purchase_order.po_request_order_no', '=', 'd_request_order_dt.rdt_no')
+                        ->join('d_request_order', 'd_request_order_dt.rdt_request', '=', 'd_request_order.ro_no')
+                        ->join('d_supplier', 'd_purchase_order_dt.podt_kode_suplier', 'd_supplier.s_id')
+                        ->join('d_cabang', 'd_request_order.ro_cabang', '=', 'd_cabang.c_id')
+                        ->where('d_purchase_order_dt.podt_kode_suplier', $id)
+                        ->where('d_purchase_order.po_status', 'Menunggu')
+                        ->get();
+
+        foreach ($data_purchase as $value) {
+            # code...
+            $sub_total_bayar = $value->po_total_bayar;
+
+            $total_bayar_sub[] = $sub_total_bayar;
+        }
+
+        $jumlah = array_sum($total_bayar_sub);
+        // print_r(array_sum($total_bayar_sub)); die;
+
+        return view('pembelian/purchase_order/pdf', compact('data_purchase', 'jumlah', 'id'));
+        // $pdf = PDF::loadView('pembelian/purchase_order/pdf', compact('data_purchase', 'jumlah'));
+        // return $pdf->stream();
     }
 
     public function pdf_purchase($id)
@@ -659,7 +695,7 @@ class PembelianController extends Controller
         // print_r(array_sum($total_bayar_sub)); die;
 
         // return view('pembelian/purchase_order/pdf', compact('data_purchase'));
-        $pdf = PDF::loadView('pembelian/purchase_order/pdf', compact('data_purchase', 'jumlah'));
+        $pdf = PDF::loadView('pembelian/purchase_order/newpdf', compact('data_purchase', 'jumlah'));
         return $pdf->stream();
     }
 
