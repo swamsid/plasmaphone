@@ -51,7 +51,7 @@
 		* 'fixed-page-footer' - Fixes footer
 		* 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 	-->
-	<body class="menu-on-top">
+	<body class="menu-on-top fixed-header fixed-navigation fixed-page-footer">
 
 		<div id="overlay">
 			<div class="content-loader" style="background: none; width:60%; margin: 17em auto; text-align: center; color: #eee;">

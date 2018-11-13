@@ -54,7 +54,7 @@
 
 				{{-- FormTemplate .. --}}
 
-				<form id="gudang-form" class="form-horizontal" action="{{ url('master/gudang/add') }}" method="post">
+				<form id="data-form" class="form-horizontal" method="post">
 					{{ csrf_field() }}
 					<fieldset>
 						<legend>
@@ -72,7 +72,7 @@
 								<div class="form-group">
 									<label class="col-xs-4 col-lg-4 control-label text-left">Kode Gudang</label>
 									<div class="col-xs-7 col-lg-7 inputGroupContainer">
-										<input type="text" class="form-control" name="kode_gudang" value="{{ $no_gudang }}" readonly placeholder="Masukkan kode gudang" />
+										<input type="text" class="form-control" id="kode_gudang" name="kode_gudang" v-model="form_data.kode_gudang" value="{{ $kode_gudang }}" readonly placeholder="Masukkan kode gudang" />
 									</div>
 								</div>
 							</div>
@@ -81,7 +81,7 @@
 								<div class="form-group">
 									<label class="col-xs-4 col-lg-4 control-label text-left">Nama Gudang</label>
 									<div class="col-xs-7 col-lg-7 inputGroupContainer">
-										<input type="text" class="form-control" name="nama_gudang" placeholder="Masukkan nama gudang" />
+										<input type="text" class="form-control" id="nama_gudang" name="nama_gudang" v-model="form_data.nama_gudang" placeholder="Masukkan nama gudang" />
 									</div>
 								</div>
 							</div>
@@ -92,7 +92,7 @@
 					<div class="form-actions">
 						<div class="row">
 							<div class="col-md-12">
-								<button class="btn btn-default" type="submit">
+								<button class="btn btn-primary" type="button" id="submit" @click="submit_form" :disabled="btn_save_disabled">
 									<i class="fa fa-floppy-o"></i>
 									&nbsp;Simpan
 								</button>
@@ -131,27 +131,104 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		// product form
+		var baseUrl = '{{ url('/') }}';
 
-		$('#gudang-form').bootstrapValidator({
-			feedbackIcons : {
-				valid : 'glyphicon glyphicon-ok',
-				invalid : 'glyphicon glyphicon-remove',
-				validating : 'glyphicon glyphicon-refresh'
-			},
-			fields : {
-				kode_gudang : {
-					validators : {
-						notEmpty : {
-							message : 'Kode Gudang Tidak Boleh Kosong'
+		function validation_regis(){
+			$('#data-form').bootstrapValidator({
+				feedbackIcons : {
+					valid : 'glyphicon glyphicon-ok',
+					invalid : 'glyphicon glyphicon-remove',
+					validating : 'glyphicon glyphicon-refresh'
+				},
+				fields : {
+					kode_gudang : {
+						validators : {
+							notEmpty : {
+								message : 'Kode Gudang Tidak Boleh Kosong'
+							}
 						}
+					},
+					nama_gudang : {
+						validators : {
+							notEmpty : {
+								message : 'Nama Gudang Tidak Boleh Kosong'
+							}
+						}
+					}
+				}
+			});
+		}
+
+		var app = new Vue({
+			el 		: '#content',
+			data 	: {
+
+				btn_save_disabled 	: false,
+
+				form_data : {
+					kode_gudang 			: '{{ $kode_gudang }}',
+					nama_gudang 			: ''
+				}
+
+			},
+			mounted: function(){
+				validation_regis();
+				// console.log(this.form_data.nama_lengkap);
+			},
+			methods: {
+				submit_form: function(e){
+					e.preventDefault();
+
+					if($('#data-form').data('bootstrapValidator').validate().isValid()){
+						this.btn_save_disabled = true;
+						let btn = $('#submit');
+						btn.attr('disabled', 'disabled');
+						btn.html('<i class="fa fa-floppy-o"></i> &nbsp;Proses...');
+
+						axios.post(baseUrl+'/master/gudang/add', 
+							$('#data-form').serialize()
+						).then((response) => {
+
+							if(response.data.status == 'berhasil'){
+
+								$.toast({
+								    text: 'Data Supplier terbaru Anda berhasil disimpan...!',
+								    showHideTransition: 'fade',
+								    icon: 'success'
+								})
+
+								this.reset_form();
+								this.form_data.kode_gudang = response.data.no_gudang;
+								
+							} else {
+								$.toast({
+								    text: 'Ada kesalahan dalam proses input data, coba lagi...!',
+								    showHideTransition: 'fade',
+								    icon: 'error'
+								})
+							}
+
+						}).catch((err) => {
+							console.log(err);
+						}).then(() => {
+							this.btn_save_disabled = false;
+							btn.html('<i class="fa fa-floppy-o"></i> &nbsp;Simpan');
+						})
+
+						return false;
+					}else{
+						$.toast({
+						    text: 'Ada Kesalahan Dengan Inputan Anda. Harap Mengecek Ulang..',
+						    showHideTransition: 'fade',
+						    icon: 'error'
+						})
 					}
 				},
-				nama_gudang : {
-					validators : {
-						notEmpty : {
-							message : 'Nama Gudang Tidak Boleh Kosong'
-						}
-					}
+
+				reset_form:function(){
+					this.form_data.kode_gudang 		= '';
+					this.form_data.nama_gudang 		= '';
+					$('#data-form').data('bootstrapValidator').resetForm();
 				}
 			}
 		});

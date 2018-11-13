@@ -166,6 +166,13 @@ Route::group(['middleware' => 'auth'], function(){
 
 	// master jenis barang
 	Route::get('/master/jenis-barang', 'master\jenisbarang\jenisbarang_controller@index')->name('jenis-barang.index');
+	Route::match(['get', 'post'], '/master/jenis-barang/add', 'master\jenisbarang\jenisbarang_controller@add')->name('jenis-barang.add');
+	Route::get('/master/jenis-barang/get-resources','master\jenisbarang\jenisbarang_controller@get_resource');
+	Route::match(['get', 'post'], '/master/jenis-barang/multiple-delete', 'master\jenisbarang\jenisbarang_controller@multiple_delete');
+	Route::post('/master/jenis-barang/edit-multiple', 'master\jenisbarang\jenisbarang_controller@edit_multiple');
+	Route::get('/master/jenis-barang/edit', 'master\jenisbarang\jenisbarang_controller@edit');
+	Route::post('/master/jenis-barang/update', 'master\jenisbarang\jenisbarang_controller@update');
+	Route::match(['get', 'post'], '/master/jenis-barang/get/{id}', 'master\jenisbarang\jenisbarang_controller@get_jenisbarang');
 	// master jenis barang end
 
 	// master class barang

@@ -34,9 +34,15 @@ class suplier_controller extends Controller
                 's_limit'   => $data['limit']
             ]);
             if ($sql) {
-                return redirect('master/suplier/suplier')->with('flash_message_success','Semua Data Supplier Yang Terakhir Anda Input Berhasil Tersimpan Di Database!');
+                // return redirect('master/suplier/suplier')->with('flash_message_success','Semua Data Supplier Yang Terakhir Anda Input Berhasil Tersimpan Di Database!');
+                return  json_encode([
+                    'status'    => 'berhasil'
+                ]);
             }else{
-                return redirect('master/suplier/suplier')->with('flash_message_error','Semua Data Supplier Yang Terakhir Anda Input Gagal Tersimpan Di Database!');
+                // return redirect('master/suplier/suplier')->with('flash_message_error','Semua Data Supplier Yang Terakhir Anda Input Gagal Tersimpan Di Database!');
+                return  json_encode([
+                    'status'    => 'gagal'
+                ]);
             }
             
         }

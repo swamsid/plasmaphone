@@ -169,7 +169,7 @@
 						<div class="form-actions">
 							<div class="row">
 								<div class="col-md-12">
-									<button class="btn btn-default" id="submit">
+									<button class="btn btn-primary" id="submit">
 										<i class="fa fa-floppy-o"></i>
 										&nbsp;Simpan
 									</button>
@@ -310,6 +310,7 @@
 						
 						let btn = $('#submit');
 						btn.attr('disabled', 'disabled');
+						btn.html('<i class="fa fa-floppy-o"></i> &nbsp;Proses...');
 
 						axios.post(baseUrl+'/master/suplier/suplier/update', $('#form-edit').serialize())
 							.then((response) => {
@@ -332,6 +333,7 @@
 								console.log(err);
 							}).then(function(){
 								btn.removeAttr('disabled');
+								btn.html('<i class="fa fa-floppy-o"></i> &nbsp;Simpan');
 							})
 					}
 

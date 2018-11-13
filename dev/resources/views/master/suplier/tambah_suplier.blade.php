@@ -54,7 +54,7 @@
 
 					{{-- FormTemplate .. --}}
 
-					<form id="supplier-form" class="form-horizontal" action="{{ url('master/suplier/suplier/add') }}" method="post">
+					<form id="data-form" class="form-horizontal" method="post">
 						{{ csrf_field() }}
 						<fieldset>
 							<legend>
@@ -72,7 +72,7 @@
 									<div class="form-group">
 										<label class="col-xs-4 col-lg-4 control-label text-left">Nama Perusahaan</label>
 										<div class="col-xs-7 col-lg-7 inputGroupContainer">
-											<input type="text" class="form-control" name="nama_perusahaan" placeholder="Masukkan Nama Perusahaan" />
+											<input type="text" class="form-control" name="nama_perusahaan" v-model="form_data.nama_perusahaan" placeholder="Masukkan Nama Perusahaan" />
 										</div>
 									</div>
 								</div>
@@ -83,7 +83,7 @@
 									<div class="form-group">
 										<label class="col-xs-4 col-lg-4 control-label text-left">Nama Supplier</label>
 										<div class="col-xs-7 col-lg-7 inputGroupContainer">
-											<input type="text" class="form-control" name="nama_suplier" placeholder="Masukkan Nama Supplier" />
+											<input type="text" class="form-control" name="nama_suplier" v-model="form_data.nama_suplier" placeholder="Masukkan Nama Supplier" />
 										</div>
 									</div>
 								</div>
@@ -92,7 +92,7 @@
 									<div class="form-group">
 										<label class="col-xs-3 col-lg-3 control-label text-left">Limit</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<input type="number" min="1" class="form-control" name="limit" placeholder="Masukkan Limitation" />
+											<input type="number" min="1" class="form-control" name="limit" v-model="form_data.limit" placeholder="Masukkan Limitation" />
 										</div>
 									</div>
 								</div>
@@ -105,7 +105,7 @@
 										<div class="col-xs-7 col-lg-7 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="fa fa-phone"></i></span>
-												<input type="text" class="form-control" name="telp_suplier" placeholder="Masukkan Nomor Telepon" />
+												<input type="text" class="form-control" name="telp_suplier" v-model="form_data.telp_suplier" placeholder="Masukkan Nomor Telepon" />
 											</div>
 										</div>
 									</div>
@@ -117,7 +117,7 @@
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="fa fa-fax"></i></span>
-												<input type="text" class="form-control" name="fax_suplier" placeholder="Masukkan Nomor Fax Supplier" />
+												<input type="text" class="form-control" name="fax_suplier" v-model="form_data.fax_suplier" placeholder="Masukkan Nomor Fax Supplier" />
 											</div>
 										</div>
 									</div>
@@ -129,7 +129,7 @@
 									<div class="form-group">
 										<label class="col-xs-4 col-lg-4 control-label text-left">Alamat Supplier</label>
 										<div class="col-xs-7 col-lg-7 inputGroupContainer">
-											<textarea class="form-control" rows="5" style="resize: none;" placeholder="Masukkan Alamat Supplier" name="alamat_suplier"></textarea>
+											<textarea class="form-control" rows="5" style="resize: none;" placeholder="Masukkan Alamat Supplier" name="alamat_suplier" v-model="form_data.alamat_suplier"></textarea>
 										</div>
 									</div>
 								</div>
@@ -138,7 +138,7 @@
 									<div class="form-group">
 										<label class="col-xs-3 col-lg-3 control-label text-left">Keterangan</label>
 										<div class="col-xs-8 col-lg-8 inputGroupContainer">
-											<textarea class="form-control" rows="5" style="resize: none;" placeholder="Tambahkan Keterangan Tentang Supplier" name="keterangan"></textarea>
+											<textarea class="form-control" rows="5" style="resize: none;" placeholder="Tambahkan Keterangan Tentang Supplier" name="keterangan" v-model="form_data.keterangan"></textarea>
 										</div>
 									</div>
 								</div>
@@ -149,7 +149,7 @@
 						<div class="form-actions">
 							<div class="row">
 								<div class="col-md-12">
-									<button class="btn btn-default" type="submit">
+									<button class="btn btn-primary" type="button" @click="submit_form" :disabled="btn_save_disabled">
 										<i class="fa fa-floppy-o"></i>
 										&nbsp;Simpan
 									</button>
@@ -188,64 +188,145 @@
 		<script type="text/javascript">
 			$(document).ready(function(){
 				// product form
+				var baseUrl = '{{ url('/') }}';
 
-				$('#supplier-form').bootstrapValidator({
-					feedbackIcons : {
-						valid : 'glyphicon glyphicon-ok',
-						invalid : 'glyphicon glyphicon-remove',
-						validating : 'glyphicon glyphicon-refresh'
+				function validation_regis(){
+					$('#data-form').bootstrapValidator({
+						feedbackIcons : {
+							valid : 'glyphicon glyphicon-ok',
+							invalid : 'glyphicon glyphicon-remove',
+							validating : 'glyphicon glyphicon-refresh'
+						},
+						fields : {
+							nama_perusahaan : {
+								validators : {
+									notEmpty : {
+										message : 'Nama Perusahaan Tidak Boleh Kosong'
+									}
+								}
+							},
+							nama_suplier : {
+								validators : {
+									notEmpty : {
+										message : 'Nama Supplier Tidak Boleh Kosong'
+									}
+								}
+							},
+							limit : {
+								validators : {
+									notEmpty : {
+										message : 'Form Limit Tidak Boleh Kosong'
+									},
+									numeric : {
+										message : 'Limit Hanya Boleh Inputan Angka'
+									}
+								}
+							},
+							telp_suplier : {
+								validators : {
+									notEmpty : {
+										message : 'Nomor Telepon Tidak Boleh Kosong'
+									},
+									numeric : {
+										message : 'Nomor Telepon Ini Tampaknya Salah'
+									}
+								}
+							},
+							fax_suplier : {
+								validators : {
+									notEmpty : {
+										message : 'Nomor Fax Tidak Boleh Kosong'
+									},
+									numeric : {
+										message : 'Nomor Fax Ini Tampaknya Salah'
+									}
+								}
+							},
+							alamat_suplier : {
+								validators : {
+									notEmpty : {
+										message : 'Alamat Tidak Boleh Kosong'
+									}
+								}
+							}
+						}
+					});
+				}
+
+				var app = new Vue({
+					el 		: '#content',
+					data 	: {
+
+						btn_save_disabled 	: false,
+
+						form_data : {
+							nama_perusahaan 		: '',
+							nama_suplier 			: '',
+							limit 					: '',
+							telp_suplier 			: '',
+							fax_suplier 			: '',
+							alamat_suplier 			: '',
+							keterangan				: ''
+						}
+
 					},
-					fields : {
-						nama_perusahaan : {
-							validators : {
-								notEmpty : {
-									message : 'Nama Perusahaan Tidak Boleh Kosong'
-								}
+					mounted: function(){
+						validation_regis();
+						// console.log(this.form_data.nama_lengkap);
+					},
+					methods: {
+						submit_form: function(e){
+							e.preventDefault();
+
+							if($('#data-form').data('bootstrapValidator').validate().isValid()){
+								this.btn_save_disabled = true;
+
+								axios.post(baseUrl+'/master/suplier/suplier/add', 
+									$('#data-form').serialize()
+								).then((response) => {
+
+									if(response.data.status == 'berhasil'){
+										$.toast({
+										    text: 'Data Supplier terbaru Anda berhasil disimpan...!',
+										    showHideTransition: 'fade',
+										    icon: 'success'
+										})
+
+										this.reset_form();
+
+									} else {
+										$.toast({
+										    text: 'Ada kesalahan dalam proses input data, coba lagi...!',
+										    showHideTransition: 'fade',
+										    icon: 'error'
+										})
+									}
+
+								}).catch((err) => {
+									console.log(err);
+								}).then(() => {
+									this.btn_save_disabled = false;
+								})
+
+								return false;
+							}else{
+								$.toast({
+								    text: 'Ada Kesalahan Dengan Inputan Anda. Harap Mengecek Ulang..',
+								    showHideTransition: 'fade',
+								    icon: 'error'
+								})
 							}
 						},
-						nama_suplier : {
-							validators : {
-								notEmpty : {
-									message : 'Nama Supplier Tidak Boleh Kosong'
-								}
-							}
-						},
-						limit : {
-							validators : {
-								notEmpty : {
-									message : 'Form Limit Tidak Boleh Kosong'
-								},
-								numeric : {
-									message : 'Limit Hanya Boleh Inputan Angka'
-								}
-							}
-						},
-						telp_suplier : {
-							validators : {
-								notEmpty : {
-									message : 'Nomor Telepon Tidak Boleh Kosong'
-								},
-								numeric : {
-									message : 'Nomor Telepon Ini Tampaknya Salah'
-								}
-							}
-						},
-						fax_suplier : {
-							validators : {
-								notEmpty : {
-									message : 'Nomor Fax Tidak Boleh Kosong'
-								},
-								numeric : {
-									message : 'Nomor Fax Ini Tampaknya Salah'
-								}
-							}
-						},
-						alamat_suplier : {
-							validators : {
-								notEmpty : {
-									message : 'Alamat Tidak Boleh Kosong'
-								}
-							}
+
+						reset_form:function(){
+							this.form_data.nama_perusahaan 		= '';
+							this.form_data.nama_suplier 		= '';
+							this.form_data.limit 				= '';
+							this.form_data.telp_suplier			= '';
+							this.form_data.fax_suplier 			= '';
+							this.form_data.alamat_suplier 		= '';
+							this.form_data.keterangan 			= '';
+							$('#data-form').data('bootstrapValidator').resetForm();
 						}
 					}
 				});

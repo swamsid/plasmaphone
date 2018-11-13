@@ -11,6 +11,27 @@ use Session;
 
 class gudang_controller extends Controller
 {
+    function kode_gudang()
+    {
+        $AWAL = 'GD';
+        $bulanRomawi = array("", "I","II","III", "IV", "V","VI","VII","VIII","IX","X", "XI","XII");
+        $noUrutAkhir = Gudang::count();
+        if ($noUrutAkhir == 0) {
+            $noUrutAkhir = 0;
+        }
+        $no = 1;
+        $no_gudang = "";
+        $no_urut = $noUrutAkhir + 1;
+        $tgl = sprintf("%01s", abs(date('d')));
+        if($noUrutAkhir) {
+            $no_gudang = sprintf("%03s", abs($noUrutAkhir + 1)). '/' . $AWAL .'/'. $tgl . '/' . $bulanRomawi[date('n')] .'/' . date('Y');
+        }
+        else {
+            $no_gudang = sprintf("%03s", $no). '/' . $AWAL .'/'. $tgl . '/' . $bulanRomawi[date('n')] .'/' . date('Y');
+        }
+        return $no_gudang;
+    }
+
     public function gudang()
     {
         $gudangs = Gudang::get();
@@ -28,31 +49,24 @@ class gudang_controller extends Controller
             // $gudang->save();
 
             if ($gudang->save()) {
-                return redirect('master/gudang')->with('flash_message_success','Semua Data Gudang Yang Terakhir Anda Input Berhasil Tersimpan Di Database!');
+                // return redirect('master/gudang')->with('flash_message_success','Semua Data Gudang Yang Terakhir Anda Input Berhasil Tersimpan Di Database!');
+                $kode_gudang = $this->kode_gudang();
+                return  json_encode([
+                    'status'    => 'berhasil',
+                    'no_gudang' => $kode_gudang
+                ]);
             }else{
-                return redirect('master/gudang')->with('flash_message_error','Semua Data Gudang Yang Terakhir Anda Input Gagal Tersimpan Di Database!');
+                // return redirect('master/gudang')->with('flash_message_error','Semua Data Gudang Yang Terakhir Anda Input Gagal Tersimpan Di Database!');
+                return  json_encode([
+                    'status'    => 'gagal'
+                ]);
             }
             
         }
 
-        $AWAL = 'GD';
-        $bulanRomawi = array("", "I","II","III", "IV", "V","VI","VII","VIII","IX","X", "XI","XII");
-        $noUrutAkhir = Gudang::count();
-        if ($noUrutAkhir == 0) {
-            $noUrutAkhir = 0;
-        }
-        $no = 1;
-        $no_gudang = "";
-        $no_urut = $noUrutAkhir + 1;
-        $tgl = sprintf("%01s", abs(date('d')));
-        if($noUrutAkhir) {
-            $no_gudang = sprintf("%03s", abs($noUrutAkhir + 1)). '/' . $AWAL .'/'. $tgl . '/' . $bulanRomawi[date('n')] .'/' . date('Y');
-        }
-        else {
-            $no_gudang = sprintf("%03s", $no). '/' . $AWAL .'/'. $tgl . '/' . $bulanRomawi[date('n')] .'/' . date('Y');
-        }
+        $kode_gudang = $this->kode_gudang();
 
-        return view('master.gudang.add')->with(compact('no_gudang'));
+        return view('master.gudang.add')->with(compact('kode_gudang'));
     }
 
     public function multiple_delete(Request $request){

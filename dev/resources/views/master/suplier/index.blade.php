@@ -2,7 +2,6 @@
 
 @section('title', 'Master Supplier')
 
-
 @section('extra_style')
 
 @endsection
@@ -50,8 +49,9 @@
 				<ul class="menu-table hide-on-small">
 					<li class="active">
 						<a href="#">
-							<i class="fa fa-table"></i> &nbsp;Data Table</li>
+							<i class="fa fa-table"></i> &nbsp;Data Table
 						</a>
+					</li>
 					<li>
 						<a href="{{ url('/master/suplier/suplier/add') }}">
 							<i class="fa fa-plus"></i> &nbsp;Tambahkan Data
@@ -73,23 +73,6 @@
 				</ul>
 			</div>
 
-			<div class="col-xs-12 col-sm-5 col-md-5 col-lg-5">
-				<ul id="sparks" class="">
-					<li class="sparks-info">
-						<h5> My Income <span class="txt-color-blue">$47,171</span></h5>
-						<div class="sparkline txt-color-blue hidden-mobile hidden-md hidden-sm">
-							1300, 1877, 2500, 2577, 2000, 2100, 3000, 2700, 3631, 2471, 2700, 3631, 2471
-						</div>
-					</li>
-					<li class="sparks-info">
-						<h5> Site Traffic <span class="txt-color-purple"><i class="fa fa-arrow-circle-up" data-rel="bootstrap-tooltip" title="Increased"></i>&nbsp;45%</span></h5>
-						<div class="sparkline txt-color-purple hidden-mobile hidden-md hidden-sm">
-							110,150,300,130,400,240,220,310,220,300, 270, 210
-						</div>
-					</li>
-				</ul>
-			</div>
-
 		</div>
 
 		<!-- widget grid -->
@@ -100,7 +83,7 @@
 			@if(Session::has('flash_message_success'))
 				<?php $mt = '0px'; ?>
 				<div class="col-md-8" style="margin-top: 20px;">
-					<div class="alert alert-success alert-block">
+						<div class="alert alert-success alert-block">
 						<a class="close" data-dismiss="alert" href="#">×</a>
 						<h4 class="alert-heading">&nbsp;<i class="fa fa-thumbs-up"></i> &nbsp;Pemberitahuan Berhasil</h4>
 						{{ Session::get('flash_message_success') }} 
@@ -189,6 +172,7 @@
 
 		<script type="text/javascript">
 			$(document).ready(function(){
+				var baseUrl = '{{ url('/') }}';
 
 				let selected = [];
 
