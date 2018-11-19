@@ -13,7 +13,6 @@ use Session;
 class authController extends Controller
 {
     public function authenticate(Request $request){
-    	// return json_encode($request->all());
 
     	$ret = [
 			"status" => "gagal",

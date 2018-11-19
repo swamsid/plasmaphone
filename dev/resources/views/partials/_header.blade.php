@@ -54,10 +54,10 @@
 	<div class="project-context hidden-xs">
 
 		<span class="label">
-			{{ (!is_null(auth()->user()->id_karyawan)) ? auth()->user()->karyawan->jabatan->nama.' '.auth()->user()->karyawan->posisi->nama_posisi : auth()->user()->m_username }}
+			{{ Auth::user()->m_name }}
 		</span>
 		<span class="project-selector dropdown-toggle" data-toggle="dropdown">
-			{{ (!is_null(auth()->user()->id_karyawan)) ? auth()->user()->karyawan->m_username.' '.auth()->user()->karyawan->nama_lengkap : auth()->user()->m_username }}
+			{{ Auth::user()->m_username }}
 			<i class="fa fa-angle-down"></i></span>
 
 		<!-- Suggestion: populate this list with fetch and push technique -->
