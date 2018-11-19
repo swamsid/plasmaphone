@@ -2,7 +2,7 @@
 <html lang="en-us" id="extr-page">
 	<head>
 		<meta charset="utf-8">
-		<title> PlasmaPhone Login Admin</title>
+		<title> Plasmafone Login Admin</title>
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -61,7 +61,7 @@
 				<span id="logo"> <img src="{{ asset('template_asset/img/logo.png') }}" alt="SmartAdmin"> </span>
 			</div>
 
-			<span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Alamraya | PlasmaPhone</span> <a href="#" class="btn btn-danger">2018</a> </span>
+			<span id="extr-page-header-space"> <span class="hidden-mobile hiddex-xs">Alamraya | Plasmafone</span></span>
 
 		</header>
 
@@ -82,16 +82,16 @@
 
 				<div class="row" style="margin-top: 100px;">
 					<div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 hidden-xs hidden-sm">
-						<h1 class="txt-color-red login-header-big">Selamat Datang Admin PlasmaPhone</h1>
+						<h1 class="txt-color-red login-header-big">Selamat Datang Admin Plasmafone</h1>
 						<div class="hero">
 
 							<div class="pull-left login-desc-box-l">
 								<h4 class="paragraph-header">
 									"Greate Things In Business Are Never Done By One Person. They're Done By A Team Of People."
 								</h4>
-								<div class="login-app-icons">
+								{{-- <div class="login-app-icons">
 									<a href="#" class="btn btn-danger btn-sm">Steve Jobs ( founder Apple.inc )</a>
-								</div>
+								</div> --}}
 							</div>
 							
 							<img src="{{ asset('template_asset/img/demo/iphoneview.png') }}" class="pull-right display-image" alt="" style="width:210px">
