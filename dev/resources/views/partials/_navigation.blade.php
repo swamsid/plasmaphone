@@ -253,6 +253,20 @@
 			</li>
 
 			<li>
+				<a href="#">
+					<i class="fa fa-lg fa-fw fa-cog"></i> 
+					<span class="menu-item-parent">Manajemen Aplikasi</span>
+				</a>
+				<ul>
+					<li <?php if(preg_match("/akses-pengguna/i", $url)) { ?> class="active" <?php } ?>>
+						<a href="{{ url('/pengaturan/akses-pengguna') }}">Pengelolaan Pengguna</a>
+						
+					</li>
+
+				</ul>
+			</li>
+
+			<li>
 				<a href="#" style="color: #00C851"><i class="fa fa-lg fa-fw fa-exchange"></i> <span class="menu-item-parent">Log Activity</span></a>
 			</li>
 			
