@@ -361,6 +361,17 @@ Route::group(['middleware' => 'auth'], function(){
 	// End ditribusi barang
 	// End Inventory
 
+	// Setting Application
+
+	// Akses Pengguna
+	Route::get('pengaturan/akses-pengguna', 'PengaturanController@akses_pengguna');
+	Route::get('pengaturan/akses-pengguna/data-pengguna', 'PengaturanController@data_pengguna');
+	Route::get('pengaturan/akses-pengguna/edit', 'PengaturanController@edit_akses');
+	Route::get('pengaturan/akses-pengguna/simpan', 'PengaturanController@simpan');
+	// End Akses Pengguna
+
+	// End Setting Application
+
 	// main route end
 	// Route::get('/coba-print', 'PembelianController@coba_print');
 });
