@@ -3,16 +3,16 @@
 
 	<!-- User info -->
 	<div class="login-info">
-		<span> <!-- User image size is adjusted inside CSS, it should stay as it --> 
-			
+		<span> <!-- User image size is adjusted inside CSS, it should stay as it -->
+
 			<a href="javascript:void(0);" id="show-shortcut" data-action="toggleShortcut">
-				<img src="{{ asset('template_asset/img/avatars/sunny.png') }}" alt="me" class="online" /> 
+				<img src="{{ asset('template_asset/img/avatars/sunny.png') }}" alt="me" class="online" />
 				<span>
 					{{ (!is_null(auth()->user()->id_karyawan)) ? auth()->user()->karyawan->m_username.' '.auth()->user()->karyawan->nama_lengkap : auth()->user()->m_username }}
 				</span>
 				<i class="fa fa-angle-down"></i>
-			</a> 
-			
+			</a>
+
 		</span>
 	</div>
 	<!-- end user info -->
@@ -75,7 +75,7 @@
 						<ul>
 							<li>
 								<a href="glyph.html">Akun Keuangan</a>
-							</li>	
+							</li>
 							<li>
 								<a href="flags.html">Transaksi keuangan</a>
 							</li>
@@ -124,7 +124,7 @@
 						<ul>
 							<li>
 								<a href="{{ url('/inventory/penerimaan/supplier') }}">Dari Supplier</a>
-							</li>	
+							</li>
 							<li>
 								<a href="{{ url('/inventory/penerimaan/pusat') }}">Kiriman Pusat</a>
 							</li>
@@ -158,7 +158,7 @@
 						<ul>
 							<li>
 								<a href="glyph.html">Proses Penjualan</a>
-							</li>	
+							</li>
 							<li>
 								<a href="flags.html">Pemesanan Barang</a>
 							</li>
@@ -194,7 +194,7 @@
 						<ul>
 							<li>
 								<a href="glyph.html">Transaksi Kas</a>
-							</li>	
+							</li>
 							<li>
 								<a href="flags.html">Transaksi Bank</a>
 							</li>
@@ -230,7 +230,7 @@
 
 			<li>
 				<a href="#">
-					<i class="fa fa-lg fa-fw fa-file-text"></i> 
+					<i class="fa fa-lg fa-fw fa-file-text"></i>
 					<span class="menu-item-parent">Laporan</span>
 				</a>
 				<ul>
@@ -239,7 +239,7 @@
 						<ul>
 							<li>
 								<a href="glyph.html">Laporan Neraca</a>
-							</li>	
+							</li>
 							<li>
 								<a href="flags.html">Laporan Laba Rugi</a>
 							</li>
@@ -254,13 +254,13 @@
 
 			<li>
 				<a href="#">
-					<i class="fa fa-lg fa-fw fa-cog"></i> 
+					<i class="fa fa-lg fa-fw fa-cog"></i>
 					<span class="menu-item-parent">Manajemen Aplikasi</span>
 				</a>
 				<ul>
 					<li <?php if(preg_match("/akses-pengguna/i", $url)) { ?> class="active" <?php } ?>>
 						<a href="{{ url('/pengaturan/akses-pengguna') }}">Pengelolaan Pengguna</a>
-						
+
 					</li>
 
 				</ul>
@@ -269,11 +269,11 @@
 			<li>
 				<a href="#" style="color: #00C851"><i class="fa fa-lg fa-fw fa-exchange"></i> <span class="menu-item-parent">Log Activity</span></a>
 			</li>
-			
+
 		</ul>
 	</nav>
-	<span class="minifyme" data-action="minifyMenu"> 
-		<i class="fa fa-arrow-circle-left hit"></i> 
+	<span class="minifyme" data-action="minifyMenu">
+		<i class="fa fa-arrow-circle-left hit"></i>
 	</span>
 
 </aside>

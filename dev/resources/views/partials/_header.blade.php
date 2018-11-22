@@ -54,10 +54,10 @@
 	<div class="project-context hidden-xs">
 
 		<span class="label">
-			{{ Auth::user()->m_name }}
+			{{ (!is_null(auth()->user()->id_karyawan)) ? auth()->user()->karyawan->jabatan->nama.' '.auth()->user()->karyawan->posisi->nama_posisi : auth()->user()->m_username }}
 		</span>
 		<span class="project-selector dropdown-toggle" data-toggle="dropdown">
-			{{ Auth::user()->m_username }}
+			{{ (!is_null(auth()->user()->id_karyawan)) ? auth()->user()->karyawan->m_username.' '.auth()->user()->karyawan->nama_lengkap : auth()->user()->m_username }}
 			<i class="fa fa-angle-down"></i></span>
 
 		<!-- Suggestion: populate this list with fetch and push technique -->
@@ -103,7 +103,7 @@
 		<!-- end search mobile button -->
 
 		<!-- input: search field -->
-		{{-- <form action="search.html" class="header-search pull-right">
+		<form action="search.html" class="header-search pull-right">
 			<input id="search-fld"  type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
 			"ActionScript",
 			"AppleScript",
@@ -131,7 +131,7 @@
 				<i class="fa fa-search"></i>
 			</button>
 			<a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-		</form> --}}
+		</form>
 		<!-- end input: search field -->
 
 		<ul id="mobile-profile-img" class="header-dropdown-list hidden-xs padding-5">
